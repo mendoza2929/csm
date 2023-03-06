@@ -150,18 +150,29 @@ function get_bookings(search=''){
 
 
 
+
 function refund_booking(id){
 
-    if(confirm("Are you done comply the breakage ?")){
-            let data = new FormData();
-            data.append('booking_id',id);
-            data.append('refund_booking','');
+    let data = new FormData();
+    data.append('booking_id',id);
+     data.append('refund_booking','');
             
-        let xhr = new XMLHttpRequest();
+   
+
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to undo this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, approved!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    let xhr = new XMLHttpRequest();
          xhr.open("POST","refund.php",true);
     
-
-            xhr.onload = function(){
+    xhr.onload = function(){
                 if(this.responseText== 1){
                      Swal.fire(
                     'Approved!',
@@ -180,7 +191,10 @@ function refund_booking(id){
               
             }
             xhr.send(data);
-        }
+  }
+})
+
+
 }
 
 

@@ -76,6 +76,7 @@
                 <b>Name: </b> $data[user_name]
                 <br>
                 <b>Course/Year: </b> $data[course]
+              
                 <br>
                 <b>Teacher Name: </b> $data[teacher]
                 </td>
@@ -162,21 +163,20 @@ if(isset($_POST['assign_room'])){
 
   
 
-    if(isset($_POST['cancel_booking'])){
-        $frm_data = filteration($_POST);
+if(isset($_POST['quantity_room'])){
+  $frm_data = filteration($_POST);
 
-        $query = "UPDATE `booking_order` SET `booking_status`=?, `refund`=? WHERE `booking_id`=? ";
+  $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id SET bo.booking_status = ?, bo.refund=?, bd.quantity_no = ? WHERE bo.booking_id = ? ";
 
-        $values = ['cancelled',0,$frm_data['booking_id']];
+  $values = ['cancelled',0,$frm_data['quantity_no'],$frm_data['booking_id']];
 
-        $res = update($query,$values,'sii');
+  $res = update($query,$values,'siii');
+  
+  echo ($res==2) ? 1 : 0;
 
-        echo $res;
-    
-     
-    
+
+
 }
-
 
 
 

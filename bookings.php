@@ -159,8 +159,13 @@ if($home_r['shutdown']==1){
             $btn = "";
 
             if($data['booking_status']=='booked'){
-              $status_bg = "bg-success";
+              
               if($data['arrival']==1){
+                $btn="  <div class='text-center'>
+              <span class='badge rounded-pill bg-light text-success mb-3 text-wrap lh-base'>
+                Success Return
+              </span>
+              </div>";
               //   $btn="<button type='button' class='btn btn-outline-dark btn-sm fw-bold shadow-none'>
               //   Rate & Review
               // </button>"; 
@@ -172,16 +177,14 @@ if($home_r['shutdown']==1){
               // }
                 
               }else{
-                $btn="<button onclick='cancel_booking($data[booking_id])'type='button' class='btn btn-outline-danger btn-sm fw-bold shadow-none'>
-                Breakage Item
-              </button>";
+              
               }
             }else if($data['booking_status']=='cancelled'){
-              $status_bg = "bg-danger";
+            
         
               if($data['refund']==0){
                 $btn="  <div class='text-center'>
-              <span class='badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base'>
+              <span class='badge rounded-pill bg-light text-danger mb-3 text-wrap lh-base'>
                 Breakge: Contact the professor for the manual breakage process.
               </span>
               </div>";
@@ -203,9 +206,11 @@ if($home_r['shutdown']==1){
                 <div class="bg-white p-3 rounded shadown-sm">
                     <h5 class="fw-bold text-center">$data[room_name]</h5>
                     <b>Date: </b> $date <br>
-                    <h6>Quantity: $data[quantity] pcs</h6>
-                    <h6>Volume: $data[quantity] Needed</h6>
-                    <h6>Group No: $data[group_no]</h6>
+                    <b>Quantity: $data[quantity_no] pcs</b>
+                    <br>
+                    <b>Volume: $data[quantity] Needed</b>
+                    <br>
+                    <b>Group No: $data[group_no]</b>
                     <p>
                       <b>Start Time: </b> $checkin <br>
                       <b>End Time: </b> $checkout 

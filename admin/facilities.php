@@ -279,7 +279,7 @@ require ("script.php");
                 Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'A Size and Volume Removed  is added to the room.',
+                text: 'A Size and Volume Removed  is added to the stock item.',
                 })
                 
             }
@@ -287,7 +287,7 @@ require ("script.php");
                 Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'A Size and Volume Removed  is added to the room.',
+                text: 'A Size and Volume Removed  is added to the stock item.',
                 })
             }
         }
@@ -347,7 +347,7 @@ require ("script.php");
             else{
                                 Swal.fire(
                 'Good job!',
-                'New Policy  Added',
+                'New Faculty Added',
                 'success'
                 )
              
@@ -381,7 +381,7 @@ require ("script.php");
             if(this.responseText==1){
                 Swal.fire(
                 'Good job!',
-                'Policy Removed Successfully',
+                'Faculty Removed Successfully',
                 'success'
                 )
                 
@@ -399,7 +399,7 @@ require ("script.php");
                 Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'A Policy is added to the room.',
+                text: 'A Faculty is added to the Faculty Member.',
                 })
             }
         }

@@ -188,61 +188,6 @@ if($home_r['shutdown']==1){
 
 
  
-<!---- OUR FEATURES--->
-
-<h2 class="mt-5 pt-4 mb-4 text-center fw-bold">OUR POLICY</h2>
-
-<div class="container">
-  <div class="row justify-content-evenly px-lg-0 px-md-0 px-5">
-    <?php 
-    
-     $res = selectAll('facilities');
-     $path = FEATURES_IMG_PATH;
-
-     while($row = mysqli_fetch_assoc($res)){
-      echo<<<data
-      <div class="col-lg-4 col-md-6 mb-5 px-4">
-        <div class="bg-white rounded shadow p-4 border-top border-4">
-            <div class="d-flex align-items-center mb-2">
-                <img src="$path$row[icon]" width="40px">
-                <h5 class="m-0 ms-3 fw-bold">$row[name]</h5>
-            </div>
-            <p>$row[description]</p>
-        </div>
-      </div>
-
-
-      data;
-     }
-    
-    ?>
-    <!--<div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-      <h5 class="mt-3 font-bold">🛵Free parking on premises
-Outdoor grilling area 
-Fully fenced area with gate that can be locked for safety purposes</h5>
-    </div>
-    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-      <h5 class="mt-3 font-bold">📍Dining:
-Kitchen
-Space where guests can cook their own meals</h5>
-    </div>
-    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-      <h5 class="mt-3 font-bold">📍Bed and bath:
-🛏️Double deck bed is included but without foam
-🚿Bathroom can be locked for safety and privacy</h5>
-    </div>
-    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-      <h5 class="mt-3 font-bold">📍Electricity and Water Bill:
-Each unit is provided with their own electric meter and water meter
-Each room is provided with a main switch located inside the units</h5>
-    </div>
-    <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
-      <h5 class="mt-3 font-bold">📍Water Source:
-Own water tank: Deep well – no water interruption</h5>
-    </div>
-  </div>
-</div> -->
-
 
 
 
@@ -283,14 +228,14 @@ Own water tank: Deep well – no water interruption</h5>
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label class="form-label">Email/PhoneNumber</label>
-                <input type="text" class="form-control shadow-none" required name="email_mob" >
+                <label class="form-label">ID Number </label>
+                <input type="number" class="form-control shadow-none" required name="email_mob" >
                 </div>
                 <div class="mb-4">
 
-                <label class="form-label">Password</label>
+                <!--<label class="form-label">Password</label>
                 <input type="password" class="form-control shadow-none mb-2" name="loginpass" autocomplete="current-password" required="" id="id_password">
-                <i class="far fa-eye icon-login" required="" id="togglePassword"></i>
+                <i class="far fa-eye icon-login" required="" id="togglePassword"></i>-->
                 
                 </div>
 
@@ -631,7 +576,7 @@ login_form.addEventListener('submit',function(e){
  function login_User(){
           let data = new FormData();
           data.append('email_mob',login_form.elements['email_mob'].value);
-          data.append('loginpass',login_form.elements['loginpass'].value);
+          // data.append('loginpass',login_form.elements['loginpass'].value);
           data.append('login','');
 
         let xhr = new XMLHttpRequest();

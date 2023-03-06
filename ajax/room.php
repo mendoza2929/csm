@@ -119,7 +119,7 @@ session_start();
             
             <div class='card mb-4 border-0 shadow'>
               <div class='row g-0 p-3 align-items-center'>
-                  <div class='col-md-5 px-lg-3 px-mb-3 px-0'>
+                  <div class='col-md-5 px-lg-3 px-mb-3 px-0 mx-auto'>
                     <h4 class='mb-5 mt-2 text-center fw-bold'>$room_data[name]</h4>
                     <div class='features mb-3'>
                     <h6 class='mb-1'>Size</h6>
@@ -239,7 +239,7 @@ session_start();
                if(isset($_SESSION['login']) && $_SESSION['login']==true){
                  $login=1;
                }
-               $book_btn = "  <button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-success w-100 text-white shadow-none mb-2'>Reserve Now</button>";
+               $book_btn = "  <button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-success w-100 text-white shadow-none mb-2'>Barrowing Now</button>";
              } 
      
                

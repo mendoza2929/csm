@@ -208,16 +208,17 @@ if($home_r['shutdown']==1){
                   <div class="col-md-12 mb-3">
                       <div class="row">
                         
-                      <label class="form-label mt-2"> Select Teacher
-                        <select class='form-select shadow-none' aria-label='Default select example' name='teacher'>  
-                          <?php
-                          $res = selectAll('facilities');
-                          while($opt = mysqli_fetch_assoc($res)){
-                            echo "<option value='$opt[name]'>$opt[name] ($opt[description])</option>";
-                          }
-                          ?>
-                        </select>
-                      </label>
+                      <label class="form-label mb-3"> Select Teacher
+    <select class='form-select shadow-none' aria-label='Default select example' name='teacher' required>
+        <option disabled selected value="">Select a teacher...</option> <!-- placeholder option -->
+        <?php
+        $res = selectAll('facilities');
+        while($opt = mysqli_fetch_assoc($res)){
+            echo "<option value='$opt[name]'>$opt[name] ($opt[description])</option>";
+        }
+        ?>
+    </select>
+</label>
 
                       </div>
     

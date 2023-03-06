@@ -52,7 +52,7 @@
                 <td>
                     <b>Item: </b> $data[room_name]
                     <br>
-                    <b>Quantity: </b> $data[quantity]
+                    <b>Quantity: </b> $data[quantity_no]
                     <br>
                     <b>Check in: </b> $checkin
                     <br>
@@ -96,6 +96,26 @@ if(isset($_POST['assign_room'])){
   echo ($res==2) ? 1 : 0;  //it will update 2 rows so it will return 2 
 
 }
+
+
+
+
+if(isset($_POST['quantity_room'])){
+  $frm_data = filteration($_POST);
+
+  $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id SET bo.booking_status = ?, bo.refund=?, bd.quantity_no = ? WHERE bo.booking_id = ? ";
+
+  $values = ['cancelled',0,$frm_data['quantity_no'],$frm_data['booking_id']];
+
+  $res = update($query,$values,'siii');
+
+  echo $res;
+
+
+
+}
+
+
 
   
 

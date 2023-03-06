@@ -176,7 +176,7 @@ if(isset($_GET['check_availability'])){
 </nav>
   </div>
 
-     <div class="col-lg-9 col-mb-12 px-4" id="rooms-data">
+     <div class="col-lg-9 col-mb-10 mx-auto" id="rooms-data">
       
 
   

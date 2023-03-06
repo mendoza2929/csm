@@ -354,7 +354,7 @@ function add_rooms(){
             if(this.responseText==1){
                 Swal.fire(
                 'Good job!',
-                'Room Added',
+                'Apparatus Added',
                 'success'
                 )
                 room_form.reset();
@@ -461,7 +461,7 @@ function submit_edit_rooms(){
             if(this.responseText==1){
                      Swal.fire(
                     'Updated!',
-                    'Room Updated',
+                    'Apparatus Updated',
                     'success'
                     )
                 edit_form.reset();
@@ -606,7 +606,7 @@ function toggleStatus(id,val){
     
     function remove_room(room_id){
         
-        if(confirm("Are you sure you want to remove this room?")){
+        if(confirm("Are you sure you want to remove this Apparatus?")){
             let data = new FormData();
             data.append('room_id',room_id);
             data.append('remove_room','');

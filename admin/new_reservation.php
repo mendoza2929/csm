@@ -69,13 +69,15 @@
                   <i class='bi bi-clipboard-plus'></i> Room Number
                 </button>
                 <br>
+
+                <button type='button' onclick='quantity_room($data[booking_id])' class='btn text-white btn-sm fw-bold bg-danger shadow-none mt-2' data-bs-toggle='modal' data-bs-target='#quantity-room'>
+                <i class='bi bi-clipboard-plus'></i> Quantity
+              </button>
+              <br>
               
      
 
-                <button type='button' onclick='cancel_booking($data[booking_id])' class='btn btn-outline-danger mt-2 btn-sm fw-bold shadow-none'>
-                <i class='bi bi-folder-x'></i> Breakage Item
-              </button>
-                </td>
+                
             </tr>
             
             ";
@@ -106,16 +108,16 @@ if(isset($_POST['assign_room'])){
 
   
 
-    if(isset($_POST['cancel_booking'])){
+    if(isset($_POST['quantity_room'])){
         $frm_data = filteration($_POST);
 
-        $query = "UPDATE `booking_order` SET `booking_status`=?, `refund`=? WHERE `booking_id`=? ";
+        $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id SET bo.booking_status = ?, bo.refund=?, bd.quantity_no = ? WHERE bo.booking_id = ? ";
 
-        $values = ['cancelled',0,$frm_data['booking_id']];
+        $values = ['cancelled',0,$frm_data['quantity_no'],$frm_data['booking_id']];
 
-        $res = update($query,$values,'sii');
+        $res = update($query,$values,'siii');
 
-        echo $res;
+        echo ($res==2) ? 1 : 0;
     
      
     

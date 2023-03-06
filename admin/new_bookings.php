@@ -145,6 +145,35 @@ adminLogin();
             </div>
         </div>
 
+        
+               <!----assign Room Number Modal-->
+
+               <div class="modal fade" id="quantity-room" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form id="quantity_room_form">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title"><i class="bi bi-clipboard-check-fill"></i> Breakage Item</div>
+                        </div>
+                        <div class="modal-body"> 
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Breakage Quantity</label>
+                                <input type="text" name="quantity_no" class="form-control shadow-none">
+                            </div>
+                         <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base ">
+                            Note: Check first the Item Quantity
+                        </span>
+                        <input type="hidden" name="booking_id">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success shadow-none">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
 
       
 
@@ -174,6 +203,68 @@ function get_bookings(search=''){
 
 }
 
+
+
+
+
+let quantity_room_form = document.getElementById('quantity_room_form');
+
+function quantity_room(id){
+    quantity_room_form.elements['booking_id'].value=id;
+}
+
+quantity_room_form.addEventListener('submit',function(e){
+    e.preventDefault();
+
+    let data = new FormData();
+    data.append('quantity_no',quantity_room_form.elements['quantity_no'].value);
+    data.append('booking_id',quantity_room_form.elements['booking_id'].value);
+    data.append('quantity_room','');
+
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","new_reservation.php",true);
+
+    xhr.onload = function(){
+        var myModal = document.getElementById('quantity-room');
+        var modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
+
+
+
+        if(this.responseText==1){
+            Swal.fire(
+                'Good job!',
+                'Breakage Item Update!',
+                'success'
+                )
+                quantity_room_form.reset();
+                get_bookings();
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                })
+        }
+    }
+
+    xhr.send(data);
+    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 let assign_room_form = document.getElementById('assign_room_form');
 
 function assign_room(id){
@@ -198,6 +289,7 @@ assign_room_form.addEventListener('submit',function(e){
         var modal = bootstrap.Modal.getInstance(myModal);
         modal.hide();
 
+    
 
         if(this.responseText==1){
             Swal.fire(
@@ -221,38 +313,38 @@ assign_room_form.addEventListener('submit',function(e){
 });
 
 
-function cancel_booking(id){
+// function cancel_booking(id){
 
-    if(confirm("Are you sure that this item has broken?")){
-            let data = new FormData();
-            data.append('booking_id',id);
-            data.append('cancel_booking','');
+//     if(confirm("Are you sure that this item has broken?")){
+//             let data = new FormData();
+//             data.append('booking_id',id);
+//             data.append('cancel_booking','');
             
-        let xhr = new XMLHttpRequest();
-         xhr.open("POST","new_reservation.php",true);
+//         let xhr = new XMLHttpRequest();
+//          xhr.open("POST","new_reservation.php",true);
     
 
-            xhr.onload = function(){
-                if(this.responseText== 1){
-                     Swal.fire(
-                    'Reminder!',
-                    'Item has been broken',
-                    'success'
-                    )
-                    get_bookings();
-                }else{
-                    Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
+//             xhr.onload = function(){
+//                 if(this.responseText== 1){
+//                      Swal.fire(
+//                     'Reminder!',
+//                     'Item has been broken',
+//                     'success'
+//                     )
+//                     get_bookings();
+//                 }else{
+//                     Swal.fire({
+//                 icon: 'error',
+//                 title: 'Oops...',
+//                 text: 'Something went wrong!',
                 
-                })
-                }
+//                 })
+//                 }
               
-            }
-            xhr.send(data);
-        }
-}
+//             }
+//             xhr.send(data);
+//         }
+// }
 
 
 
