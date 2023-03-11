@@ -414,7 +414,7 @@ edit_form.addEventListener('submit', function(e){
 
            edit_form.elements['features'].forEach(el => {
             if(data.features.includes(Number(el.value))){
-                el.checked=true;
+               el.checked = true;
             }
         });
 

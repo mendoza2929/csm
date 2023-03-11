@@ -175,70 +175,9 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
 ?>
 
 
-    <!----Footer--->
+  
 
-  <div class="container-fluid bg-white mt-5">
-    <div class="row">
-      <div class="col-lg-4 p-4">
-        <h3 class="fw-bold fs-3 mb-4">KLC HOMES</h3>
-                <p>KLC Homes
-        Calle San Pedro, Zone 1
-        Ayala Zamboanga City
-      </p>
-      </div>
-      <div class="col-lg-4 p-4">
-        <h5 class="mb-3">Links</h5>
-        <a href="index.php" class="d-inline-block mb-2 text-decoration-none text-dark">HOME</a><br>
-        <a href="rooms.php" class="d-inline-block mb-2 text-decoration-none text-dark">ROOM</a><br>
-        <a href="about.php" class="d-inline-block mb-2 text-decoration-none text-dark">ABOUT US</a><br>
-        <a href="contact.php" class="d-inline-block mb-2 text-decoration-none text-dark">CONTACT US</a>
-
-      </div>
-      <div class="col-lg-4 p-4">
-          <h5 class="mb-3">Follow Us</h5>
-          <?php 
-                      if($contact_r['fb']!=''){
-                        echo<<<data
-
-                        <a href="$contact_r[fb]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
-                          <i class="bi bi-facebook me-1"></i>
-                        </a>
-
-                        data;
-                      }
-                    
-                    ?>
-
-                    <?php 
-                      if($contact_r['insta']!=''){
-                        echo<<<data
-
-                        <a href="$contact_r[insta]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
-                          <i class="bi bi-instagram me-1"></i>
-                        </a>
-
-                        data;
-                      }
-                    
-                    ?>
-
-                  <?php 
-                      if($contact_r['tw']!=''){
-                        echo<<<data
-
-                        <a href="$contact_r[tw]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
-                          <i class="bi bi-twitter me-1"></i>
-                        </a>
-
-                        data;
-                      }
-                    
-                    ?>
-      </div>
-    </div>
-  </div>
-
-  <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by KLC HOMES TEAM</h6>
+  <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by reuel mendoza</h6>
 <!-- Login Modal -->
 <div class="modal fade" id="loginModal"  data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" >

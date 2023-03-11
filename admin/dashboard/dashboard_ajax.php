@@ -31,7 +31,7 @@
         AS `total_bookings`, SUM(CASE WHEN booking_status!='pending' AND booking_status!='cancelled'  
          THEN `trans_amt` END) AS `total_amt`,   COUNT(CASE WHEN booking_status='booked' AND arrival=1 THEN 1 END) 
          AS `active_bookings`, SUM(CASE WHEN booking_status='booked' AND arrival=1 THEN `trans_amt` END) AS `active_amt`, 
-         COUNT(CASE WHEN booking_status='cancelled' AND refund=1 then 1 END) AS `cancelled_bookings` ,
+         COUNT(CASE WHEN booking_status='cancelled' then 1 END) AS `cancelled_bookings` ,
           SUM(CASE WHEN booking_status='cancelled' AND refund=1 then `trans_amt` END) AS `cancelled_amt` FROM `booking_order` $condition"));
       
         $output = json_encode($results);
@@ -41,37 +41,37 @@
 
 }
 
-if(isset($_POST['user_analytics'])){  
+// if(isset($_POST['user_analytics'])){  
 
-  $frm_data = filteration($_POST);
+//   $frm_data = filteration($_POST);
 
-  $condition = "";
+//   $condition = "";
 
-  if($frm_data['period']==1){
-    $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
-  }
-  else if($frm_data['period']==2){
-    $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 90 DAY AND NOW()";
-  }
-  else if($frm_data['period']==3){
-    $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 1 YEAR AND NOW()";
-  }
+//   if($frm_data['period']==1){
+//     $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
+//   }
+//   else if($frm_data['period']==2){
+//     $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 90 DAY AND NOW()";
+//   }
+//   else if($frm_data['period']==3){
+//     $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 1 YEAR AND NOW()";
+//   }
 
-  $total_review= mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(sr_no) AS `count` FROM `rating_review` $condition"));
+//   $total_review= mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(sr_no) AS `count` FROM `rating_review` $condition"));
 
   
-  $total_queries= mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(sr_no) AS `count` FROM `user_queries` $condition"));
+//   $total_queries= mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(sr_no) AS `count` FROM `user_queries` $condition"));
 
     
-  $total_new_reg= mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(id) AS `count` FROM `user_cred` $condition"));
+//   $total_new_reg= mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(id) AS `count` FROM `user_cred` $condition"));
 
-  $output = ['total_queries'=>$total_queries['count'],'total_review'=>$total_review['count'],'total_new_reg'=>$total_new_reg['count']];
+//   $output = ['total_queries'=>$total_queries['count'],'total_review'=>$total_review['count'],'total_new_reg'=>$total_new_reg['count']];
 
-  $output = json_encode($output);
+//   $output = json_encode($output);
 
-  echo $output;
+//   echo $output;
 
-}
+// }
 
 
  

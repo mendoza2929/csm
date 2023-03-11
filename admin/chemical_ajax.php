@@ -73,7 +73,7 @@ if(isset($_POST['get_chemical'])){
         <td>
          
 
-            <button type='button' onclick='chemical_details($row[id])' class='btn btn-warning btn-sm shadow-none me-3' data-bs-toggle='modal' data-bs-target='#edit-room'>
+            <button type='button' onclick='chemical_details($row[id])' class='btn btn-warning btn-sm shadow-none me-3' data-bs-toggle='modal' data-bs-target='#edit-chemical'>
             <i class='i bi-pencil-square'></i>
             </button>
           
@@ -87,6 +87,31 @@ $i++;
 
 }
 echo $data;
+}
+
+
+if(isset($_POST['edit_chemical'])){
+    $frm_data = filteration($_POST);
+
+    $res1 = select("SELECT * FROM `chemical` WHERE  `id`=?",[$frm_data['edit_chemical']],'i');
+    $res2 = select("SELECT * FROM `chemical_facilities` WHERE `chemical_id`=?",[$frm_data['edit_chemical']],'i');
+
+
+    $chemicaldata = mysqli_fetch_assoc($res1);
+    $features =[];
+
+    if(mysqli_num_rows($res2)>0){
+         while($row = mysqli_fetch_assoc($res2)){
+            array_push($features,$row['facilities_id']);
+         }
+    }
+
+    $data = ["chemicaldata"=>$chemicaldata, "features"=>$features];
+
+    
+    $data = json_encode($data);
+
+    echo $data;
 }
 
 

@@ -128,7 +128,7 @@ if($home_r['shutdown']==1){
                 $_SESSION[uName]
                 </button>
                 <ul class="dropdown-menu dropdown-menu-lg-end">
-                  <li><a class="dropdown-item" href="bookings.php">Your Booking</a></li>
+                  <li><a class="dropdown-item" href="bookings.php">Your Barrowing Item</a></li>
                   <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                 </ul>
               </div>

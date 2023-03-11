@@ -210,44 +210,6 @@ adminLogin();
 
 
 
-        <!-- Room Images Modal -->
-<div class="modal fade" id="room_images" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title"><i class="bi bi-card-image"></i> Room Image</h5>
-        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></button>
-      </div>
-      <div class="modal-body">
-        <div id="image-alert">
-
-        </div>
-            <div class="border-bottom border-3 pb-3 mb-3">
-                <form id="add_image_form">
-                <label class="form-label fw-bold">Add Image</label>
-                <input type="file" name="image" accept=".jpg, .png, .webp, .jpeg" class="form-control shadow-none mb-3" required>
-                <button type="submit" class="btn btn-success shadow-none">Add</button>
-                <input type="hidden" name="room_id">
-                 </form>
-            </div>
-            <div class="table-responsive-lg" style="height:350px; overflow-y:scroll;">
-                           <table class="table table-hover border text-center">
-                            <thead>
-                                <tr class="bg-secondary text-white sticky-top">
-                                <th scope="col" width="60%">Image</th>
-                                <th scope="col">Select Image</th>
-                                <th scope="col">Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody id="room-image-data">
-                            </tbody>
-                            </table>
-                            </div>
-         </div>
-     </div>
-    </div>
-</div>
-
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -326,10 +288,44 @@ function get_chemical(){
         xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
         xhr.onload = function(){
-            document.getElementById('chemical_data').innerHTML = this.responseText;
+         document.getElementById('chemical_data').innerHTML = this.responseText;
         }
         xhr.send('get_chemical');
 
+}
+
+
+
+
+let edit_chemical= document.getElementById('edit_chemical');
+
+function chemical_details(id){
+    
+
+    
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","chemical_ajax.php",true);
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+        xhr.onload = function(){
+        
+            let data = JSON.parse(this.responseText);
+            edit_chemical.elements['name'].value = data.chemicaldata.name;
+            edit_chemical.elements['area'].value = data.chemicaldata.area;
+            edit_chemical.elements['quantity'].value = data.chemicaldata.quantity;
+            edit_chemical.elements['avail'].value = data.chemicaldata.avail;
+            edit_chemical.elements['student'].value = data.chemicaldata.student;
+            edit_chemical.elements['chemical_id'].value = data.chemicaldata.id;
+            
+            
+            edit_chemical.elements['features'].forEach(el => {
+            if(data.features.includes(Number(el.value))){
+               el.checked = true;
+            }
+        });
+
+        }
+        xhr.send('edit_chemical='+id);
 }
 
 

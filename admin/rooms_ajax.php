@@ -75,9 +75,7 @@
                     <td>$row[quantity]</td>
                     <td>$status</td>
                     <td>
-                        <button type='button' onclick=\"room_images($row[id],'$row[name]')\" class='btn btn-info btn-sm shadow-none me-3' data-bs-toggle='modal' data-bs-target='#room_images'>
-                        <i class='i bi-images'></i>
-                        </button>
+                      
 
                         <button type='button' onclick='edit_details($row[id])' class='btn btn-warning btn-sm shadow-none me-3' data-bs-toggle='modal' data-bs-target='#edit-room'>
                         <i class='i bi-pencil-square'></i>

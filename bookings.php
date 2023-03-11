@@ -206,9 +206,11 @@ if($home_r['shutdown']==1){
                 <div class="bg-white p-3 rounded shadown-sm">
                     <h5 class="fw-bold text-center">$data[room_name]</h5>
                     <b>Date: </b> $date <br>
-                    <b>Quantity: $data[quantity_no] pcs</b>
+                    <b>Quantity: $data[quantity] pcs</b>
                     <br>
-                    <b>Volume: $data[quantity] Needed</b>
+                    <b>Update Quantity: $data[quantity_no] pcs</b>
+                    <br>
+                    <b>Volume: $data[volume] Needed</b>
                     <br>
                     <b>Group No: $data[group_no]</b>
                     <p>

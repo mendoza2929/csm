@@ -228,8 +228,8 @@ if($home_r['shutdown']==1){
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label class="form-label">ID Number </label>
-                <input type="number" class="form-control shadow-none" required name="email_mob" >
+                <label class="form-label">Email </label>
+                <input type="text" class="form-control shadow-none" required name="email_mob" >
                 </div>
                 <div class="mb-4">
 
