@@ -192,10 +192,7 @@ adminLogin();
                                     ?> 
                                 </div>
                             </div>
-                            <div class="col-12 mb-3">
-                                <label class="form-label fw-bold">Description</label>
-                                <textarea name="desc" rows=4 class="form-control shadow-none" required></textarea>
-                            </div>
+                           
                             <input type="hidden" name="chemical_id">
                             </div>
                         </div>
@@ -327,6 +324,67 @@ function chemical_details(id){
         }
         xhr.send('edit_chemical='+id);
 }
+
+
+edit_chemical.addEventListener('submit', function(e){
+    e.preventDefault();
+    submit_edit_chemical();
+});
+
+
+function submit_edit_chemical(){
+    let data= new FormData();
+        data.append('submit_edit_chemical','');
+        data.append('chemical_id',edit_chemical.elements['chemical_id'].value);
+        data.append('name',edit_chemical.elements['name'].value);
+        data.append('area',edit_chemical.elements['area'].value);
+        data.append('quantity',edit_chemical.elements['quantity'].value);
+        data.append('avail',edit_chemical.elements['avail'].value);
+        data.append('student',edit_chemical.elements['student'].value);
+        // data.append('desc',add_chemical_form.elements['desc'].value);
+
+
+        let features = [];
+
+        edit_chemical.elements['features'].forEach(el => {
+            if(el.checked){
+                features.push(el.value);
+            }
+        });
+
+        data.append('features',JSON.stringify(features));
+
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","chemical_ajax.php",true);
+
+        xhr.onload = function(){
+            var myModalEl = document.getElementById('edit-chemical')
+            var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+            modal.hide();
+
+            if(this.responseText==1){
+                Swal.fire(
+                'Good job!',
+                'Chemical Edit Successfully',
+                'success'
+                )
+                edit_chemical.reset();
+                get_chemical();
+                
+            }else{
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                })
+            }
+
+        }
+        xhr.send(data);
+}
+
+
 
 
 

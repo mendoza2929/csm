@@ -114,6 +114,50 @@ if(isset($_POST['edit_chemical'])){
     echo $data;
 }
 
+if(isset($_POST['submit_edit_chemical'])){
+    $features = filteration(json_decode($_POST['features']));
+
+    $frm_data = filteration($_POST);
+
+    $flag = 0;
+
+    $q1 = "UPDATE `chemical` SET `name`=?, `area`=?, `quantity`=?, `avail`=?,`student`=? WHERE `id`=?";
+    $values = [$frm_data['name'],$frm_data['area'],$frm_data['quantity'],$frm_data['avail'],$frm_data['student'],$frm_data['chemical_id']];
+
+    if(update($q1, $values,'siiisi')){
+        $flag= 1;
+    }
+
+     $del_features = delete("DELETE FROM `chemical_facilities` WHERE `chemical_id`=?",[$frm_data['chemical_id']],'i');
+
+        if(!($del_features)){
+            $flag = 0;
+        }
+
+        $q2 = "INSERT INTO `chemical_facilities`(`chemical_id`, `facilities_id`) VALUES (?,?)";
+
+        if($stmt = mysqli_prepare($con,$q2)){
+            {
+                foreach($features as $f){
+                    mysqli_stmt_bind_param($stmt,'ii',$frm_data['chemical_id'],$f);
+                    mysqli_stmt_execute($stmt);
+                }
+                $flag=1;
+                mysqli_stmt_close($stmt);
+    
+            }
+        }else{
+            $flag = 0;
+            die('query cannot be prepared - insert ');
+        }
+    
+        if($flag){
+            echo 1;
+        }else{
+            echo 0;
+        }
+}
+
 
 
 

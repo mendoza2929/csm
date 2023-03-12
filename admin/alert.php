@@ -4,6 +4,7 @@
 
     // frontend data
     define('SITE_URL','http://127.0.0.1/csm/');
+    // define('SITE_URL','192.168.43.84/csm/');
     define('FEATURES_IMG_PATH',SITE_URL.'img/features/');
     define('ROOM_IMG_PATH',SITE_URL.'img/room/');
 
