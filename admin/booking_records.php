@@ -75,19 +75,22 @@
                 <br>
                 <b>Name: </b> $data[user_name]
                 <br>
-                <b>Course/Year: </b> $data[course]
+                <b>Course: </b> $data[course]
+                <br>
+                <b>Year: </b> $data[year] year
               
                 <br>
                 <b>Teacher Name: </b> $data[teacher]
+                <br>
+                <b>Group No. : </b>  $data[group_no] 
+                <br>
+                <b>Room No. : </b>  $data[apr_no] 
                 </td>
                 <td>
                 <b>item: </b> $data[room_name]
                 <br>
                 <b>Quantity: </b> $data[quantity] pcs
-                <br>
-                <b>Room Number: </b>  $data[room_no] 
-                <br>
-                <b>Group No. : </b>  $data[group_no] 
+                
                 <br>
                 <b>Volume : </b>  $data[volume] Needed
                 <br>

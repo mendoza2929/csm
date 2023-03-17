@@ -50,11 +50,12 @@
                 <td>$row[name]</td>
                 <td>$row[email]</td>
                 <td>$row[course]</td>
+                <td>$row[year]</td>
                 <td>$row[phonenum]</td>
-                <td>$row[address]</td>
-                <td>$verified</td>
+              
+          
                 <td>$date</td>
-                <td>$del_btn</td>
+             
                </tr>
             ";
             $i++;

@@ -124,15 +124,15 @@ adminLogin();
                 <form id="assign_room_form">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <div class="modal-title"><i class="bi bi-clipboard-check-fill"></i> Room Number</div>
+                            <div class="modal-title"><i class="bi bi-clipboard-check-fill"></i>Aproved Return</div>
                         </div>
                         <div class="modal-body"> 
                             <div class="mb-3">
-                                <label class="form-label fw-bold">Room Number</label>
-                                <input type="text" name="room_no" class="form-control shadow-none">
+                                <label class="form-label fw-bold">Approved Return</label>
+                                <input type="hidden" name="room_no">
                             </div>
                          <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base ">
-                            Note: Assign Room Number only when student has been return the item!
+                            Note: Are you certain this object is undamaged?
                         </span>
                         <input type="hidden" name="booking_id">
                         </div>
@@ -167,7 +167,7 @@ adminLogin();
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success shadow-none">Submit</button>
+                            <button type="submit" class="btn btn-success shadow-none">Approved</button>
                         </div>
                     </div>
                 </form>
@@ -294,7 +294,7 @@ assign_room_form.addEventListener('submit',function(e){
         if(this.responseText==1){
             Swal.fire(
                 'Good job!',
-                'Room Number Assign approved return!',
+                'Approved return!',
                 'success'
                 )
                 assign_room_form.reset();

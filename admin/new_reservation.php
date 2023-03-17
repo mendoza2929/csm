@@ -44,9 +44,13 @@
                 <br>
                 <b>Name: </b> $data[user_name]
                 <br>
-                <b>Course/Year: </b> $data[course]
+                <b>Course: </b> $data[course]
+                <br>
+                <b>Year: </b> $data[year] year
                 <br>
                 <b>Teacher Name: </b> $data[teacher]
+                <br>
+                <b>Room Number: </b> $data[apr_no]
                 <br>
                 <b>Group No: </b> $data[group_no]
                 </td>
@@ -66,7 +70,7 @@
                 </td>
                 <td>
                 <button type='button' onclick='assign_room($data[booking_id])' class='btn text-white btn-sm fw-bold bg-success shadow-none' data-bs-toggle='modal' data-bs-target='#assign-room'>
-                  <i class='bi bi-clipboard-plus'></i> Room Number
+                  <i class='bi bi-clipboard-plus'></i> Approved Return
                 </button>
                 <br>
 

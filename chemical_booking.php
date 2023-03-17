@@ -66,30 +66,31 @@ if($home_r['shutdown']==1){
 
 
     if(!isset($_GET['id']) || $home_r['shutdown']==true){
-        redirect('rooms.php');
+        redirect('chemical.php');
     }else if(!(isset($_SESSION['login']) && $_SESSION['login']==true)){
-      redirect('rooms.php');
+      redirect('chemical.php');
     }
 
     //fiter and get room and user data 
 
     $data = filteration($_GET);
 
-    $room_res = select("SELECT * FROM `rooms` WHERE `id`=? AND  `status`=? AND `removed`=?",[$data['id'],1,0],'iii');
+    $chemical_res = select("SELECT * FROM `chemical` WHERE `id`=? AND  `status`=?",[$data['id'],1],'ii');
 
-    if(mysqli_num_rows($room_res)==0){
-        redirect('rooms.php');
+    if(mysqli_num_rows($chemical_res)==0){
+        redirect('chemical.php');
     }
 
-    $room_data = mysqli_fetch_assoc($room_res);
+    $chemical_data = mysqli_fetch_assoc($chemical_res);
 
-    $_SESSION['room'] = [
-      "id" => $room_data['id'],
-      "name" => $room_data['name'],
-      "price" => $room_data['price'],
-      "payment" => null,
+    $_SESSION['chemical'] = [
+      "id" => $chemical_data['id'],
+      "name" => $chemical_data['name'],
       "available" => false,
     ];
+
+    // print_r($_SESSION['chemical']);
+    // exit;
 
     $user_res = select("SELECT * FROM `user_cred` WHERE `id`=? LIMIT 1",[$_SESSION['uId']],"i");
     $user_data = mysqli_fetch_assoc($user_res);
@@ -165,7 +166,7 @@ if($home_r['shutdown']==1){
         <div style="font-size:15px;">
         <a href="index.php" class="text-secondary text-decoration-none">Home</a>
         <span class="text-secondary"> > </span>
-        <a href="rooms.php" class="text-secondary text-decoration-none">Apparatus</a>
+        <a href="rooms.php" class="text-secondary text-decoration-none">Chemical</a>
         <span class="text-secondary"> > </span>
         <a href="#" class="text-secondary text-decoration-none">Barrowing</a>
     </div>
@@ -184,7 +185,7 @@ if($home_r['shutdown']==1){
           <div class="card mb-4 border-0 shadow-sm rounded-3">
             <div class="card-body">
            
-            <form action="charge.php" id="booking_form" method="POST" >
+            <form action="charge_chemical.php" id="booking_form" method="POST" >
               <h6 class="mb-3 text-center fw-bold">Borrowing Details</h6>
             
               
@@ -265,7 +266,7 @@ if($home_r['shutdown']==1){
 
                
                 
-                  <button name="pay_now" type="submit" class="btn btn-success w-100 text-white shadow-none mb-1" disabled>Borrowing Now</button>
+                  <button name="pay_now_chemical" type="submit" class="btn btn-success w-100 text-white shadow-none mb-1" disabled>Borrowing Now</button>
                   </div>
                 </div>
             </form>
@@ -745,7 +746,7 @@ function recovery_pass(){
 
 function checkLoginToBook(status,room_id){
   if(status){
-    window.location.href='confirm_booking.php?id='+room_id;
+    window.location.href='chemical_booking.php?id='+room_id;
   }
   else{
     Swal.fire({
@@ -772,7 +773,7 @@ function check_availability(){
   
 
 
-   booking_form.elements['pay_now'].setAttribute('disabled',true);
+   booking_form.elements['pay_now_chemical'].setAttribute('disabled',true);
 
    if(checkin_val!='' && checkout_val!=''){
 
@@ -787,7 +788,7 @@ function check_availability(){
       data.append('check_in',checkin_val);
       data.append('check_out',checkout_val);
       let xhr = new XMLHttpRequest();
-      xhr.open("POST","./ajax/confirm_booking.php",true);
+      xhr.open("POST","./ajax/confirm_chemical.php",true);
 
          
 
@@ -808,7 +809,7 @@ function check_availability(){
               else{
                 pay_info.innerHTML = "Availability: "+data.status;
                 pay_info.classList.replace('text-danger', 'text-dark');
-                booking_form.elements['pay_now'].removeAttribute('disabled');
+                booking_form.elements['pay_now_chemical'].removeAttribute('disabled');
               }
 
               pay_info.classList.remove('d-none');

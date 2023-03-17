@@ -23,7 +23,7 @@ if(!(isset($_SESSION['login']) && $_SESSION['login']==true)){
 
 }   
 
-if(isset($_POST['pay_now'])){
+if(isset($_POST['pay_now_chemical'])){
 
 
     header("Pragma: no-cache");
@@ -34,7 +34,7 @@ if(isset($_POST['pay_now'])){
 
     $ORDER_ID = 'ORD_'.$_SESSION['uId'].random_int(11111,9999999);
     $CUST_ID = $_SESSION['uId'];
-    $TXN_AMOUNT = $_SESSION['room']['payment'];
+    // $TXN_AMOUNT = $_SESSION['chemical']['payment'];
 
     
   
@@ -51,22 +51,23 @@ if(isset($_POST['pay_now'])){
 
     $frm_data =filteration($_POST);
 
-    $query1 = "INSERT INTO `booking_order` (`user_id`, `room_id`, `check_in`, `check_out`, `order_id`,`booking_status`) VALUES (?,?,?,?,?,'booked')";
+    $query1 = "INSERT INTO `chemical_order_final` (`user_id`, `chemical_id`, `check_in`, `check_out`, `order_id`,`booking_status`) VALUES (?,?,?,?,?,'approved')";
 
-    insert($query1,[$CUST_ID,$_SESSION['room']['id'],$frm_data['checkin'],$frm_data['checkout'],$ORDER_ID],'issss');
+    insert($query1,[$CUST_ID,$_SESSION['chemical']['id'],$frm_data['checkin'],$frm_data['checkout'],$ORDER_ID],'issss');
     
 
-    $booking_id = mysqli_insert_id($con);
+    // $booking_id = mysqli_insert_id($con);
     
 
-    $query2 = "INSERT INTO `booking_details`(`booking_id`, `room_name`, `price`, `total_pay`, `user_name`, `course`,`year`,`teacher`, `email`,`quantity`,`group_no`,`volume`,`apr_no`) 
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    // $query2 = "INSERT INTO `chemical_details`(`booking_id`, `chemical_name`,`user_name`, `course`,`year`,`teacher`, `email`,`quantity`,`group_no`,`volume`,`apr_no`) 
+    // VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
-    insert($query2,[$booking_id,$_SESSION['room']['name'],$_SESSION['room']['price'],$TXN_AMOUNT,$frm_data['name'],$frm_data['course'],$frm_data['year'],$frm_data['teacher'],$frm_data['email'],$frm_data['quantity'],$frm_data['group_no'],$frm_data['volume'],$frm_data['room_no']],'issssssssssss');
+    // insert($query2,[$booking_id,$_SESSION['chemical']['name'],$frm_data['name'],$frm_data['course'],$frm_data['year'],
+    // $frm_data['teacher'],$frm_data['email'],$frm_data['quantity'],$frm_data['group_no'],$frm_data['volume'],$frm_data['room_no']],'issssssssss');
 
 
   
-    redirect('pay_status.php');
+    redirect('pay_status_chemical.php');
   
 
 

@@ -17,10 +17,10 @@
         $condition = "";
 
         if($frm_data['period']==1){
-          $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 30 DAY AND NOW()";
+          $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 5 MONTH AND NOW()";
         }
         else if($frm_data['period']==2){
-          $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 90 DAY AND NOW()";
+          $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 5 MONTH AND NOW()";
         }
         else if($frm_data['period']==3){
           $condition = "WHERE datentime BETWEEN NOW() - INTERVAL 1 YEAR AND NOW()";

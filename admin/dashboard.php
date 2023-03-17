@@ -137,17 +137,16 @@ adminLogin();
             <div class="d-flex align-items-center justify-content-between mb-3">
             <h5><i class="bi bi-journals"></i> Breakage Analytics</h5>
             <select class="form-select shadow-none bg-light w-auto" onchange="booking_analytics(this.value)">
-              <option value="1">Past 30 Days</option>
-              <option value="2">Past 90 Days</option>
-              <option value="3">Past 1 Year</option>
+              <option value="1">1st Sem</option>
+              <option value="2">2nd Sem</option>
               <option value="4">All Time</option>
             </select>
           </div>
 
 
               <div class="col-md-3 mb-4">
-                    <div class="card text-center p-3 text-primary">
-                      <h6><i class="bi bi-x-square"></i> All Breakage Record of Apparatus</h6>
+                    <div class="card text-center p-3 text-primary ">
+                      <a href="breakage.php" class="text-decoration-none" ><h6><i class="bi bi-x-square"></i> All Breakage Record of Apparatus</h6></a>
                       <h1 class="mt-2 mb-0" id="cancelled_bookings">0</h1>
                 
                     </div>

@@ -68,13 +68,13 @@ if(isset($_POST['register'])){
     //     exit;
     // }
 
-    $enc_pass = password_hash($data['pass'],PASSWORD_BCRYPT);
+    // $enc_pass = password_hash($data['pass'],PASSWORD_BCRYPT);
 
-    $query = "INSERT INTO `user_cred`(`name`, `email`, `address`, `phonenum`,`course`, `password` , `token`) VALUES (?,?,?,?,?,?,?)"; // insert `profile`
+    $query = "INSERT INTO `user_cred`(`name`, `email`,`phonenum`,`course`,`year`, `token`) VALUES (?,?,?,?,?,?)"; // insert `profile`
 
-    $values = [$data['name'],$data['email'],$data['address'],$data['phonenum'],$data['course'],$enc_pass,$token]; //$img insert before phonenum
+    $values = [$data['name'],$data['email'],$data['phonenum'],$data['course'],$data['year'],$token]; //$img insert before phonenum
 
-    if(insert($query,$values,'sssssss')){
+    if(insert($query,$values,'ssssss')){
         echo 1;
     }else {
         echo 'ins_failed';

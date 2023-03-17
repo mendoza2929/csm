@@ -53,6 +53,7 @@ adminLogin();
                                 <th scope="col">Size</th>
                                 <th scope="col">Details</th> 
                                 <th scope="col" >Quantity</th>
+                                <th scope="col" >Expiration Date</th>
                                 <th scope="col">Status</th> 
                                 <th scope="col">Action</th> 
                                 </tr>
@@ -82,7 +83,7 @@ adminLogin();
 
       <div class="modal fade" id="add-chemical" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <form id="add_chemical_form" autocomplete="off">
+                <form id="add_chemical_form" autocomplete="off" method="POST">
                     <div class="modal-content">
                         <div class="modal-header">
                             <div class="modal-title fw-bold"><i class="bi bi-plus-square"></i> Add Chemical</div>
@@ -109,6 +110,13 @@ adminLogin();
                                 <label class="form-label fw-bold">Per Student</label>
                                 <input type="number" min="1" name="student" class="form-control shadow-none">
                             </div>
+                            
+                            <div class="col-md-4 mb-3">
+                            <label class="form-label fw-bold">Expiration Date</label>
+                            <input type="date" class="form-control shadow-none mb-3" name="expiration_date" >
+                            </div>
+                  
+                            
                             <div class="col-12 mb-3">
                                 <label class="form-label fw-bold">Facilities</label>
                                 <div class="row">
@@ -221,6 +229,8 @@ require ("script.php");
 
 let add_chemical_form = document.getElementById('add_chemical_form');
 
+
+
 add_chemical_form.addEventListener('submit', function(e){
     e.preventDefault();
     add_chemical();
@@ -234,7 +244,14 @@ function add_chemical(){
         data.append('quantity',add_chemical_form.elements['quantity'].value);
         data.append('avail',add_chemical_form.elements['avail'].value);
         data.append('student',add_chemical_form.elements['student'].value);
+        // data.append('months',add_chemical_form.elements['months'].value);
+        // data.append('days',add_chemical_form.elements['days'].value);
+        // data.append('year',add_chemical_form.elements['year'].value);
+        data.append('expiration_date',add_chemical_form.elements['expiration_date'].value);
+        // data.append('expiration_date',add_chemical_form.elements['expiration_date'].value);
         // data.append('desc',add_chemical_form.elements['desc'].value);
+
+        // let expiration_date = add_chemical_form.elements['month'].value;
 
 
         let features = [];
@@ -410,6 +427,20 @@ function toggleStatus(id,val){
             xhr.send('toggleStatus='+id+'&value='+val);
     
     }
+
+
+        
+    function search_chemical(apparatusname){
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","chemical_ajax.php",true);
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+        xhr.onload = function(){
+            document.getElementById('chemical_data').innerHTML = this.responseText;
+        }
+        xhr.send('search_chemical&name='+apparatusname);
+    }
+
 
 
 

@@ -57,7 +57,7 @@ adminLogin();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Reservation - Users</title>
+    <title>CSM- Users</title>
     <!-- CSS only -->
     <link rel="stylesheet" href="room.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -93,12 +93,12 @@ adminLogin();
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Course/Year</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Year</th>
                                 <th scope="col">Phone Number</th> 
-                                <th scope="col">Address</th> 
-                                <th scope="col">Verified</th>
+                        
                                 <th scope="col">Date</th> 
-                                <th scope="col">Action</th> 
+                                
                                 </tr>
                             </thead>
                             <tbody id="user_data">

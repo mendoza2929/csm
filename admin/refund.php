@@ -44,7 +44,9 @@
                 <br>
                 <b>Name: </b> $data[user_name]
                 <br>
-                <b>Course/Year: </b> $data[course]
+                <b>Course: </b> $data[course]
+                <br>
+                <b>Year: </b> $data[year] year
                 <br>
                 <b>Teacher: </b> $data[teacher]
                 </td>

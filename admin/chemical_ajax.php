@@ -11,11 +11,11 @@ if(isset($_POST['add_chemical'])){
 
     $flag = 0;
 
-    $q1 = "INSERT INTO `chemical`(`name`, `area`, `quantity`, `avail`, `student`) VALUES (?,?,?,?,?)";
-    $values = [$frm_data['name'],$frm_data['area'],$frm_data['quantity'],$frm_data['avail'],$frm_data['student']];
+    $q1 = "INSERT INTO `chemical`(`name`, `area`, `quantity`, `avail`, `student`,`expired`) VALUES (?,?,?,?,?,?)";
+    $values = [$frm_data['name'],$frm_data['area'],$frm_data['quantity'],$frm_data['avail'],$frm_data['student'],$frm_data['expiration_date']];
 
 
-    if(insert($q1,$values,'siiii')){
+    if(insert($q1,$values,'siiiis')){
         $flag=1;
     }
 
@@ -47,7 +47,7 @@ if(isset($_POST['add_chemical'])){
 
 if(isset($_POST['get_chemical'])){  
     $res = selectAll('chemical');
-    $i=0;
+    $i=1;
 
     $data = "";
 
@@ -69,6 +69,7 @@ if(isset($_POST['get_chemical'])){
         <td>$row[area] </td>
         <td><span class='badge rounded-pill bg-light text-dark'>Available: $row[avail]</span><br><span class='badge rounded-pill bg-light text-dark'>per Student: $row[student]</span></td>
         <td>$row[quantity]</td>
+        <td>$row[expired]</td>
         <td>$status</td>
         <td>
          
@@ -175,6 +176,54 @@ if(isset($_POST['toggleStatus'])){
     }
 
 }
+
+if(isset($_POST['search_chemical'])){
+    $frm_data = filteration($_POST);
+    $query = "SELECT * FROM  `chemical` WHERE `name` LIKE?";
+    $res = select($query,["%$frm_data[name]%"],'s');
+    $i=1;
+    $data= "";
+    while($row = mysqli_fetch_array($res)){
+
+        if($row['status']==1){
+   
+                $status = "<button  onclick='toggleStatus($row[id],0)'class='btn btn-success btn-sm shadow-none'>Active</button>";
+        
+        }else{
+        
+            $status = "<button onclick='toggleStatus($row[id],1)' class='btn btn-danger btn-sm shadow-none'>Not active</button>";
+        
+        }
+
+
+        $data.= "
+        <tr class='align-middle'>
+        <td>$i</td>
+        <td>$row[name]</td>
+        <td>$row[area] </td>
+        <td><span class='badge rounded-pill bg-light text-dark'>Available: $row[avail]</span><br><span class='badge rounded-pill bg-light text-dark'>per Student: $row[student]</span></td>
+        <td>$row[quantity]</td>
+      
+        <td>$status</td>
+        <td>
+         
+
+            <button type='button' onclick='chemical_details($row[id])' class='btn btn-warning btn-sm shadow-none me-3' data-bs-toggle='modal' data-bs-target='#edit-chemical'>
+            <i class='i bi-pencil-square'></i>
+            </button>
+          
+            </button>
+        </td>
+    </tr>
+        ";
+        $i++;
+
+        //  <button type='button' onclick='remove_room($row[id])' class='btn btn-danger btn-sm shadow-none'>
+ 
+}
+echo $data;
+}
+
 
 
 

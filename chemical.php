@@ -121,6 +121,9 @@ if($home_r['shutdown']==1){
         <div class="h-line bg-dark"></div>
     </div>
 
+   
+
+    
 
    
     <div class="container">
@@ -128,57 +131,84 @@ if($home_r['shutdown']==1){
         <div class="text-end mb-4">
             <input type="text" oninput="search_room(this.value)" class="form-control shadow-none w-25 ms-auto" placeholder="Type to search..">
         </div>
-     <div class="col-lg-3 col-mb-12 mb-4 mb-lg-0 ps-4">
-   <nav class="navbar navbar-expand-lg navbar-light bg-white rounded shadow shadow-sm">
-  <div class="container-fluid flex-lg-column align-items-stretch">
-  <h5 class="mb-3 text-center fw-bold" style="font-size:18px;"><span>Check Chemical</span>
+
+
 
         
-</h5>
-   
-    <div class="collapse navbar-collapse align-items-stretch mt-2 flex-column" id="filter">
-      <div class="border bg-light p-3 rounded mb-3 mt-2">
+     <?php 
      
-        <label class="form-label">Check-in</label>
-        <input type="datetime-local" class="form-control shadow-none mb-3" id="checkin" value="<?php echo $checkin_default ?>" onchange="chk_avail_filter()">
-        <label class="form-label">Check-out</label>
-        <input type="datetime-local" class="form-control shadow-none" id="checkout"  value="<?php echo  $checkout_default ?>"  onchange="chk_avail_filter()">
-      </div>
-      <div class="border bg-light p-3 rounded mb-3 mt-2" >
-        <h5 class="mb-3 text-center fw-bold" style="font-size:18px;"><span>Details</span>
+     $chemical_res =  select("SELECT * FROM `chemical` WHERE  `status`=?", [1],'i');
+     
+    while($chemical_data = mysqli_fetch_assoc($chemical_res)){
+        $fea_q = mysqli_query($con,"SELECT f.name FROM `features` f INNER JOIN `chemical_facilities` rfac ON f.id = rfac.facilities_id WHERE rfac.chemical_id ='$chemical_data[id]'");
 
-        <button  id="guests_btn"  onclick="guests_clear()" class="btn btn-sm text-secondary ms-5 d-none bg-success text-white shadow-none">Reset</button>
-        </h5>
-        <div class="d-flex">
-        <div class="me-3">
-          <label class="form-label">Quantity</label>
-          <input type="number" class="form-control shadow-none" id="adults" value="<?php echo $adult_default ?>" min="1" oninput="guests_filter()">
-        </div>
-        <div>
-          <label class="form-label">per Student</label>
-          <input type="number" class="form-control shadow-none" id="children" value="<?php echo $children_default ?>" min="1" oninput="guests_filter()">
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-  </div>
+        $facilities_data = "";
+        while($fea_row = mysqli_fetch_assoc($fea_q)){
+          $facilities_data .="<span class='badge rounded-pill bg-light text-dark text-wrap'>$fea_row[name]</span>";
 
-     <div class="col-lg-9 col-mb-12 px-4" id="chemical-data">
+        
+        }
+
+        $chemical_btn="";
+
+        if(!$home_r['shutdown']){
+          $login=0;
+          if(isset($_SESSION['login']) && $_SESSION['login']==true){
+            $login=1;
+          }
+          $chemical_btn = "  <button onclick='checkLoginToBook($login,$chemical_data[id])' class='btn btn-success w-100 text-white shadow-none mb-2'>Borrowing Now</button>";
+        } 
       
+        echo <<<data
+          
+        
+
+
+          <div class="col-lg-3 col-md-3 my-2 p-4">
+              <div class="card border-0 shadow style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title text-center">$chemical_data[name]</h5>
+            <h6 class="card-subtitle mb-2 text-muted text-center">Size/Volume</h6>
+            <b><p class="card-text mb-2">$chemical_data[area] $facilities_data</p></b>
+            <div class='guests mb-2'>
+            <h6 class='mb-1'>Details</h6>
+            <span class='badge rounded-pill bg-light text-dark text-wrap'>
+              $chemical_data[avail] Available
+            </span>
+            <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>
+              $chemical_data[student] per Student
+            </span>
+            <h6 class='mt-2'>Expiration Date</h6>
+            <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>
+            $chemical_data[expired]
+          </span>
+          </div>
+          $chemical_btn
+          </div>
+        </div>
+          </div>
+
+      
+          
+        data;
+        
+    }
+     ?>
+
+     
 
   
 
-      </div>
+     
     
    </div>
   </div>
 
+  
 
   
 
-  <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by riyuuu dev</h6>
+  <h6 class="text-center bg-dark text-white p-3m m-0">Develop by reuel mendoza</h6>
 <!-- Login Modal -->
 <div class="modal fade" id="loginModal"  data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
@@ -567,6 +597,24 @@ function recovery_pass(){
 }
 
 
+function checkLoginToBook(status,room_id){
+  if(status){
+    window.location.href='confirm_booking.php?id='+room_id;
+  }
+  else{
+    Swal.fire({
+  position: 'top-end',
+  icon: 'warning',
+  title: 'Please Login First to Barrowing Item',
+  showConfirmButton: false,
+  timer: 1500,
+  
+});
+  }
+}
+
+
+
 
 
 
@@ -619,15 +667,15 @@ function recovery_pass(){
 
 
 
-function checkLoginToBook(status,room_id){
+function checkLoginToBook(status,chemical_id){
   if(status){
-    window.location.href='confirm_booking.php?id='+room_id;
+    window.location.href='chemical_booking.php?id='+chemical_id;
   }
   else{
     Swal.fire({
   position: 'top-end',
   icon: 'warning',
-  title: 'Please Login First to Reserve Room',
+  title: 'Please Login First to borrowing item',
   showConfirmButton: false,
   timer: 1500,
   

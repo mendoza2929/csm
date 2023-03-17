@@ -79,6 +79,9 @@ if(isset($_GET['check_availability'])){
             <li class="nav-item"> 
               <a class="nav-link me-3 fw-bold" href="rooms.php">Apparatus</a>
             </li>
+               <li class="nav-item"> 
+              <a class="nav-link me-3 fw-bold" href="chemical.php">Chemical</a>
+            </li>
             <!--<li class="nav-item">
               <a class="nav-link me-3 fw-bold" href="about.php">About Us</a>
             </li>
@@ -196,7 +199,10 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
 
 
 
-  <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by riyuuu dev</h6>
+  <h6 class="text-center bg-dark text-white p-3m m-0">Develop by reuel mendoza</h6>
+<!-- Login Modal -->
+  
+
 <!-- Login Modal -->
 <div class="modal fade" id="loginModal"  data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" >
@@ -208,12 +214,15 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
             </div>
             <div class="modal-body">
               <div class="mb-3">
-                <label class="form-label">Email/PhoneNumber</label>
+                <label class="form-label">Email </label>
                 <input type="text" class="form-control shadow-none" required name="email_mob" >
                 </div>
                 <div class="mb-4">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control shadow-none" required name="loginpass" >
+
+                <!--<label class="form-label">Password</label>
+                <input type="password" class="form-control shadow-none mb-2" name="loginpass" autocomplete="current-password" required="" id="id_password">
+                <i class="far fa-eye icon-login" required="" id="togglePassword"></i>-->
+                
                 </div>
 
                 <div class="mb-4"><button type="submit" class="btn btn-success mb-2 w-100 ">Login</button></div>
@@ -229,7 +238,6 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
           </div>
         </div>
       </div>
-
 
           
       <!---Forgot modal -->
@@ -463,7 +471,7 @@ login_form.addEventListener('submit',function(e){
  function login_User(){
           let data = new FormData();
           data.append('email_mob',login_form.elements['email_mob'].value);
-          data.append('loginpass',login_form.elements['loginpass'].value);
+          // data.append('loginpass',login_form.elements['loginpass'].value);
           data.append('login','');
 
         let xhr = new XMLHttpRequest();
@@ -649,7 +657,7 @@ function checkLoginToBook(status,room_id){
     Swal.fire({
   position: 'top-end',
   icon: 'warning',
-  title: 'Please Login First to Reserve Room',
+  title: 'Please Login First to Barrowing Item',
   showConfirmButton: false,
   timer: 1500,
   

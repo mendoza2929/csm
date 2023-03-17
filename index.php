@@ -203,7 +203,7 @@ if($home_r['shutdown']==1){
 
 
 
-  <h6 class="text-center bg-dark text-white p-3m m-0">Designed and Develop by riyuuu dev</h6>
+  <h6 class="text-center bg-dark text-white p-3m m-0">Develop by reuel mendoza</h6>
 
 
   
@@ -311,7 +311,7 @@ if($home_r['shutdown']==1){
                 <form id="register-form">
                     <div class="modal-content">
                     <div class="modal-header">
-              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>User Registration</h5>
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>Student Registration</h5>
               <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -334,22 +334,27 @@ if($home_r['shutdown']==1){
                     <label class="form-label">Phone Number</label>
                     <input type="number" class="form-control shadow-none" required name="phonenum">
                   </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Course/Year</label>
-                    <input type="text" class="form-control shadow-none" required name="course">
+                  <div class="col-md-3 ps-0 mb-3">
+                    <label class="form-label">Course</label>
+                    <select class='form-select shadow-none' aria-label='Default select example' name='course' required>
+                    <option disabled selected value="">Select course...</option> <!-- placeholder option -->
+                      <option value="biology">Biology</option>
+                      <option value="chemistry">Chemistry</option>
+                    </select>
                   </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Address</label>
-                    <input type="text" class="form-control shadow-none" required name="address">
-                   <!-- <textarea class="form-control shadow-none" name="address" rows="3" style="resize: none;" required></textarea>-->
+                  <div class="col-md-3 ps-0 mb-3">
+                    <label class="form-label">Year</label>
+                    <select class='form-select shadow-none' aria-label='Default select example' name='year' required>
+                    <option disabled selected value="">Select Year...</option> <!-- placeholder option -->
+                      <option value="1st">1st</option>
+                      <option value="2nd">2nd</option>
+                      <option value="3rd">3rd</option>
+                      <option value="4th">4th</option>
+                      <option value="5th">5th</option>
+                    </select>
                   </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Password<span class="badge rounded-pill bg-light text-dark text-wrap lh-base ">
-                    (8 characters minimum)
-              </span></label>
-                    <input type="password" class="form-control shadow-none mb-1" required name="pass" minlength="8" required="" autocomplete="current-password"   id="myInput">
-                    <input type="checkbox" onclick="myFunction()"> Show Password<!--<i class="far fa-eye icon-pass" required="" id="togglePassword"></i>-->
-                  </div>
+                
+                
                   
                 <div class="text-center my-1">
                   <button type="submit" class="btn btn-success shadow-none w-100">Register</button>
@@ -521,9 +526,10 @@ register_form.addEventListener('submit',function(e){
           data.append('name',register_form.elements['name'].value);
           data.append('email',register_form.elements['email'].value);
           data.append('phonenum',register_form.elements['phonenum'].value);
-          data.append('address',register_form.elements['address'].value);
-          data.append('pass',register_form.elements['pass'].value);
+          
+          // data.append('pass',register_form.elements['pass'].value);
           data.append('course',register_form.elements['course'].value);
+          data.append('year',register_form.elements['year'].value);
 
 
           // data.append('cpass',register_form.elements['cpass'].value);
@@ -556,7 +562,7 @@ register_form.addEventListener('submit',function(e){
               else{
                 Swal.fire(
                 'Successfully Registered ',
-                'Confirmation link send to your email',
+                'Confirm Register',
                 'success'
               );
                 register_form.reset();
@@ -566,7 +572,7 @@ register_form.addEventListener('submit',function(e){
  }
 
  
- let login_form = document.getElementById('login-form');
+ let login_form = document.getElementById('login-form');  
 login_form.addEventListener('submit',function(e){
  e.preventDefault();
  login_User();
