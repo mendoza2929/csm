@@ -200,7 +200,7 @@ if($home_r['shutdown']==1){
                   </div>
                   <div class="col-md-4 mb-3">
                     <label class="form-label mb-1">Wmsu Email</label>
-                    <input name="email" type="Email" value="<?php echo $user_data['email']?>" class="form-control shadow-none" required >
+                    <input name="email" type="email" value="<?php echo $user_data['email']?>" class="form-control shadow-none" required >
                   </div>
                   <div class="col-md-2 mb-3">
                     <label class="form-label mb-1">Course</label>

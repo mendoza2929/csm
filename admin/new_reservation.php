@@ -14,7 +14,7 @@
         
         $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE (bo.order_id LIKE ? OR bd.course LIKE ? OR bd.user_name LIKE ? ) AND  (bo.booking_status =?  AND bo.arrival=?) ORDER BY bo.booking_id DESC ";
 
-        $res = select($query,["%$frm_data[search]%","%$frm_data[search]%","%$frm_data[search]%","booked",0],'sssss');
+        $res = select($query,["%$frm_data[search]%","%$frm_data[search]%","%$frm_data[search]%","approved",0],'sssss');
 
         $i=1;
 
@@ -117,7 +117,7 @@ if(isset($_POST['assign_room'])){
 
         $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id SET bo.booking_status = ?, bo.refund=?, bd.quantity_no = ? WHERE bo.booking_id = ? ";
 
-        $values = ['cancelled',0,$frm_data['quantity_no'],$frm_data['booking_id']];
+        $values = ['breakage',0,$frm_data['quantity_no'],$frm_data['booking_id']];
 
         $res = update($query,$values,'siii');
 

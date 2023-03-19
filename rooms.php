@@ -290,18 +290,18 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
 
   
 
-        <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <form id="register-form" method="POST">
+                <form id="register-form">
                     <div class="modal-content">
                     <div class="modal-header">
-              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>User Registration</h5>
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>Student Registration</h5>
               <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="text-center">
               <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base ">
-                Note: Your Details must match with your ID that will be required  during check-in.
+                Note: Your Details must match with your ID that will be required during barrowing slip.
               </span>
               </div>
               <div class="container-fluid">
@@ -311,31 +311,35 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                     <input type="text" class="form-control shadow-none" required name="name">
                   </div>
                   <div class="col-md-6 p-0 mb-3">
-                    <label class="form-label">Email</label>
+                    <label class="form-label">Wmsu Email</label>
                     <input type="email" class="form-control shadow-none" required name="email">
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Phone Number</label>
                     <input type="number" class="form-control shadow-none" required name="phonenum">
                   </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Address</label>
-                    <input type="text" class="form-control shadow-none" required name="address">
-                   <!-- <textarea class="form-control shadow-none" name="address" rows="3" style="resize: none;" required></textarea>-->
+                  <div class="col-md-3 ps-0 mb-3">
+                    <label class="form-label">Course</label>
+                    <select class='form-select shadow-none' aria-label='Default select example' name='course' required>
+                    <option disabled selected value="">Select course...</option> <!-- placeholder option -->
+                      <option value="biology">Biology</option>
+                      <option value="chemistry">Chemistry</option>
+                    </select>
                   </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Password<span class="badge rounded-pill bg-light text-dark text-wrap lh-base ">
-                    (8 characters minimum)
-              </span></label>
-                    <input type="password" class="form-control shadow-none" required name="pass" minlength="8">
+                  <div class="col-md-3 ps-0 mb-3">
+                    <label class="form-label">Year</label>
+                    <select class='form-select shadow-none' aria-label='Default select example' name='year' required>
+                    <option disabled selected value="">Select Year...</option> <!-- placeholder option -->
+                      <option value="1st">1st</option>
+                      <option value="2nd">2nd</option>
+                      <option value="3rd">3rd</option>
+                      <option value="4th">4th</option>
+                      <option value="5th">5th</option>
+                    </select>
                   </div>
-                  <div class="col-md-6 p-0 mb-3">
-                    <label class="form-label">Confirm Password  <span class="badge rounded-pill bg-light text-dark text-wrap lh-base ">
-                    (8 characters minimum)
-              </span></label>
-                    <input type="password" class="form-control shadow-none" required name="cpass" minlength="8">
-                  </div>
-                </div>
+                
+                
+                  
                 <div class="text-center my-1">
                   <button type="submit" class="btn btn-success shadow-none w-100">Register</button>
                 </div>
@@ -346,7 +350,6 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
         </div>
 
 
-    
 
     
  
@@ -407,58 +410,57 @@ register_form.addEventListener('submit',function(e){
 });
 
 
- function add_User(){
+function add_User(){
 
-          let data = new FormData();
-          data.append('name',register_form.elements['name'].value);
-          data.append('email',register_form.elements['email'].value);
-          data.append('phonenum',register_form.elements['phonenum'].value);
-          data.append('address',register_form.elements['address'].value);
-          data.append('pass',register_form.elements['pass'].value);
-          data.append('cpass',register_form.elements['cpass'].value);
-          data.append('register','');
+let data = new FormData();
+data.append('name',register_form.elements['name'].value);
+data.append('email',register_form.elements['email'].value);
+data.append('phonenum',register_form.elements['phonenum'].value);
 
-          // var myModalEl = document.getElementById('registerModal')
-          //     var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
-          //     modal.hide();
-
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST","./ajax/login_register.php",true);
-
-        var myModalEl = document.getElementById('registerModal')
-            var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
-            modal.hide();
+// data.append('pass',register_form.elements['pass'].value);
+data.append('course',register_form.elements['course'].value);
+data.append('year',register_form.elements['year'].value);
 
 
-       xhr.onload = function(){
-              if(this.responseText == 'password_mismatch'){
-                alert('Password Mismatch');
-              }
-              else if(this.responseText == 'email_already'){
-                alert('Email Already Exist');
-              }
-              else if(this.responseText == 'phone_already'){
-                alert('Phone Number Already Use');
-              }
-              else if(this.responseText == 'mail_failed'){
-                alert('Cannot send confirmation email');
-              }
-              else if(this.responseText == 'ins_failed'){
-                alert('Registration Failed');
-              }
-              else{
-                Swal.fire(
-                'Successfully Registered ',
-                'Confirmation link send to your email',
-                'success'
-              );
-                register_form.reset();
-              }
-            }
+// data.append('cpass',register_form.elements['cpass'].value);
+data.append('register','');
 
-            xhr.send(data);
+let xhr = new XMLHttpRequest();
+xhr.open("POST","ajax/login_register.php",true);
 
- }
+
+  var myModalEl = document.getElementById('registerModal')
+  var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+  modal.hide();
+xhr.onload = function(){
+    if(this.responseText == 'password_mismatch'){
+   
+      alert('Password Mismatch');
+    }
+    // else if(this.responseText == 'email_already'){
+    //   alert('Email Already Exist');
+    // }
+    // else if(this.responseText == 'phone_already'){
+    //   alert('Phone Number Already Use');
+    // }
+    // else if(this.responseText == 'mail_failed'){
+    //   alert('Cannot send confirmation email');
+    // }
+    // else if(this.responseText == 'ins_failed'){
+    //   alert('Registration Failed');
+    // }
+    else{
+      Swal.fire(
+      'Successfully Registered ',
+      'Confirm Register',
+      'success'
+    );
+      register_form.reset();
+    }
+  }
+xhr.send(data);
+}
+
 
  
  let login_form = document.getElementById('login-form');

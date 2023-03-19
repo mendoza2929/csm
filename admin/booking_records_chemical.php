@@ -10,7 +10,7 @@
 
 
    
-    if(isset($_POST['get_bookings'])){  
+    if(isset($_POST['get_booking_chemical'])){  
 
         $frm_data = filteration($_POST);
 
@@ -20,7 +20,7 @@
 
 
         
-        $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE  ( (bo.booking_status ='approved'  AND bo.arrival=1) OR (bo.booking_status='breakage' AND bo.arrival=0) OR (bo.booking_status='payment failed')) AND   (bo.order_id LIKE ? OR bd.course LIKE ? OR bd.user_name LIKE ? )  ORDER BY bo.booking_id DESC ";
+        $query = "SELECT co.*, cd.*  FROM `chemical_order_final` co INNER JOIN `chemical_details_final` cd ON co.booking_id = cd.booking_id WHERE  ( (co.booking_status ='approved'  AND co.arrival=1) OR (co.booking_status='breakage' AND co.arrival=0) OR (co.booking_status='payment failed')) AND   (co.order_id LIKE ? OR cd.course LIKE ? OR cd.username LIKE ? )  ORDER BY co.booking_id DESC ";
 
         $res = select($query,["%$frm_data[search]%","%$frm_data[search]%","%$frm_data[search]%"],'sss');
 
@@ -73,7 +73,7 @@
                     Order ID: $data[order_id]
                 </span>
                 <br>
-                <b>Name: </b> $data[user_name]
+                <b>Name: </b> $data[username]
                 <br>
                 <b>Course: </b> $data[course]
                 <br>
@@ -87,7 +87,7 @@
                 <b>Room No. : </b>  $data[apr_no] 
                 </td>
                 <td>
-                <b>item: </b> $data[room_name]
+                <b>item: </b> $data[chemical_name]
                 <br>
                 <b>Quantity: </b> $data[quantity] pcs
                 
@@ -166,20 +166,20 @@ if(isset($_POST['assign_room'])){
 
   
 
-if(isset($_POST['quantity_room'])){
-  $frm_data = filteration($_POST);
+// if(isset($_POST['quantity_room'])){
+//   $frm_data = filteration($_POST);
 
-  $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id SET bo.booking_status = ?, bo.refund=?, bd.quantity_no = ? WHERE bo.booking_id = ? ";
+//   $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id SET bo.booking_status = ?, bo.refund=?, bd.quantity_no = ? WHERE bo.booking_id = ? ";
 
-  $values = ['breakage',0,$frm_data['quantity_no'],$frm_data['booking_id']];
+//   $values = ['breakage',0,$frm_data['quantity_no'],$frm_data['booking_id']];
 
-  $res = update($query,$values,'siii');
+//   $res = update($query,$values,'siii');
   
-  echo ($res==2) ? 1 : 0;
+//   echo ($res==2) ? 1 : 0;
 
 
 
-}
+// }
 
 
 

@@ -54,13 +54,13 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
         <div class="collapse show px-3 small mb-2" id="bookingLinks">
             <ul class="nav nav-pills flex-column rounded border border-secondary mb-2">
               <li class="nav-item">
-                <a class="nav-link text-white" href="new_bookings.php"> New Borrowing</a>
+                <a class="nav-link text-white" href="new_bookings.php"> New Apparatatus Borrowing</a>
               </li>
                 <li class="nav-item">
                 <a class="nav-link text-white" href="refund_bookings.php"> Breakage Section</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-white" href="records.php"> All Records</a>
+                <a class="nav-link text-white" href="records.php"> All Apparatus Records</a>
               </li>
            
             </ul>
@@ -70,6 +70,29 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
           <li class="nav-item navbar-admin">
             <a class="nav-link " href="rooms.php"><i class="bi bi-clipboard-data"></i> Apparatus</a>
           </li>
+
+
+          <li class="nav-item navbar-admin">
+         <button class="btn text-white px-3 w-100 shadow-none text-start d-flex align-items-center justify-content-between " type="button" data-bs-toggle="collapse" data-bs-target="#chemicalLinks" >
+        <span><i class="bi bi-journal-check"></i> Chemical Records</span>
+         <span><i class="bi bi-caret-down-fill"></i></i></span>
+        </button>
+
+        <div class="collapse show px-3 small mb-2" id="chemicalLinks">
+            <ul class="nav nav-pills flex-column rounded border border-secondary mb-2">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="new_bookings_chemical.php"> New Chemical Borrowing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="records_chemical.php"> All Chemical Records</a>
+              </li>
+           
+            </ul>
+        </div>  
+
+         </li>
+
+
           <li class="nav-item navbar-admin">
             <a class="nav-link " href="chemical.php"><i class="bi bi-clipboard2-pulse"></i> Chemical</a>
           </li>

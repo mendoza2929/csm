@@ -57,7 +57,7 @@ adminLogin();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSM - New Apparatus</title>
+    <title>CSM - New Chemical</title>
     <!-- CSS only -->
     <link rel="stylesheet" href="dashmain.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
@@ -74,13 +74,13 @@ adminLogin();
     <div class="container-fluid" id="main-content">
         <div class="row">
             <div class="col-lg-10 ms-auto p-4 overflow-y">
-                <h3 class="mb-4"><i class="bi bi-people-fill"></i> All Appratus Borrowing</h3>
+                <h3 class="mb-4"><i class="bi bi-people-fill"></i> All Chemical Borrowing</h3>
 
                     <div class="card border-0 shadow-sm mb-4">
                         <div class="card-body">
 
                         <div class="text-end mb-4">
-                           <input type="text" oninput="get_bookings(this.value)" class="form-control shadow-none w-25 ms-auto" placeholder="Type to search..">
+                           <input type="text" oninput="get_booking_chemical(this.value)" class="form-control shadow-none w-25 ms-auto" placeholder="Type to search..">
                         </div>
 
 
@@ -95,7 +95,7 @@ adminLogin();
                                 <th scope="col">Action</th> 
                                 </tr>
                             </thead>
-                            <tbody id="table-data">
+                            <tbody id="table-data-chemical">
                           
                              
                            
@@ -119,26 +119,26 @@ adminLogin();
 
                <!----assign Room Number Modal-->
 
-               <div class="modal fade" id="assign-room" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+               <div class="modal fade" id="assign-chemical" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <form id="assign_room_form">
+                <form id="assign_chemical_form">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <div class="modal-title"><i class="bi bi-clipboard-check-fill"></i>Aproved Return</div>
+                            <div class="modal-title"><i class="bi bi-clipboard-check-fill"></i>Aproved Chemical</div>
                         </div>
                         <div class="modal-body"> 
                             <div class="mb-3">
-                                <label class="form-label fw-bold">Approved Return</label>
-                                <input type="hidden" name="room_no">
+                                <label class="form-label fw-bold">This chemical obtained confirmation</label>
+                                <input type="hidden" name="chemical_no">
                             </div>
                          <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base ">
-                            Note: Are you certain this object is undamaged?
+                            Note: Are you certain that this chemical has a permit?
                         </span>
                         <input type="hidden" name="booking_id">
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-success shadow-none">Assign</button>
+                            <button type="submit" class="btn btn-success shadow-none">Confirm</button>
                         </div>
                     </div>
                 </form>
@@ -148,7 +148,7 @@ adminLogin();
         
                <!----assign Room Number Modal-->
 
-               <div class="modal fade" id="quantity-room" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+               <!--<div class="modal fade" id="quantity-room" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <form id="quantity_room_form">
                     <div class="modal-content">
@@ -172,7 +172,7 @@ adminLogin();
                     </div>
                 </form>
             </div>
-        </div>
+        </div>-->
 
 
       
@@ -190,16 +190,16 @@ require ("script.php");
 
 
 
-function get_bookings(search=''){
+function get_booking_chemical(search=''){
         
     let xhr = new XMLHttpRequest();
-        xhr.open("POST","new_reservation.php",true);
+        xhr.open("POST","new_chemical.php",true);
         xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
         xhr.onload = function(){
-            document.getElementById('table-data').innerHTML = this.responseText;
+            document.getElementById('table-data-chemical').innerHTML = this.responseText;
         }
-        xhr.send('get_bookings&search='+search);
+        xhr.send('get_booking_chemical&search='+search);
 
 }
 
@@ -207,98 +207,98 @@ function get_bookings(search=''){
 
 
 
-let quantity_room_form = document.getElementById('quantity_room_form');
+// let quantity_room_form = document.getElementById('quantity_room_form');
 
-function quantity_room(id){
-    quantity_room_form.elements['booking_id'].value=id;
+// function quantity_room(id){
+//     quantity_room_form.elements['booking_id'].value=id;
+// }
+
+// quantity_room_form.addEventListener('submit',function(e){
+//     e.preventDefault();
+
+//     let data = new FormData();
+//     data.append('quantity_no',quantity_room_form.elements['quantity_no'].value);
+//     data.append('booking_id',quantity_room_form.elements['booking_id'].value);
+//     data.append('quantity_room','');
+
+
+//     let xhr = new XMLHttpRequest();
+//     xhr.open("POST","new_reservation.php",true);
+
+//     xhr.onload = function(){
+//         var myModal = document.getElementById('quantity-room');
+//         var modal = bootstrap.Modal.getInstance(myModal);
+//         modal.hide();
+
+
+
+//         if(this.responseText==1){
+//             Swal.fire(
+//                 'Good job!',
+//                 'Breakage Item Update!',
+//                 'success'
+//                 )
+//                 quantity_room_form.reset();
+//                 get_bookings();
+//         }else{
+//             Swal.fire({
+//                 icon: 'error',
+//                 title: 'Oops...',
+//                 text: 'Something went wrong!',
+//                 })
+//         }
+//     }
+
+//     xhr.send(data);
+    
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+let assign_chemical_form = document.getElementById('assign_chemical_form');
+
+function assign_chemical(id){
+    assign_chemical_form.elements['booking_id'].value=id;
 }
 
-quantity_room_form.addEventListener('submit',function(e){
+assign_chemical_form.addEventListener('submit',function(e){
     e.preventDefault();
 
     let data = new FormData();
-    data.append('quantity_no',quantity_room_form.elements['quantity_no'].value);
-    data.append('booking_id',quantity_room_form.elements['booking_id'].value);
-    data.append('quantity_room','');
+
+    data.append('chemical_no',assign_chemical_form.elements['chemical_no'].value);
+    data.append('booking_id',assign_chemical_form.elements['booking_id'].value);
+    data.append('assign_chemical','');
 
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST","new_reservation.php",true);
+    xhr.open("POST","new_chemical.php",true);
 
     xhr.onload = function(){
-        var myModal = document.getElementById('quantity-room');
+        var myModal = document.getElementById('assign-chemical');
         var modal = bootstrap.Modal.getInstance(myModal);
         modal.hide();
 
-
+    
 
         if(this.responseText==1){
             Swal.fire(
                 'Good job!',
-                'Breakage Item Update!',
+                'Chemical Confirmation!',
                 'success'
                 )
-                quantity_room_form.reset();
-                get_bookings();
-        }else{
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Something went wrong!',
-                })
-        }
-    }
-
-    xhr.send(data);
-    
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-let assign_room_form = document.getElementById('assign_room_form');
-
-function assign_room(id){
-    assign_room_form.elements['booking_id'].value=id;
-}
-
-assign_room_form.addEventListener('submit',function(e){
-    e.preventDefault();
-
-    let data = new FormData();
-
-    data.append('room_no',assign_room_form.elements['room_no'].value);
-    data.append('booking_id',assign_room_form.elements['booking_id'].value);
-    data.append('assign_room','');
-
-
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST","new_reservation.php",true);
-
-    xhr.onload = function(){
-        var myModal = document.getElementById('assign-room');
-        var modal = bootstrap.Modal.getInstance(myModal);
-        modal.hide();
-
-    
-
-        if(this.responseText==1){
-            Swal.fire(
-                'Good job!',
-                'Approved return!',
-                'success'
-                )
-                assign_room_form.reset();
-                get_bookings();
+                assign_chemical_form.reset();
+                get_booking_chemical();
         }else{
             Swal.fire({
                 icon: 'error',
@@ -406,7 +406,7 @@ assign_room_form.addEventListener('submit',function(e){
 
 
     window.onload = function(){
-        get_bookings();
+        get_booking_chemical();
     }
 
 

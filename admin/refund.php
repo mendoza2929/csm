@@ -14,7 +14,7 @@
         
         $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE (bo.order_id LIKE ? OR bd.course LIKE ? OR bd.user_name LIKE ? ) AND  (bo.booking_status =?  AND bo.refund=?) ORDER BY bo.booking_id DESC ";
 
-        $res = select($query,["%$frm_data[search]%","%$frm_data[search]%","%$frm_data[search]%","cancelled",0],'sssss');
+        $res = select($query,["%$frm_data[search]%","%$frm_data[search]%","%$frm_data[search]%","breakage",0],'sssss');
 
         $i=1;
 
@@ -54,7 +54,7 @@
                 <td>
                     <b>Item: </b> $data[room_name]
                     <br>
-                    <b>Quantity: </b> $data[quantity_no]
+                    <b>Quantity: </b> $data[quantity_no] pcs
                     <br>
                     <b>Check in: </b> $checkin
                     <br>

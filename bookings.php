@@ -136,7 +136,7 @@ if($home_r['shutdown']==1){
         <div style="font-size:15px;">
         <a href="index.php" class="text-secondary text-decoration-none">Home</a>
         <span class="text-secondary"> > </span>
-        <a href="#" class="text-secondary text-decoration-none">Barrowing</a>
+        <a href="#" class="text-secondary text-decoration-none">Borrowing</a>
     </div>
     </div>
 
@@ -144,7 +144,7 @@ if($home_r['shutdown']==1){
     
           <?php 
           
-          $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE  ((bo.booking_status ='booked') OR (bo.booking_status='cancelled') OR (bo.booking_status='payment failed')) AND  (bo.user_id=?)  ORDER BY bo.booking_id DESC ";
+          $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE  ((bo.booking_status ='approved') OR (bo.booking_status='breakage') OR (bo.booking_status='payment failed')) AND  (bo.user_id=?)  ORDER BY bo.booking_id DESC ";
 
 
           $result = select($query,[$_SESSION['uId']],'i');
@@ -161,7 +161,7 @@ if($home_r['shutdown']==1){
             $status_bg = "";
             $btn = "";
 
-            if($data['booking_status']=='booked'){
+            if($data['booking_status']=='approved'){
               
               if($data['arrival']==1){
                 $btn="  <div class='text-center'>
@@ -182,7 +182,7 @@ if($home_r['shutdown']==1){
               }else{
               
               }
-            }else if($data['booking_status']=='cancelled'){
+            }else if($data['booking_status']=='breakage'){
             
         
               if($data['refund']==0){
