@@ -180,7 +180,7 @@ if($home_r['shutdown']==1){
             </span>
             <h6 class='mt-2'>Expiration Date</h6>
             <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>
-            $chemical_data[expired]
+            $chemical_data[months] $chemical_data[day] $chemical_data[year]
           </span>
           </div>
           $chemical_btn
@@ -690,6 +690,21 @@ function checkLoginToBook(status,chemical_id){
 });
   }
 }
+
+ 
+// function search_room(chemicalname){
+
+// let xhr = new XMLHttpRequest();
+// xhr.open("POST","ajax/room.php",true);
+// xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+// xhr.onload = function(){
+//     document.getElementById('rooms-data').innerHTML = this.responseText;
+// }
+// xhr.send('search_room&name='+chemicalname);
+// }
+
+
 
 
 

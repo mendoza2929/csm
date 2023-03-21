@@ -50,7 +50,7 @@ adminLogin();
                                 <tr class="bg-secondary text-white">
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Size</th>
+                                <th scope="col">Volume</th>
                                 <th scope="col">Details</th> 
                                 <th scope="col" >Quantity</th>
                                 <th scope="col" >Expiration Date</th>
@@ -95,7 +95,7 @@ adminLogin();
                                 <input type="text" name="name" class="form-control shadow-none">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Size</label>
+                                <label class="form-label fw-bold">Volume</label>
                                 <input type="number" min="1" name="area" class="form-control shadow-none">
                             </div>
                             <div class="col-md-6 mb-3">
@@ -106,15 +106,86 @@ adminLogin();
                                 <label class="form-label fw-bold">Available</label>
                                 <input type="number" min="1"  name="avail" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">Per Student</label>
                                 <input type="number" min="1" name="student" class="form-control shadow-none">
                             </div>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label fw-bold">Expiration date</label>
+                                <select class='form-select shadow-none' aria-label='Default select example' name='months' required>
+                                <option disabled selected value="">Select Month</option> <!-- placeholder option -->
+                                    <option value="Jan">Jan</option>
+                                    <option value="Feb">Feb</option>
+                                    <option value="Mar">Mar</option>
+                                    <option value="Apr">Apr</option>
+                                    <option value="May">May</option>
+                                    <option value="Jun">Jun</option>
+                                    <option value="Jul">Jul</option>
+                                    <option value="Aug">Aug</option>
+                                    <option value="Sep">Sep</option>
+                                    <option value="Oct">Oct</option>
+                                    <option value="Nov">Nov</option>
+                                    <option value="Dec">Dec</option>
+
+                                </select>
+
+                            </div>
+                            <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold mb-4"></label>
+                                <select class='form-select shadow-none' aria-label='Default select example' name='day' required>
+                                <option disabled selected value="">Select Day</option> <!-- placeholder option -->
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+
+
+                                </select>
+
+                            </div>
+                            <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold mb-4"></label>
+                                <select class='form-select shadow-none' aria-label='Default select example' name='year' required>
+                                <option disabled selected value="">Select Year</option> <!-- placeholder option -->
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                </select>
+
+                            </div>
                             
-                            <div class="col-md-4 mb-3">
+                            <!--<div class="col-md-4 mb-3">
                             <label class="form-label fw-bold">Expiration Date</label>
                             <input type="date" class="form-control shadow-none mb-3" name="expiration_date" >
-                            </div>
+                            </div>-->
                   
                             
                             <div class="col-12 mb-3">
@@ -165,7 +236,7 @@ adminLogin();
                                 <input type="text" name="name" class="form-control shadow-none">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Size</label>
+                                <label class="form-label fw-bold">Volume</label>
                                 <input type="number" min="1" name="area" class="form-control shadow-none">
                             </div>
                             <div class="col-md-6 mb-3">
@@ -176,12 +247,85 @@ adminLogin();
                                 <label class="form-label fw-bold">Available</label>
                                 <input type="number" min="1"  name="avail" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">Per Student</label>
                                 <input type="number" min="1" name="student" class="form-control shadow-none">
                             </div>
+                            
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label fw-bold">Expiration date</label>
+                                <select class='form-select shadow-none' aria-label='Default select example' name='months' required>
+                                <option disabled selected value="">Select Month</option> <!-- placeholder option -->
+                                    <option value="Jan">Jan</option>
+                                    <option value="Feb">Feb</option>
+                                    <option value="Mar">Mar</option>
+                                    <option value="Apr">Apr</option>
+                                    <option value="May">May</option>
+                                    <option value="Jun">Jun</option>
+                                    <option value="Jul">Jul</option>
+                                    <option value="Aug">Aug</option>
+                                    <option value="Sep">Sep</option>
+                                    <option value="Oct">Oct</option>
+                                    <option value="Nov">Nov</option>
+                                    <option value="Dec">Dec</option>
+
+                                </select>
+
+                            </div>
+                            <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold mb-4"></label>
+                                <select class='form-select shadow-none' aria-label='Default select example' name='day' required>
+                                <option disabled selected value="">Select Day</option> <!-- placeholder option -->
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+
+
+                                </select>
+
+                            </div>
+                            <div class="col-md-3 mb-3">
+                            <label class="form-label fw-bold mb-4"></label>
+                                <select class='form-select shadow-none' aria-label='Default select example' name='year' required>
+                                <option disabled selected value="">Select Year</option> <!-- placeholder option -->
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                </select>
+
+                            </div>
+
                             <div class="col-12 mb-3">
-                                <label class="form-label fw-bold">Size</label>
+                                <label class="form-label fw-bold">Size/Volume</label>
                                 <div class="row">
                                     <?php 
                                     
@@ -244,10 +388,10 @@ function add_chemical(){
         data.append('quantity',add_chemical_form.elements['quantity'].value);
         data.append('avail',add_chemical_form.elements['avail'].value);
         data.append('student',add_chemical_form.elements['student'].value);
-        // data.append('months',add_chemical_form.elements['months'].value);
-        // data.append('days',add_chemical_form.elements['days'].value);
-        // data.append('year',add_chemical_form.elements['year'].value);
-        data.append('expiration_date',add_chemical_form.elements['expiration_date'].value);
+        data.append('months',add_chemical_form.elements['months'].value);
+        data.append('day',add_chemical_form.elements['day'].value);
+        data.append('year',add_chemical_form.elements['year'].value);
+        // data.append('expiration_date',add_chemical_form.elements['expiration_date'].value);
         // data.append('expiration_date',add_chemical_form.elements['expiration_date'].value);
         // data.append('desc',add_chemical_form.elements['desc'].value);
 
@@ -329,6 +473,9 @@ function chemical_details(id){
             edit_chemical.elements['quantity'].value = data.chemicaldata.quantity;
             edit_chemical.elements['avail'].value = data.chemicaldata.avail;
             edit_chemical.elements['student'].value = data.chemicaldata.student;
+            edit_chemical.elements['months'].value = data.chemicaldata.months;
+            edit_chemical.elements['day'].value = data.chemicaldata.day;
+            edit_chemical.elements['year'].value = data.chemicaldata.year;
             edit_chemical.elements['chemical_id'].value = data.chemicaldata.id;
             
             
@@ -358,6 +505,9 @@ function submit_edit_chemical(){
         data.append('quantity',edit_chemical.elements['quantity'].value);
         data.append('avail',edit_chemical.elements['avail'].value);
         data.append('student',edit_chemical.elements['student'].value);
+        data.append('months',edit_chemical.elements['months'].value);
+        data.append('day',edit_chemical.elements['day'].value);
+        data.append('year',edit_chemical.elements['year'].value);
         // data.append('desc',add_chemical_form.elements['desc'].value);
 
 

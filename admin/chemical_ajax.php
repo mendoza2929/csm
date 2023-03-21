@@ -11,11 +11,11 @@ if(isset($_POST['add_chemical'])){
 
     $flag = 0;
 
-    $q1 = "INSERT INTO `chemical`(`name`, `area`, `quantity`, `avail`, `student`,`expired`) VALUES (?,?,?,?,?,?)";
-    $values = [$frm_data['name'],$frm_data['area'],$frm_data['quantity'],$frm_data['avail'],$frm_data['student'],$frm_data['expiration_date']];
+    $q1 = "INSERT INTO `chemical`(`name`, `area`, `quantity`, `avail`, `student`,`months`,`day`,`year`) VALUES (?,?,?,?,?,?,?,?)";
+    $values = [$frm_data['name'],$frm_data['area'],$frm_data['quantity'],$frm_data['avail'],$frm_data['student'],$frm_data['months'],$frm_data['day'],$frm_data['year']];
 
 
-    if(insert($q1,$values,'siiiis')){
+    if(insert($q1,$values,'siiiisss')){
         $flag=1;
     }
 
@@ -69,7 +69,7 @@ if(isset($_POST['get_chemical'])){
         <td>$row[area] </td>
         <td><span class='badge rounded-pill bg-light text-dark'>Available: $row[avail]</span><br><span class='badge rounded-pill bg-light text-dark'>per Student: $row[student]</span></td>
         <td>$row[quantity]</td>
-        <td>$row[expired]</td>
+        <td>$row[months] $row[day] $row[year]</td>
         <td>$status</td>
         <td>
          
@@ -122,10 +122,10 @@ if(isset($_POST['submit_edit_chemical'])){
 
     $flag = 0;
 
-    $q1 = "UPDATE `chemical` SET `name`=?, `area`=?, `quantity`=?, `avail`=?,`student`=? WHERE `id`=?";
-    $values = [$frm_data['name'],$frm_data['area'],$frm_data['quantity'],$frm_data['avail'],$frm_data['student'],$frm_data['chemical_id']];
+    $q1 = "UPDATE `chemical` SET `name`=?, `area`=?, `quantity`=?, `avail`=?,`student`=?, `months`=?, `day`=?, `year`=? WHERE `id`=?";
+    $values = [$frm_data['name'],$frm_data['area'],$frm_data['quantity'],$frm_data['avail'],$frm_data['student'],$frm_data['months'],$frm_data['day'],$frm_data['year'],$frm_data['chemical_id']];
 
-    if(update($q1, $values,'siiisi')){
+    if(update($q1, $values,'siiissssi')){
         $flag= 1;
     }
 

@@ -12,34 +12,34 @@ session_start();
     if(isset($_GET['fetch_rooms'])){
 
       // check availability data decode
-      $chk_avail= json_decode($_GET['chk_avail'],true);
+      // $chk_avail= json_decode($_GET['chk_avail'],true);
       //checkin check out validations
-      if($chk_avail['checkin']!='' && $chk_avail['checkout']!=''){
+      // if($chk_avail['checkin']!='' && $chk_avail['checkout']!=''){
         
-          $today_date = new DateTime(date("Y-m-d"));
-          $checkin_date = new DateTime($chk_avail['checkin']);
-          $checkout_date= new DateTime($chk_avail['checkout']);
+      //     $today_date = new DateTime(date("Y-m-d"));
+      //     $checkin_date = new DateTime($chk_avail['checkin']);
+      //     $checkout_date= new DateTime($chk_avail['checkout']);
 
-          if($checkin_date == $checkout_date){
-            echo "<h3 class='text-center text-danger'>Invalid Check-in / Check-out</h3>";
-            exit;
-          }
-          else if($checkout_date < $checkin_date){
-            echo "<h3 class='text-center text-danger'>Invalid Check-in / Check-out</h3>";
-            exit;
-          }
-          else if($checkin_date < $today_date){
-            echo "<h3 class='text-center text-danger'>Invalid Check-in / Check-out/h3>";
-            exit;
-          }
-      }
+      //     if($checkin_date == $checkout_date){
+      //       echo "<h3 class='text-center text-danger'>Invalid Check-in / Check-out</h3>";
+      //       exit;
+      //     }
+      //     else if($checkout_date < $checkin_date){
+      //       echo "<h3 class='text-center text-danger'>Invalid Check-in / Check-out</h3>";
+      //       exit;
+      //     }
+      //     else if($checkin_date < $today_date){
+      //       echo "<h3 class='text-center text-danger'>Invalid Check-in / Check-out/h3>";
+      //       exit;
+      //     }
+      // }
 
 
       //guest data decode
 
-      $guests = json_decode($_GET['guests'],true);
-      $adults = ($guests['adults']!='') ? $guests['adults'] : 0;
-      $children = ($guests['children']!='') ? $guests['children'] : 0;
+      // $guests = json_decode($_GET['guests'],true);
+      // $adults = ($guests['adults']!='') ? $guests['adults'] : 0;
+      // $children = ($guests['children']!='') ? $guests['children'] : 0;
     
 
 
@@ -55,25 +55,25 @@ session_start();
         
         //query for rooms with guests data
 
-        $room_res = select("SELECT * FROM `rooms` WHERE `adult`>=? AND `children`>=? AND `status`=? AND `removed`=?",[$adults,$children,1,0],'iiii');
+        $room_res = select("SELECT * FROM `rooms` WHERE  `status`=? AND `removed`=?",[1,0],'ii');
 
         while($room_data = mysqli_fetch_assoc($room_res)){
           
 
           //check availability of room data 
-          if($chk_avail['checkin']!='' && $chk_avail['checkout']!=''){
+          // if($chk_avail['checkin']!='' && $chk_avail['checkout']!=''){
 
-            $tb_query = "SELECT COUNT(*) AS `total_bookings` FROM `booking_order` WHERE booking_status=? AND room_id=? AND check_out > ? AND check_in < ?";
+          //   $tb_query = "SELECT COUNT(*) AS `total_bookings` FROM `booking_order` WHERE booking_status=? AND room_id=? AND check_out > ? AND check_in < ?";
 
-            $values = ['booked',$room_data['id'],$chk_avail['checkin'],$chk_avail['checkout']];
-            $tb_fetch = mysqli_fetch_assoc(select($tb_query,$values,'siss'));
+          //   $values = ['booked',$room_data['id'],$chk_avail['checkin'],$chk_avail['checkout']];
+          //   $tb_fetch = mysqli_fetch_assoc(select($tb_query,$values,'siss'));
    
     
-            if(($room_data['quantity']-$tb_fetch['total_bookings'])==0){
-                continue;
-            }
+          //   if(($room_data['quantity']-$tb_fetch['total_bookings'])==0){
+          //       continue;
+          //   }
     
-          }
+          // }
 
 
 

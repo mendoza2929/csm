@@ -45,6 +45,10 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
         <li class="nav-item navbar-admin">
         <a class="nav-link text-white" href="dashboard.php"><i class="bi bi-people"></i> Dashboard</a>
           </li>
+          
+          <li class="nav-item navbar-admin">
+            <a class="nav-link " href="clearance.php"><i class="bi bi-clipboard-check"></i> Clearance</a>
+          </li>
          <li class="nav-item navbar-admin">
          <button class="btn text-white px-3 w-100 shadow-none text-start d-flex align-items-center justify-content-between " type="button" data-bs-toggle="collapse" data-bs-target="#bookingLinks" >
         <span><i class="bi bi-journal-check"></i> Apparatus Records</span>
@@ -81,7 +85,7 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
         <div class="collapse show px-3 small mb-2" id="chemicalLinks">
             <ul class="nav nav-pills flex-column rounded border border-secondary mb-2">
               <li class="nav-item">
-                <a class="nav-link text-white" href="new_bookings_chemical.php"> New Chemical Borrowing</a>
+                <a class="nav-link text-white" href="new_bookings_chemical.php"> New Chemical Confirmation</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-white" href="records_chemical.php"> All Chemical Records</a>

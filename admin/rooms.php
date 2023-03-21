@@ -96,7 +96,6 @@ adminLogin();
                                 <th scope="col">Name</th>
                                 <th scope="col">Size</th>
                                 <th scope="col">Details</th> 
-                                <th scope="col">Price</th> 
                                 <th scope="col" >Quantity</th>
                                 <th scope="col">Status</th> 
                                 <th scope="col">Action</th> 
@@ -140,10 +139,6 @@ adminLogin();
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Size</label>
                                 <input type="number" min="1" name="area" class="form-control shadow-none">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Price</label>
-                                <input type="number" name="price" class="form-control shadow-none">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Quantity</label>
@@ -210,10 +205,6 @@ adminLogin();
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Size</label>
                                 <input type="number" min="1" name="area" class="form-control shadow-none">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Price</label>
-                                <input type="number" name="price" class="form-control shadow-none">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Quantity</label>
@@ -325,7 +316,7 @@ function add_rooms(){
     data.append('add_rooms','');
         data.append('name',room_form.elements['name'].value);
         data.append('area',room_form.elements['area'].value);
-        data.append('price',room_form.elements['price'].value);
+        // data.append('price',room_form.elements['price'].value);
         data.append('quantity',room_form.elements['quantity'].value);
         data.append('adult',room_form.elements['adult'].value);
         data.append('children',room_form.elements['children'].value);
@@ -405,7 +396,7 @@ edit_form.addEventListener('submit', function(e){
            let data = JSON.parse(this.responseText);
            edit_form.elements['name'].value = data.roomdata.name;
            edit_form.elements['area'].value = data.roomdata.area;
-           edit_form.elements['price'].value = data.roomdata.price;
+        //    edit_form.elements['price'].value = data.roomdata.price;
            edit_form.elements['quantity'].value = data.roomdata.quantity;
            edit_form.elements['adult'].value = data.roomdata.adult;
            edit_form.elements['children'].value = data.roomdata.children;
@@ -432,7 +423,7 @@ function submit_edit_rooms(){
     data.append('room_id',edit_form.elements['room_id'].value);
         data.append('name',edit_form.elements['name'].value);
         data.append('area',edit_form.elements['area'].value);
-        data.append('price',edit_form.elements['price'].value);
+        // data.append('price',edit_form.elements['price'].value);
         data.append('quantity',edit_form.elements['quantity'].value);
         data.append('adult',edit_form.elements['adult'].value);
         data.append('children',edit_form.elements['children'].value);

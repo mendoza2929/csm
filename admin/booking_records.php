@@ -89,7 +89,7 @@
                 <td>
                 <b>item: </b> $data[room_name]
                 <br>
-                <b>Quantity: </b> $data[quantity] pcs
+                <b>Quantity: </b> $data[quantity_no] pcs
                 
                 <br>
                 <b>Volume : </b>  $data[volume] Needed

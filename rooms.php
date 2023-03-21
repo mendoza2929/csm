@@ -142,42 +142,7 @@ if(isset($_GET['check_availability'])){
         <div class="text-end mb-4">
             <input type="text" oninput="search_room(this.value)" class="form-control shadow-none w-25 ms-auto" placeholder="Type to search..">
         </div>
-     <div class="col-lg-3 col-mb-12 mb-4 mb-lg-0 ps-4">
-   <nav class="navbar navbar-expand-lg navbar-light bg-white rounded shadow shadow-sm">
-  <div class="container-fluid flex-lg-column align-items-stretch">
-  <h5 class="mb-3 text-center fw-bold" style="font-size:18px;"><span>Check Apparatus</span>
-
-        
-</h5>
-   
-    <div class="collapse navbar-collapse align-items-stretch mt-2 flex-column" id="filter">
-      <div class="border bg-light p-3 rounded mb-3 mt-2">
-     
-        <label class="form-label">Check-in</label>
-        <input type="datetime-local" class="form-control shadow-none mb-3" id="checkin" value="<?php echo $checkin_default ?>" onchange="chk_avail_filter()">
-        <label class="form-label">Check-out</label>
-        <input type="datetime-local" class="form-control shadow-none" id="checkout"  value="<?php echo  $checkout_default ?>"  onchange="chk_avail_filter()">
-      </div>
-      <div class="border bg-light p-3 rounded mb-3 mt-2" >
-        <h5 class="mb-3 text-center fw-bold" style="font-size:18px;"><span>Details</span>
-
-        <button  id="guests_btn"  onclick="guests_clear()" class="btn btn-sm text-secondary ms-5 d-none bg-success text-white shadow-none">Reset</button>
-        </h5>
-        <div class="d-flex">
-        <div class="me-3">
-          <label class="form-label">Quantity</label>
-          <input type="number" class="form-control shadow-none" id="adults" value="<?php echo $adult_default ?>" min="1" oninput="guests_filter()">
-        </div>
-        <div>
-          <label class="form-label">per Student</label>
-          <input type="number" class="form-control shadow-none" id="children" value="<?php echo $children_default ?>" min="1" oninput="guests_filter()">
-        </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-  </div>
+ 
 
      <div class="col-lg-9 col-mb-10 mx-auto" id="rooms-data">
       
@@ -671,28 +636,28 @@ function checkLoginToBook(status,room_id){
 
 
   let rooms_data = document.getElementById('rooms-data');
-  let checkin = document.getElementById('checkin');
-  let checkout = document.getElementById('checkout');
-  let chk_avail_btn = document.getElementById('chk_avail_btn');
-  let adults = document.getElementById('adults');
-  let children = document.getElementById('children');
-  let guests_btn = document.getElementById('guests_btn');
+  // let checkin = document.getElementById('checkin');
+  // let checkout = document.getElementById('checkout');
+  // let chk_avail_btn = document.getElementById('chk_avail_btn');
+  // let adults = document.getElementById('adults');
+  // let children = document.getElementById('children');
+  // let guests_btn = document.getElementById('guests_btn');
 
 
   function fetch_rooms(){
 
-    let chk_avail = JSON.stringify({
-        checkin: checkin.value,
-        checkout: checkout.value
-    });
+    // let chk_avail = JSON.stringify({
+    //     checkin: checkin.value,
+    //     checkout: checkout.value
+    // });
 
-    let guests = JSON.stringify({
-      adults:adults.value,
-      children:children.value
-    });
+    // let guests = JSON.stringify({
+    //   adults:adults.value,
+    //   children:children.value
+    // });
 
     let xhr = new XMLHttpRequest();
-    xhr.open("GET","ajax/room.php?fetch_rooms&chk_avail="+chk_avail+"&guests="+guests,true);
+    xhr.open("GET","ajax/room.php?fetch_rooms",true);
 
     xhr.onprogress = function(){
       rooms_data.innerHTML = ` <div class="spinner-border text-info mb-3 d-block mx-auto" id="info" role="status">
@@ -707,37 +672,37 @@ function checkLoginToBook(status,room_id){
     xhr.send();
   }
   
-  function chk_avail_filter(){
-    if(checkin.value!='' && checkout.value !=''){
-      fetch_rooms();
-      chk_avail_btn.classList.remove('d-none');
+  // function chk_avail_filter(){
+  //   if(checkin.value!='' && checkout.value !=''){
+  //     fetch_rooms();
+  //     chk_avail_btn.classList.remove('d-none');
 
-    }
-  }
+  //   }
+  // }
 
-  function chk_avail_clear(){
-    checkin.value='';
-    checkout.value='';
-    chk_avail_btn.classList.add('d-none');
-    fetch_rooms();
+  // function chk_avail_clear(){
+  //   checkin.value='';
+  //   checkout.value='';
+  //   chk_avail_btn.classList.add('d-none');
+  //   fetch_rooms();
 
-  }
+  // }
 
 
-  function guests_filter(){
-      if(adults.value>0 || children.value>0){
-        fetch_rooms();
-        guests_btn.classList.remove('d-none');
-      }
-  }
+  // function guests_filter(){
+  //     if(adults.value>0 || children.value>0){
+  //       fetch_rooms();
+  //       guests_btn.classList.remove('d-none');
+  //     }
+  // }
 
   
-  function guests_clear(){
-    adults.value='';
-    children.value='';
-    guests_btn.classList.add('d-none');
-    fetch_rooms();
-  }
+  // function guests_clear(){
+  //   adults.value='';
+  //   children.value='';
+  //   guests_btn.classList.add('d-none');
+  //   fetch_rooms();
+  // }
 
   
   function search_room(roomname){

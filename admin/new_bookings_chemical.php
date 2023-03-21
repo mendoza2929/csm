@@ -74,7 +74,7 @@ adminLogin();
     <div class="container-fluid" id="main-content">
         <div class="row">
             <div class="col-lg-10 ms-auto p-4 overflow-y">
-                <h3 class="mb-4"><i class="bi bi-people-fill"></i> All Chemical Borrowing</h3>
+                <h3 class="mb-4"><i class="bi bi-people-fill"></i> All Chemical Confirmation</h3>
 
                     <div class="card border-0 shadow-sm mb-4">
                         <div class="card-body">

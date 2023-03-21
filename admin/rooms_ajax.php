@@ -13,11 +13,11 @@
         $frm_data = filteration($_POST);
         $flag = 0;
 
-        $q1 = "INSERT INTO `rooms`(`name`, `area`, `price`, `quantity`, `adult`, `children`, `description`) VALUES (?,?,?,?,?,?,?)";
-        $values = [$frm_data['name'],$frm_data['area'],$frm_data['price'],$frm_data['quantity'],$frm_data['adult'],$frm_data['children'],$frm_data['desc']];
+        $q1 = "INSERT INTO `rooms`(`name`, `area`, `quantity`, `adult`, `children`, `description`) VALUES (?,?,?,?,?,?)";
+        $values = [$frm_data['name'],$frm_data['area'],$frm_data['quantity'],$frm_data['adult'],$frm_data['children'],$frm_data['desc']];
 
 
-        if(insert($q1,$values,'siiiiis')){
+        if(insert($q1,$values,'siiiis')){
             $flag=1;
         }
 
@@ -71,7 +71,6 @@
                     <td>$row[name]</td>
                     <td>$row[area] </td>
                     <td><span class='badge rounded-pill bg-light text-dark'>Available: $row[adult]</span><br><span class='badge rounded-pill bg-light text-dark'>per Student: $row[children]</span></td>
-                    <td>₱$row[price]</td>
                     <td>$row[quantity]</td>
                     <td>$status</td>
                     <td>
@@ -141,10 +140,10 @@ if(isset($_POST['edit_get_room'])){
         $frm_data = filteration($_POST);
         $flag = 0;
 
-        $q1 = "UPDATE `rooms` SET `name`=?,`area`=?,`price`=?,`quantity`=?,`adult`=?,`children`=?,`description`=? WHERE `id`=?";
-        $values=[$frm_data['name'],$frm_data['area'],$frm_data['price'],$frm_data['quantity'],$frm_data['adult'],$frm_data['children'],$frm_data['desc'],$frm_data['room_id']];
+        $q1 = "UPDATE `rooms` SET `name`=?,`area`=?,`quantity`=?,`adult`=?,`children`=?,`description`=? WHERE `id`=?";
+        $values=[$frm_data['name'],$frm_data['area'],$frm_data['quantity'],$frm_data['adult'],$frm_data['children'],$frm_data['desc'],$frm_data['room_id']];
 
-        if(update($q1,$values,'siiiiisi')){
+        if(update($q1,$values,'siiiisi')){
             $flag =1;
         }
         
@@ -328,7 +327,6 @@ if(isset($_POST['edit_get_room'])){
                     <td>$row[name]</td>
                     <td>$row[area] </td>
                     <td><span class='badge rounded-pill bg-light text-dark'>Available: $row[adult]</span><br><span class='badge rounded-pill bg-light text-dark'>per Student: $row[children]</span></td>
-                    <td>₱$row[price]</td>
                     <td>$row[quantity]</td>
                     <td>$status</td>
                     <td>
