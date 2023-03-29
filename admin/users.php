@@ -92,6 +92,7 @@ adminLogin();
                                 <tr class="bg-secondary text-white">
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Student ID</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Course</th>
                                 <th scope="col">Year</th>

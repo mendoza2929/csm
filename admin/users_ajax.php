@@ -48,6 +48,7 @@
                <tr>
                 <td>$i</td>
                 <td>$row[name]</td>
+                <td>$row[student_id]</td>
                 <td>$row[email]</td>
                 <td>$row[course]</td>
                 <td>$row[year]</td>

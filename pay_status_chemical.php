@@ -146,7 +146,7 @@ if($home_r['shutdown']==1){
              <i class="bi bi-check-circle-fill"></i>
               Borrowing Succesfully
              <br><br>
-             <a href='bookings.php'>Go to Borrowing Details</a> 
+             <a href='chemical.php'>Go to Chemical</a> 
              </div>
            data;
            // }

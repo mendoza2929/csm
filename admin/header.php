@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="dash.css">
+  <link rel="stylesheet" href="dashie.css">
 </head>
 <body>
 
@@ -30,7 +30,7 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
         <a href="logout.php" class="btn btn-light shadow-none me-lg-2 me-3"> <i class="bi bi-box-arrow-right"></i></a>
     </div>
 
-    <div class="col-lg-2  border-top border-3 dashboard admin-navbar" id="dashboard">
+    <div class="col-lg-2  border-top border-3 dashboard admin-navbar " id="dashboard">
     <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid flex-lg-column align-items-stretch">
   <h5 class="mt-2 text-center text-light" style="font-size:18px;">
@@ -40,7 +40,7 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
     <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#admin" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse align-items-stretch mt-2 flex-column navbar-admin" id="admin">
+    <div class="collapse navbar-collapse align-items-stretch mt-2 flex-column navbar-admin overflow-auto" id="admin" style="height: 500px; overflow-y: auto;">
         <ul class="nav nav-pills flex-column">
         <li class="nav-item navbar-admin">
         <a class="nav-link text-white" href="dashboard.php"><i class="bi bi-people"></i> Dashboard</a>

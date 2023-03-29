@@ -184,8 +184,16 @@ adminLogin();
                                 <input type="text" name="features_name" class="form-control shadow-none">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Department</label>
-                                <textarea name="features_desc"class="form-control shadow-none" rows="4"></textarea>
+                                
+                <label class="form-label mb-3"> Select Department
+                <select class='form-select shadow-none' aria-label='Default select example' name="features_desc" required>
+                    <option disabled selected value="">Select Department...</option> <!-- placeholder option -->
+                    <option value="biology">Biology</option>
+                    <option value="chemistry">Chemistry</option>
+                </select>
+            </label>
+                                
+
                             </div>
                         </div>
                         <div class="modal-footer">

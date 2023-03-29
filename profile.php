@@ -18,7 +18,7 @@ include_once 'dbconnection.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrowing</title>
+    <title>Profile</title>
     <link rel = "stylesheet" href="main.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" href="img/logo.jpg">
@@ -50,8 +50,19 @@ if($home_r['shutdown']==1){
   </div>
   alertbar;
 
-  
+   
 }
+
+if(isset($_SESSION['login']) && $_SESSION['login']==true){
+  
+
+    $u_exits = select("SELECT * FROM `user_cred` WHERE `id`=? LIMIT 1",[$_SESSION['uId']],'s');
+
+    if(mysqli_num_rows($u_exits)==0){
+       
+    }
+  }
+  $u_fetch = mysqli_fetch_assoc($u_exits);
 
 ?>
 
@@ -98,6 +109,7 @@ if($home_r['shutdown']==1){
                 <ul class="dropdown-menu dropdown-menu-lg-end">
                   <li><a class="dropdown-item" href="bookings.php">Your Barrowing Item</a></li>
                   <li><a class="dropdown-item" href="bookings_chemical.php">Your Chemical Item</a></li>
+                  <li><a class="dropdown-item" href="profile.php">Your Chemical Item</a></li>
                   <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                 </ul>
               </div>
@@ -132,119 +144,60 @@ if($home_r['shutdown']==1){
         <div class="row">
             
     <div class="col-12 my-5 px-4">
-        <div class="h2 fw-bold text-center">Borrowing</div>
+        <div class="h2 fw-bold text-center">Student Profile</div>
         <div class="h-line bg-dark"></div>
         <div style="font-size:15px;">
         <a href="index.php" class="text-secondary text-decoration-none">Home</a>
         <span class="text-secondary"> > </span>
-        <a href="#" class="text-secondary text-decoration-none">Borrowing</a>
+        <a href="#" class="text-secondary text-decoration-none">Profile</a>
     </div>
     </div>
 
 
-    
-          <?php 
-          
-          $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE  ((bo.booking_status ='approved') OR (bo.booking_status='breakage') OR (bo.booking_status='payment failed')) AND  (bo.user_id=?)  ORDER BY bo.booking_id DESC ";
+    <div class="col-12 mb-5 px-4">
+        <div class="bg-white p-3 p-md-4 rounded shadow-sm">
+            <form id="info-form">  
+                <h5 class="mb-3 fw-bold">Student Information</h5>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" value="<?php echo $u_fetch['name']?>" class="form-control shadow-none">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                    <label class="form-label">Student ID</label>
+                    <input type="text" class="form-control shadow-none" value="<?php echo $u_fetch['student_id']?>" name="student_id">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Wmsu Email</label>
+                        <input type="email" class="form-control shadow-none" value="<?php echo $u_fetch['email']?>"  name="email">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <input type="number" class="form-control shadow-none" value="<?php echo $u_fetch['phonenum']?>"  required name="phonenum">
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label class="form-label">Course </label>
+                        <input type="text" name="course" value="<?php echo $u_fetch['course']?>" class="form-control shadow-none mb-2">
+                    </div>
+                      <div class="col-md-2 mb-3">
+                        <label class="form-label">Year </label>
+                        <select class="form-select shadow-none" aria-label="Default select example" id="year_input" name="year" required>
+  <option disabled selected value="">Select Year...</option> <!-- placeholder option -->
+  <option value="1st" <?php if ($u_fetch['year'] == '1st') { echo 'selected'; } ?>>1st</option>
+  <option value="2nd" <?php if ($u_fetch['year'] == '2nd') { echo 'selected'; } ?>>2nd</option>
+  <option value="3rd" <?php if ($u_fetch['year'] == '3rd') { echo 'selected'; } ?>>3rd</option>
+  <option value="4th" <?php if ($u_fetch['year'] == '4th') { echo 'selected'; } ?>>4th</option>
+  <option value="5th" <?php if ($u_fetch['year'] == '5th') { echo 'selected'; } ?>>5th</option>
+</select>
 
-
-          $result = select($query,[$_SESSION['uId']],'i');
-
-          while($data = mysqli_fetch_assoc($result)){
-            
-            $date = date("d-m-Y",strtotime($data['datentime']));
-            
-            $checkin= date("d-m-Y g:i a",strtotime($data['check_in']));
-                        
-            $checkout= date("d-m-Y g:i a",strtotime($data['check_out']));
-
-            
-            $status_bg = "";
-            $btn = "";
-
-            if($data['booking_status']=='approved'){
-              
-              if($data['arrival']==1){
-                $btn="  <div class='text-center'>
-              <span class='badge rounded-pill bg-light text-success mb-3 text-wrap lh-base'>
-                Success Return
-              </span>
-              </div>";
-              //   $btn="<button type='button' class='btn btn-outline-dark btn-sm fw-bold shadow-none'>
-              //   Rate & Review
-              // </button>"; 
-
-              // if($data['rate_review']==0){
-              //   $btn.="<button type='button' onclick='review_room($data[booking_id],$data[room_id])' data-bs-toggle='modal' data-bs-target='#reviewModal' class='btn btn-outline-dark btn-sm fw-bold shadow-none'>
-              //   Rate & Review
-              // </button>"; 
-              // }
-                
-              }else{
-              
-              }
-            }else if($data['booking_status']=='breakage'){
-            
-        
-              if($data['refund']==0){
-                $btn="  <div class='text-center'>
-              <span class='badge rounded-pill bg-light text-danger mb-3 text-wrap lh-base'>
-                Breakge: Contact the professor for the manual breakage process.
-              </span>
-              </div>";
-              }else{
-                $btn="  <div class='text-center'>
-                <span class='badge rounded-pill bg-light text-success mb-3 text-wrap lh-base'>
-                  Done Complied Breakage Item
-                </span>
-                </div>";
-              }
-          //     else{
-          //       $btn = "<a href='generate_pdf.php&gen_pdf&id=$data[booking_id]' onclick='download($data[booking_id])' class='btn btn-outline-success btn-sm fw-bold shadow-none'>
-          //         Booking Receipt
-          //     </a>";
-          //     }
-          //   }else{
-          //     $status_bg = "bg-warning";
-          //     $btn = "<a href='generate_pdf.php&gen_pdf&id=$data[booking_id]' onclick='download($data[booking_id])' class='btn btn-outline-success btn-sm fw-bold shadow-none'>
-          //     Booking Receipt
-          // </a>";
-            }
-            echo<<<bookings
-              <div class='col-md-4 px-4 mb-4 w-30'>
-                <div class="bg-white p-3 rounded shadown-sm">
-                    <h5 class="fw-bold text-center">$data[room_name]</h5>
-                    <b>Date: </b> $date <br>
-                    <b>Borrow: $data[quantity] pcs</b>
-                    <br>
-                    <b>Updated Breakage: $data[quantity_no] pcs</b>
-                    <br>
-                    <b>Volume: $data[volume] Needed</b>
-                    <br>
-                    <b>Group No: $data[group_no]</b>
-                    <br>
-                    <b>Room No: $data[apr_no]</b>
-                    <p>
-                      <b>Start Time: </b> $checkin <br>
-                      <b>End Time: </b> $checkout 
-
-                    </p>
-                    <p>
-                    
-                    <b>Order ID:  </b> $data[order_id] <br>
-                  </p>
-                  <p>
-                  <span class='badge $status_bg'>$data[booking_status]</span>
-                  </p>
-                  $btn
+                    </div>
                 </div>
-              </div>
-            bookings;
+                <button type="submit" class="btn btn-success shadow-none">Save Changes</button>
+            </form> 
+        </div>
+    </div>
 
-          }
 
-          
-          ?>
     
       
       
@@ -600,7 +553,44 @@ if(isset($_GET['account_recovery'])){
 
     xhr.send(data);
 
-  })
+  });
+  
+
+  let info_form = document.getElementById('info-form');
+
+info_form.addEventListener('submit', function(e){
+    let data = new FormData();
+
+    data.append('info_form','');
+    data.append('year', document.getElementById('year_input').value); // Use the updated value of the 'year' input
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","ajax/profile.php",true);
+  
+    xhr.onload = function(){
+    
+        if(this.responseText=='phone_already'){
+            
+            alert('error',"Phone already exists");
+        }else if(this.responseText== 0){
+            Swal.fire(
+                'Error',
+                'No Changes were made',
+                'success'
+              );
+        }else{
+            Swal.fire(
+                'Successfully Changed Profile',
+                'Confirm Changes were made',
+                'success'
+              );
+        }
+    }
+
+    xhr.send(data);
+
+    e.preventDefault(); // Prevent the default form submission behavior
+});
 
 
 

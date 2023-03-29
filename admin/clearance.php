@@ -109,77 +109,77 @@ adminLogin();
                             
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CAIS</label>
-                                <input type="number" min="1" name="cais" class="form-control shadow-none">
+                                <input type="number" min="0" name="cais" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CArch</label>
-                                <input type="number" min="1" name="carch" class="form-control shadow-none">
+                                <input type="number" min="0" name="carch" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CCIE</label>
-                                <input type="number" min="1" name="ccie" class="form-control shadow-none">
+                                <input type="number" min="0" name="ccie" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CoE</label>
-                                <input type="number" min="1" name="coe" class="form-control shadow-none">
+                                <input type="number" min="0" name="coe" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CCS</label>
-                                <input type="number" min="1" name="ccs" class="form-control shadow-none">
+                                <input type="number" min="0" name="ccs" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CFES</label>
-                                <input type="number" min="1" name="cfes" class="form-control shadow-none">
+                                <input type="number" min="0" name="cfes" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CHE</label>
-                                <input type="number" min="1" name="che" class="form-control shadow-none">
+                                <input type="number" min="0" name="che" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CLA</label>
-                                <input type="number" min="1" name="cla" class="form-control shadow-none">
+                                <input type="number" min="0" name="cla" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CLaw</label>
-                                <input type="number" min="1" name="claw" class="form-control shadow-none">
+                                <input type="number" min="0" name="claw" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CPers</label>
-                                <input type="number" min="1" name="cpers" class="form-control shadow-none">
+                                <input type="number" min="0" name="cpers" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CSM</label>
-                                <input type="number" min="1" name="csm" class="form-control shadow-none">
+                                <input type="number" min="0" name="csm" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CSWCD</label>
-                                <input type="number" min="1" name="cswcd" class="form-control shadow-none">
+                                <input type="number" min="0" name="cswcd" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CTE</label>
-                                <input type="number" min="1" name="cte" class="form-control shadow-none">
+                                <input type="number" min="0" name="cte" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">ESU</label>
-                                <input type="number" min="1" name="esu" class="form-control shadow-none">
+                                <input type="number" min="0" name="esu" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">Graduate</label>
-                                <input type="number" min="1" name="graduate" class="form-control shadow-none">
+                                <input type="number" min="0" name="graduate" class="form-control shadow-none">
                             </div>
                      
                      
@@ -220,77 +220,77 @@ adminLogin();
                             
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CAIS</label>
-                                <input type="number" min="1" name="cais" class="form-control shadow-none">
+                                <input type="number" min="0" name="cais" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CArch</label>
-                                <input type="number" min="1" name="carch" class="form-control shadow-none">
+                                <input type="number" min="0" name="carch" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CCIE</label>
-                                <input type="number" min="1" name="ccie" class="form-control shadow-none">
+                                <input type="number" min="0" name="ccie" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CoE</label>
-                                <input type="number" min="1" name="coe" class="form-control shadow-none">
+                                <input type="number" min="0" name="coe" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CCS</label>
-                                <input type="number" min="1" name="ccs" class="form-control shadow-none">
+                                <input type="number" min="0" name="ccs" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CFES</label>
-                                <input type="number" min="1" name="cfes" class="form-control shadow-none">
+                                <input type="number" min="0" name="cfes" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CHE</label>
-                                <input type="number" min="1" name="che" class="form-control shadow-none">
+                                <input type="number" min="0" name="che" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CLA</label>
-                                <input type="number" min="1" name="cla" class="form-control shadow-none">
+                                <input type="number" min="0" name="cla" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CLaw</label>
-                                <input type="number" min="1" name="claw" class="form-control shadow-none">
+                                <input type="number" min="0" name="claw" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CPers</label>
-                                <input type="number" min="1" name="cpers" class="form-control shadow-none">
+                                <input type="number" min="0" name="cpers" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CSM</label>
-                                <input type="number" min="1" name="csm" class="form-control shadow-none">
+                                <input type="number" min="0" name="csm" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CSWCD</label>
-                                <input type="number" min="1" name="cswcd" class="form-control shadow-none">
+                                <input type="number" min="0" name="cswcd" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">CTE</label>
-                                <input type="number" min="1" name="cte" class="form-control shadow-none">
+                                <input type="number" min="0" name="cte" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">ESU</label>
-                                <input type="number" min="1" name="esu" class="form-control shadow-none">
+                                <input type="number" min="0" name="esu" class="form-control shadow-none">
                             </div>
 
                             <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">Graduate</label>
-                                <input type="number" min="1" name="graduate" class="form-control shadow-none">
+                                <input type="number" min="0" name="graduate" class="form-control shadow-none">
                             </div>
                      
                      
@@ -406,7 +406,7 @@ function get_clearance(){
 
 let edit_clearance= document.getElementById('edit_clearance');
 
-function clearance_details(id){
+function clearance_details(sr_no){
     
 
     
@@ -433,13 +433,13 @@ function clearance_details(id){
             edit_clearance.elements['cte'].value = data.clearancedata.cte;
             edit_clearance.elements['esu'].value = data.clearancedata.esu;
             edit_clearance.elements['graduate'].value = data.clearancedata.graduate;
-            edit_clearance.elements['clearance_id'].value = data.clearancedata.id;
+            edit_clearance.elements['clearance_id'].value = data.clearancedata.sr_no;
             
             
         
 
         }
-        xhr.send('edit_clearance='+id);
+        xhr.send('edit_clearance='+sr_no);
 }
 
 

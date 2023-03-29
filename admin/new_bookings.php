@@ -74,7 +74,7 @@ adminLogin();
     <div class="container-fluid" id="main-content">
         <div class="row">
             <div class="col-lg-10 ms-auto p-4 overflow-y">
-                <h3 class="mb-4"><i class="bi bi-people-fill"></i> All Appratus Borrowing</h3>
+                <h3 class="mb-4"><i class="bi bi-people-fill"></i> All Apparatus Borrowing</h3>
 
                     <div class="card border-0 shadow-sm mb-4">
                         <div class="card-body">
@@ -393,16 +393,16 @@ assign_room_form.addEventListener('submit',function(e){
 
 
 
-    function search_user(username){
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST","users_ajax.php",true);
-        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    // function search_user(username){
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.open("POST","users_ajax.php",true);
+    //     xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 
-        xhr.onload = function(){
-            document.getElementById('user_data').innerHTML = this.responseText;
-        }
-        xhr.send('search_user&name='+username);
-    }
+    //     xhr.onload = function(){
+    //         document.getElementById('user_data').innerHTML = this.responseText;
+    //     }
+    //     xhr.send('search_user&name='+username);
+    // }
 
 
     window.onload = function(){

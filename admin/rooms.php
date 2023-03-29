@@ -132,23 +132,23 @@ adminLogin();
                         </div>
                         <div class="modal-body"> 
                             <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label class="form-label fw-bold">Name</label>
                                 <input type="text" name="name" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3  mb-3">
                                 <label class="form-label fw-bold">Size</label>
                                 <input type="number" min="1" name="area" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">Quantity</label>
                                 <input type="number" name="quantity" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">Available</label>
                                 <input type="number" min="1"  name="adult" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">Per Student</label>
                                 <input type="number" min="1" name="children" class="form-control shadow-none">
                             </div>
@@ -172,10 +172,7 @@ adminLogin();
                                     ?> 
                                 </div>
                             </div>
-                            <div class="col-12 mb-3">
-                                <label class="form-label fw-bold">Description</label>
-                                <textarea name="desc" rows=4 class="form-control shadow-none" required></textarea>
-                            </div>
+                          
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -198,24 +195,24 @@ adminLogin();
                         </div>
                         <div class="modal-body"> 
                             <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label class="form-label fw-bold">Name</label>
                                 <input type="text" name="name" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3  mb-3">
                                 <label class="form-label fw-bold">Size</label>
                                 <input type="number" min="1" name="area" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">Quantity</label>
                                 <input type="number" name="quantity" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Available </label>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label fw-bold">Available</label>
                                 <input type="number" min="1"  name="adult" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Per Student </label>
+                            <div class="col-md-3 mb-3">
+                                <label class="form-label fw-bold">Per Student</label>
                                 <input type="number" min="1" name="children" class="form-control shadow-none">
                             </div>
                             <div class="col-12 mb-3">
@@ -238,10 +235,7 @@ adminLogin();
                                     ?> 
                                 </div>
                             </div>
-                            <div class="col-12 mb-3">
-                                <label class="form-label fw-bold">Description</label>
-                                <textarea name="desc" rows=4 class="form-control shadow-none" required></textarea>
-                            </div>
+                      
                             <input type="hidden" name="room_id">
                             </div>
                         </div>
@@ -320,7 +314,7 @@ function add_rooms(){
         data.append('quantity',room_form.elements['quantity'].value);
         data.append('adult',room_form.elements['adult'].value);
         data.append('children',room_form.elements['children'].value);
-        data.append('desc',room_form.elements['desc'].value);
+        // data.append('desc',room_form.elements['desc'].value);
 
 
         let features = [];
@@ -400,7 +394,7 @@ edit_form.addEventListener('submit', function(e){
            edit_form.elements['quantity'].value = data.roomdata.quantity;
            edit_form.elements['adult'].value = data.roomdata.adult;
            edit_form.elements['children'].value = data.roomdata.children;
-           edit_form.elements['desc'].value = data.roomdata.description;
+        //    edit_form.elements['desc'].value = data.roomdata.description;
            edit_form.elements['room_id'].value = data.roomdata.id;
 
            edit_form.elements['features'].forEach(el => {
@@ -427,7 +421,7 @@ function submit_edit_rooms(){
         data.append('quantity',edit_form.elements['quantity'].value);
         data.append('adult',edit_form.elements['adult'].value);
         data.append('children',edit_form.elements['children'].value);
-        data.append('desc',edit_form.elements['desc'].value);
+        // data.append('desc',edit_form.elements['desc'].value);
 
 
         let features = [];

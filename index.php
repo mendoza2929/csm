@@ -97,7 +97,9 @@ if($home_r['shutdown']==1){
                   </button>
                   <ul class="dropdown-menu dropdown-menu-lg-end ">
 
-                    <li><a class="dropdown-item" href="bookings.php">Your Barrowing Item</a></li>
+                    <li><a class="dropdown-item" href="bookings.php">Your Apparatus Item</a></li>
+                    <li><a class="dropdown-item" href="bookings_chemical.php">Your Chemical Item</a></li>
+                    <li><a class="dropdown-item" href="profile.php">Student Profile</a></li>
                     <li><a class="btn btn-success dropdown-item" href="logout.php">Logout</a></li>
                   </ul>
                 </div>
@@ -240,9 +242,7 @@ if($home_r['shutdown']==1){
                 </div>
 
                 <div class="mb-4"><button type="submit" class="btn btn-success mb-2 w-100 ">Login</button></div>
-                <div class="mb-2 text-center text-decoration-none">
-                  <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotModal" >Forgot Password?</a>
-                </div>
+            
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success " style="margin-right:120px;"  data-bs-toggle="modal" data-bs-target="#registerModal">Create New Account</button>
                  </div>
@@ -326,7 +326,11 @@ if($home_r['shutdown']==1){
                     <label class="form-label">Name</label>
                     <input type="text" class="form-control shadow-none" required name="name">
                   </div>
-                  <div class="col-md-6 p-0 mb-3">
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Student ID</label>
+                    <input type="text" class="form-control shadow-none" required name="student_id">
+                  </div>
+                  <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Wmsu Email</label>
                     <input type="email" class="form-control shadow-none" required name="email">
                   </div>
@@ -353,6 +357,8 @@ if($home_r['shutdown']==1){
                       <option value="5th">5th</option>
                     </select>
                   </div>
+
+             
                 
                 
                   
@@ -524,6 +530,7 @@ register_form.addEventListener('submit',function(e){
 
           let data = new FormData();
           data.append('name',register_form.elements['name'].value);
+          data.append('student_id',register_form.elements['student_id'].value);
           data.append('email',register_form.elements['email'].value);
           data.append('phonenum',register_form.elements['phonenum'].value);
           

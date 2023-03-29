@@ -50,9 +50,9 @@ if(isset($_POST['get_breakage'])){
 
 
 
-        // if($data['booking_status']=='booked'){
+        // if($data['booking_status']=='approved'){
         //   $status_bg = 'bg-success';
-        // }else if($data['booking_status']=='cancelled'){
+        // }else if($data['booking_status']=='breakage'){
         //   $status_bg = 'bg-danger';
         // }else{
         //   $status_bg = 'bg-warning text-dark';
@@ -73,9 +73,7 @@ if(isset($_POST['get_breakage'])){
             <td>
             <b> $data[apr_no]
             </td>
-            <td>
-            <b>Date: </b> $date
-            </td>
+
 
            
         </tr>

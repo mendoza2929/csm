@@ -104,6 +104,7 @@ if(isset($_GET['check_availability'])){
                 <ul class="dropdown-menu dropdown-menu-lg-end">
                 
                   <li><a class="dropdown-item" href="bookings.php">Your Barrowing Item</a></li>
+                  <li><a class="dropdown-item" href="bookings_chemical.php">Your Chemical Item</a></li>
                   <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                 </ul>
               </div>
@@ -138,18 +139,13 @@ if(isset($_GET['check_availability'])){
 
 
     <div class="container">
-        <div class="row">
-        <div class="text-end mb-4">
+    <div class="text-end mb-4">
             <input type="text" oninput="search_room(this.value)" class="form-control shadow-none w-25 ms-auto" placeholder="Type to search..">
         </div>
+        <div class="row" id="rooms-data">
+      
  
 
-     <div class="col-lg-9 col-mb-10 mx-auto" id="rooms-data">
-      
-
-  
-
-      </div>
     
    </div>
   </div>
@@ -191,9 +187,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                 </div>
 
                 <div class="mb-4"><button type="submit" class="btn btn-success mb-2 w-100 ">Login</button></div>
-                <div class="mb-2 text-center text-decoration-none">
-                  <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotModal" >Forgot Password?</a>
-                </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success " style="margin-right:120px;"  data-bs-toggle="modal" data-bs-target="#registerModal">Create New Account</button>
                  </div>
@@ -275,7 +269,11 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                     <label class="form-label">Name</label>
                     <input type="text" class="form-control shadow-none" required name="name">
                   </div>
-                  <div class="col-md-6 p-0 mb-3">
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Student ID</label>
+                    <input type="text" class="form-control shadow-none" required name="student_id">
+                  </div>
+                  <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Wmsu Email</label>
                     <input type="email" class="form-control shadow-none" required name="email">
                   </div>
@@ -302,6 +300,8 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                       <option value="5th">5th</option>
                     </select>
                   </div>
+
+             
                 
                 
                   
@@ -379,6 +379,7 @@ function add_User(){
 
 let data = new FormData();
 data.append('name',register_form.elements['name'].value);
+data.append('student_id',register_form.elements['student_id'].value);
 data.append('email',register_form.elements['email'].value);
 data.append('phonenum',register_form.elements['phonenum'].value);
 

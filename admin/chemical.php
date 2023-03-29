@@ -90,19 +90,19 @@ adminLogin();
                         </div>
                         <div class="modal-body"> 
                             <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label class="form-label fw-bold">Name of Reagent</label>
                                 <input type="text" name="name" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">Volume</label>
                                 <input type="number" min="1" name="area" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">Quantity</label>
                                 <input type="number" name="quantity" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">Available</label>
                                 <input type="number" min="1"  name="avail" class="form-control shadow-none">
                             </div>
@@ -189,7 +189,7 @@ adminLogin();
                   
                             
                             <div class="col-12 mb-3">
-                                <label class="form-label fw-bold">Facilities</label>
+                                <label class="form-label fw-bold">Size / Volume</label>
                                 <div class="row">
                                     <?php 
                                     
@@ -231,23 +231,23 @@ adminLogin();
                         </div>
                         <div class="modal-body"> 
                             <div class="row">
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-4 mb-3">
                                 <label class="form-label fw-bold">Name of Reagent</label>
                                 <input type="text" name="name" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">Volume</label>
                                 <input type="number" min="1" name="area" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <label class="form-label fw-bold">Quantity</label>
                                 <input type="number" name="quantity" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">Available</label>
                                 <input type="number" min="1"  name="avail" class="form-control shadow-none">
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-2 mb-3">
                                 <label class="form-label fw-bold">Per Student</label>
                                 <input type="number" min="1" name="student" class="form-control shadow-none">
                             </div>

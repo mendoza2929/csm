@@ -69,7 +69,7 @@
             
 
                 <button type='button' onclick='refund_booking($data[booking_id])' class='btn mt-2 btn-outline-success  btn-sm fw-bold shadow-none'>
-                <i class='bi bi-cash'></i> Approved Breakage
+                <i class='bi bi-cash'></i> Already Complied
               </button>
                 </td>
             </tr>
@@ -103,16 +103,42 @@ if(isset($_POST['assign_room'])){
 
 
 if(isset($_POST['quantity_room'])){
+
   $frm_data = filteration($_POST);
 
-  $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id SET bo.booking_status = ?, bo.refund=?, bd.quantity_no = ? WHERE bo.booking_id = ? ";
-
-  $values = ['cancelled',0,$frm_data['quantity_no'],$frm_data['booking_id']];
-
-  $res = update($query,$values,'siii');
-
-  echo $res;
-
+  $breakage_qty = $frm_data['quantity_no'];
+  $room_id = $_SESSION['room']['id'];
+  
+  // Update the quantity of the room in the `rooms` table based on the breakage:
+  $update_query = "UPDATE `rooms` SET `quantity` = `quantity` - ? WHERE `id` = ?";
+  $update_values = [$breakage_qty, $room_id];
+  $res = update($update_query, $update_values, 'ii');
+  
+  // Update the `quantity_no` field in the `booking_details` table for the booking that had the breakage:
+  $booking_id = $frm_data['booking_id'];
+  $update_query = "UPDATE `booking_details` SET `quantity_no` = ? WHERE `booking_id` = ?";
+  $update_values = [$breakage_qty, $booking_id];
+  $res = update($update_query, $update_values, 'ii');
+  
+  // Check if the remaining quantity of the room is zero and update the status of the room in the `rooms` table:
+  $select_query = "SELECT `quantity` FROM `rooms` WHERE `id` = ?";
+  $select_values = [$room_id];
+  $rq_result = select($select_query, $select_values, 'i');
+  $rq_fetch = mysqli_fetch_assoc($rq_result);
+  
+  if ($rq_fetch['quantity'] == 0) {
+    $update_query = "UPDATE `rooms` SET `status` = 'unavailable' WHERE `id` = ?";
+    $update_values = [$room_id];
+    $res = update($update_query, $update_values, 'i');
+  }
+  
+  // Update the booking status and refund in the `booking_order` table:
+  $query = "UPDATE `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id SET bo.booking_status = ?, bo.refund = ? WHERE bo.booking_id = ?";
+  $values = ['breakage', 0, $booking_id];
+  $res = update($query, $values, 'sii');
+  
+  echo ($res == 1) ? 1 : 0;
+  
 
 
 }
@@ -122,18 +148,74 @@ if(isset($_POST['quantity_room'])){
   
 
     if(isset($_POST['refund_booking'])){
-        $frm_data = filteration($_POST);
-        
-        
-        
 
-        $query = "UPDATE `booking_order` SET `refund`=? WHERE `booking_id`=? ";
+    //  $frm_data = filteration($_POST);
+    //  $room_id = $_SESSION['room']['id'];
 
-        $values = [1,$frm_data['booking_id']];
+    //  // Update the quantity of the room in the `rooms` table based on the breakage:
+    //  $update_query = "UPDATE `rooms` SET `quantity` = `quantity` +  WHERE `id` = ?";
+    //  $update_values = [$room_id];
+    //  $res = update($update_query, $update_values, 'i');
+     
+    //  // Check if the remaining quantity of the room is zero and update the status of the room in the `rooms` table:
+    //  $select_query = "SELECT `quantity` FROM `rooms` WHERE `id` = ?";
+    //  $select_values = [$room_id];
+    //  $rq_result = select($select_query, $select_values, 'i');
+    //  $rq_fetch = mysqli_fetch_assoc($rq_result);
+     
+    //  if ($rq_fetch['quantity'] == 1) {
+    //    $update_query = "UPDATE `rooms` SET `status` = 'available' WHERE `id` = ?";
+    //    $update_values = [$room_id];
+    //    $res = update($update_query, $update_values, 'i');
+    //  }
+     
+    //  // Update the booking status and refund in the `booking_order` table:
+    //  $query = "UPDATE `booking_order` SET `refund`=? WHERE `booking_id`=? ";
+     
+    //  $values = [1 ,$frm_data['booking_id']];
+    //  $res = update($query, $values, 'ii');
+    //  echo $res;
 
-        $res = update($query,$values,'ii');
+    $frm_data = filteration($_POST);
+    
+    $room_id = $_SESSION['room']['id'];
+    
+    // Get the quantity_no value from the booking_details table
+    $booking_id = $frm_data['booking_id'];
+    $select_query = "SELECT `quantity_no` FROM `booking_details` WHERE `booking_id` = ?";
+    $select_values = [$booking_id];
+    $qty_result = select($select_query, $select_values, 'i');
+    $qty_fetch = mysqli_fetch_assoc($qty_result);
+    $breakage_qty = $qty_fetch['quantity_no'];
+    
+    // Update the quantity of the room in the `rooms` table based on the breakage:
+    $update_query = "UPDATE `rooms` SET `quantity` = `quantity` + ? WHERE `id` = ?";
+    $update_values = [$breakage_qty, $room_id];
+    $res = update($update_query, $update_values, 'ii');
+    
+    // Check if the remaining quantity of the room is zero and update the status of the room in the `rooms` table:
+    $select_query = "SELECT `quantity` FROM `rooms` WHERE `id` = ?";
+    $select_values = [$room_id];
+    $rq_result = select($select_query, $select_values, 'i');
+    $rq_fetch = mysqli_fetch_assoc($rq_result);
+    
+    if ($rq_fetch['quantity'] == 1) {
+      $update_query = "UPDATE `rooms` SET `status` = 'available' WHERE `id` = ?";
+      $update_values = [$room_id];
+      $res = update($update_query, $update_values, 'i');
+    }
+    
+    // Update the booking status and refund in the `booking_order` table:
+    $query = "UPDATE `booking_order` SET `refund`=? WHERE `booking_id`=? ";
+    
+    $values = [1 ,$booking_id];
+    $res = update($query, $values, 'ii');
+    echo $res;
 
-        echo $res;
+     
+
+       
+  
     
      
     

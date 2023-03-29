@@ -9,6 +9,11 @@
     color: #000;
 }
 
+.navbar-admin {
+  overflow-y: scroll;
+  max-height: calc(100vh - 100px); /* set the maximum height of the container to fit the viewport minus 100px for the header */
+}
+
 .navbar-admin a{
     color: #ffffff;
 }
@@ -46,8 +51,8 @@
 
 
 
-::-webkit-scrollbar{
-    width:10px;
+ ::-webkit-scrollbar{
+    display: none;
 }
 
 ::-webkit-scrollbar-thumb{
@@ -55,9 +60,9 @@
 }
 
 ::-webkit-scrollbar-track{
-    background: #722620;
-}
-
+    background: #d8d0cf;
+}  
+ 
 
 
 @media screen and (max-width:992px){

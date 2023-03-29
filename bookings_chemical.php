@@ -18,7 +18,7 @@ include_once 'dbconnection.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borrowing</title>
+    <title>Chemical</title>
     <link rel = "stylesheet" href="main.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="icon" href="img/logo.jpg">
@@ -132,12 +132,12 @@ if($home_r['shutdown']==1){
         <div class="row">
             
     <div class="col-12 my-5 px-4">
-        <div class="h2 fw-bold text-center">Borrowing</div>
+        <div class="h2 fw-bold text-center">Chemical Approved</div>
         <div class="h-line bg-dark"></div>
         <div style="font-size:15px;">
         <a href="index.php" class="text-secondary text-decoration-none">Home</a>
         <span class="text-secondary"> > </span>
-        <a href="#" class="text-secondary text-decoration-none">Borrowing</a>
+        <a href="#" class="text-secondary text-decoration-none">Chemical </a>
     </div>
     </div>
 
@@ -145,7 +145,7 @@ if($home_r['shutdown']==1){
     
           <?php 
           
-          $query = "SELECT bo.*, bd.*  FROM `booking_order` bo INNER JOIN `booking_details` bd ON bo.booking_id = bd.booking_id WHERE  ((bo.booking_status ='approved') OR (bo.booking_status='breakage') OR (bo.booking_status='payment failed')) AND  (bo.user_id=?)  ORDER BY bo.booking_id DESC ";
+          $query = "SELECT co.*, cd.*  FROM `chemical_order_final` co INNER JOIN `chemical_details_final` cd ON co.booking_id = cd.booking_id WHERE  ((co.booking_status ='approved') OR (co.booking_status='breakage') OR (co.booking_status='payment failed')) AND  (co.user_id=?)  ORDER BY co.booking_id DESC ";
 
 
           $result = select($query,[$_SESSION['uId']],'i');
@@ -167,7 +167,7 @@ if($home_r['shutdown']==1){
               if($data['arrival']==1){
                 $btn="  <div class='text-center'>
               <span class='badge rounded-pill bg-light text-success mb-3 text-wrap lh-base'>
-                Success Return
+                    This chemical obtained confirmation
               </span>
               </div>";
               //   $btn="<button type='button' class='btn btn-outline-dark btn-sm fw-bold shadow-none'>
@@ -183,41 +183,12 @@ if($home_r['shutdown']==1){
               }else{
               
               }
-            }else if($data['booking_status']=='breakage'){
-            
-        
-              if($data['refund']==0){
-                $btn="  <div class='text-center'>
-              <span class='badge rounded-pill bg-light text-danger mb-3 text-wrap lh-base'>
-                Breakge: Contact the professor for the manual breakage process.
-              </span>
-              </div>";
-              }else{
-                $btn="  <div class='text-center'>
-                <span class='badge rounded-pill bg-light text-success mb-3 text-wrap lh-base'>
-                  Done Complied Breakage Item
-                </span>
-                </div>";
-              }
-          //     else{
-          //       $btn = "<a href='generate_pdf.php&gen_pdf&id=$data[booking_id]' onclick='download($data[booking_id])' class='btn btn-outline-success btn-sm fw-bold shadow-none'>
-          //         Booking Receipt
-          //     </a>";
-          //     }
-          //   }else{
-          //     $status_bg = "bg-warning";
-          //     $btn = "<a href='generate_pdf.php&gen_pdf&id=$data[booking_id]' onclick='download($data[booking_id])' class='btn btn-outline-success btn-sm fw-bold shadow-none'>
-          //     Booking Receipt
-          // </a>";
             }
             echo<<<bookings
               <div class='col-md-4 px-4 mb-4 w-30'>
                 <div class="bg-white p-3 rounded shadown-sm">
-                    <h5 class="fw-bold text-center">$data[room_name]</h5>
-                    <b>Date: </b> $date <br>
-                    <b>Borrow: $data[quantity] pcs</b>
-                    <br>
-                    <b>Updated Breakage: $data[quantity_no] pcs</b>
+                    <h5 class="fw-bold text-center">$data[chemical_name]</h5>
+                    <b>Date: </b> $date 
                     <br>
                     <b>Volume: $data[volume] Needed</b>
                     <br>

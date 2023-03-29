@@ -240,7 +240,7 @@ if($home_r['shutdown']==1){
                     <input name="room_no" type="number"  min="1" class="form-control shadow-none">
                   </div>
                   <div class="col-md-2 mb-3">
-                    <label class="form-label mb-1">Volume (if chemical)</label>
+                    <label class="form-label mb-1">Volume</label>
                     <input name="volume" type="number" min="1" class="form-control shadow-none">
                   </div>
                   <div class="col-md-3 mb-3">
