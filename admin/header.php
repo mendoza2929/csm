@@ -71,9 +71,7 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
         </div>  
 
          </li>
-          <li class="nav-item navbar-admin">
-            <a class="nav-link " href="rooms.php"><i class="bi bi-clipboard-data"></i> Apparatus</a>
-          </li>
+        
 
 
           <li class="nav-item navbar-admin">
@@ -95,7 +93,9 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
         </div>  
 
          </li>
-
+         <li class="nav-item navbar-admin">
+            <a class="nav-link " href="rooms.php"><i class="bi bi-clipboard-data"></i> Apparatus</a>
+          </li>
 
           <li class="nav-item navbar-admin">
             <a class="nav-link " href="chemical.php"><i class="bi bi-clipboard2-pulse"></i> Chemical</a>

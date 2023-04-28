@@ -1,4 +1,4 @@
-<?php
+! <?php
 
 $db_conn = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
 // Check connection
@@ -8,4 +8,4 @@ if($db_conn === false){
 error_reporting(E_ALL);
 ini_set('display_errors','Off');
 
-?>
+?> 

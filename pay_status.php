@@ -86,11 +86,13 @@ if($home_r['shutdown']==1){
                 
                 $_SESSION[uName]
                 </button>
-                <ul class="dropdown-menu dropdown-menu-lg-end">
-                  <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                  <li><a class="dropdown-item" href="bookings.php">Your Reservation</a></li>
-                  <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                </ul>
+                <ul class="dropdown-menu dropdown-menu-lg-end ">
+
+                    <li><a class="dropdown-item" href="bookings.php">Your Apparatus Item</a></li>
+                    <li><a class="dropdown-item" href="bookings_chemical.php">Your Chemical Item</a></li>
+                    <li><a class="dropdown-item" href="profile.php">Student Profile</a></li>
+                    <li><a class="btn btn-success dropdown-item" href="logout.php">Logout</a></li>
+                  </ul>
               </div>
 
 

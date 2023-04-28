@@ -25,7 +25,7 @@ define('PAYPAL_CURRENCY','PHP');
 define('DB_HOST','localhost');
 define('DB_USERNAME','root');
 define('DB_PASSWORD','');
-define('DB_NAME','klc');
+define('DB_NAME','csm');
 
 //Change Not Required
 define('PAYPAL_URL', (PAYPAL_SANDBOX == true) ? "https://www.sandbox.paypal.com/cgi-bin/webscr" : "https://www.paypal.com/cgi-bin/webscr");

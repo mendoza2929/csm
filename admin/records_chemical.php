@@ -161,7 +161,7 @@ function get_booking_chemical(search='',page=1){
 
 
 function change_page(page){
-   get_bookings(document.getElementById('search_input').value,page);
+    get_booking_chemical(document.getElementById('search_input').value,page);
 }
 
 

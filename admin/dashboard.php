@@ -97,7 +97,7 @@ adminLogin();
             <?php 
             
             try{
-              $sql = "SELECT bo.*, bd.*  FROM klc.booking_order bo INNER JOIN klc.booking_details bd ON bo.booking_id = bd.booking_id";
+              $sql = "SELECT bo.*, bd.*  FROM csm.booking_order bo INNER JOIN csm.booking_details bd ON bo.booking_id = bd.booking_id";
               $result = $pdo->query($sql);
               if($result->rowCount()>0){
               

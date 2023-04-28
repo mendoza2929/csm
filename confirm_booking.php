@@ -127,10 +127,13 @@ if($home_r['shutdown']==1){
                 
                 $_SESSION[uName]
                 </button>
-                <ul class="dropdown-menu dropdown-menu-lg-end">
-                  <li><a class="dropdown-item" href="bookings.php">Your Barrowing Item</a></li>
-                  <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                </ul>
+                <ul class="dropdown-menu dropdown-menu-lg-end ">
+
+                <li><a class="dropdown-item" href="bookings.php">Your Apparatus Item</a></li>
+                <li><a class="dropdown-item" href="bookings_chemical.php">Your Chemical Item</a></li>
+                <li><a class="dropdown-item" href="profile.php">Student Profile</a></li>
+                <li><a class="btn btn-success dropdown-item" href="logout.php">Logout</a></li>
+              </ul>
               </div>
 
 
@@ -198,8 +201,8 @@ if($home_r['shutdown']==1){
                     <input name="name" type="text" value="<?php echo $user_data['name']?>" class="form-control shadow-none" required>
                   </div>
                   <div class="col-md-4 mb-3">
-                    <label class="form-label mb-1">Wmsu Email</label>
-                    <input name="email" type="Email" value="<?php echo $user_data['email']?>" class="form-control shadow-none" required >
+                    <label class="form-label mb-1">Student ID</label>
+                    <input name="email" type="text" value="<?php echo $user_data['student_id']?>" class="form-control shadow-none" required >
                   </div>
                   <div class="col-md-2 mb-3">
                     <label class="form-label mb-1">Course</label>

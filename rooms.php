@@ -101,12 +101,13 @@ if(isset($_GET['check_availability'])){
                 
                 $_SESSION[uName]
                 </button>
-                <ul class="dropdown-menu dropdown-menu-lg-end">
-                
-                  <li><a class="dropdown-item" href="bookings.php">Your Barrowing Item</a></li>
-                  <li><a class="dropdown-item" href="bookings_chemical.php">Your Chemical Item</a></li>
-                  <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-                </ul>
+                <ul class="dropdown-menu dropdown-menu-lg-end ">
+
+                <li><a class="dropdown-item" href="bookings.php">Your Apparatus Item</a></li>
+                <li><a class="dropdown-item" href="bookings_chemical.php">Your Chemical Item</a></li>
+                <li><a class="dropdown-item" href="profile.php">Student Profile</a></li>
+                <li><a class="btn btn-success dropdown-item" href="logout.php">Logout</a></li>
+              </ul>
               </div>
 
 
@@ -625,7 +626,7 @@ function checkLoginToBook(status,room_id){
     Swal.fire({
   position: 'top-end',
   icon: 'warning',
-  title: 'Please Login First to Barrowing Item',
+  title: 'Please Login First to Borrowing Item',
   showConfirmButton: false,
   timer: 1500,
   
