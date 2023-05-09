@@ -12,6 +12,8 @@ register_form.addEventListener('submit',function(e){
 
           let data = new FormData();
           data.append('name',register_form.elements['name'].value);
+          data.append('lname',register_form.elements['lname'].value);
+          data.append('suffix',register_form.elements['suffix'].value);
           data.append('student_id',register_form.elements['student_id'].value);
           data.append('email',register_form.elements['email'].value);
           data.append('phonenum',register_form.elements['phonenum'].value);

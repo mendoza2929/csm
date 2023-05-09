@@ -4,47 +4,7 @@ require("alert.php");
 require("db.php");
 
 adminLogin();
-// session_regenerate_id(true);
 
-
-// if(isset($_GET['seen'])){
-//     $frm_data =filteration($_GET);
-
-//     if($frm_data['seen']=='all'){
-//         $q = "UPDATE `user_queries` SET `seen`=?";
-//         $values= [1];
-//         if(update($q,$values,'i')){
-//             alert('success','Mark all as read');
-//         } 
-//     }
-//     else{
-//         $q = "UPDATE `user_queries` SET `seen`=? WHERE `sr_no`=?";
-//         $values= [1,$frm_data['seen']];
-//         if(update($q,$values,'ii')){
-//             alert('success','Mark as read');
-//         } 
-//     }
-// }
-
-
-// if(isset($_GET['del'])){
-//     $frm_data =filteration($_GET);
-
-//     if($frm_data['del']=='all'){
-//         // $q = "DELETE FROM `user_queries`";
-//         // if(mysqli_query($con,$q)){
-//         //     alert('success','All inquiry Deleted');
-//         // }
-//     }
-//     else{
-//         $q = "DELETE FROM `user_queries` WHERE `sr_no`=?";
-//         $values= [$frm_data['del']];
-//         if(delete($q,$values,'i')){
-//             alert('success','Inquiry Deleted');
-//         }
-        
-//     }
-// }
 
 
 ?>
@@ -87,14 +47,14 @@ adminLogin();
                 
 
                            <div class="table-responsive">
-                           <table class="table table-hover border text-center" style="min-width:1300px;">
+                           <table class="table table-hover" style="min-width:200px;">
                             <thead>
                                 <tr class="bg-secondary text-white">
-                                <th scope="col">#</th>
+                                <th scope="col">Date</th>
                                 <th scope="col">Teacher</th>
                                 <th scope="col">Item Name</th>
                                 <th scope="col">Room Number</th>
-                                <th scope="col">Date</th>
+                             
                                 
                                 </tr>
                             </thead>
@@ -144,49 +104,11 @@ require ("script.php");
 
 
 
-function get_breakage(search='',page=1){
-        
-        let xhr = new XMLHttpRequest();
-            xhr.open("POST","breakage_ajax.php",true);
-            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-    
-            xhr.onload = function(){
-                let data = JSON.parse(this.responseText);
-                document.getElementById('breakage_data').innerHTML = data.table_data;
-                document.getElementById('table-pagination').innerHTML = data.pagination;
-            }
-            xhr.send('get_breakage&search='+search+'&page='+page);
-    
-    }
-    
-    
-    
-    function change_page(page){
-       get_breakage(document.getElementById('search_input').value,page);
-    }
+<?php 
 
-    
-    function search_user(username){
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST","users_ajax.php",true);
-        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+require 'js/breakage.js';
 
-        xhr.onload = function(){
-            document.getElementById('user_data').innerHTML = this.responseText;
-        }
-        xhr.send('search_user&name='+username);
-    }
-
-    
-window.onload = function(){
-        get_breakage();
-    }
-
-
-
-
-
-
+?>
 
     
 

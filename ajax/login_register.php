@@ -2,7 +2,7 @@
 
 require('../admin/db.php');
 require('../admin/alert.php');
-require('../sendgrid-php/sendgrid-php.php');
+
 
 date_default_timezone_set("Asia/Manila"); 
 
@@ -28,11 +28,11 @@ if(isset($_POST['register'])){
 
 
 
-    $query = "INSERT INTO `user_cred`(`name`,`student_id`, `email`,`phonenum`,`course`,`year`, `token`) VALUES (?,?,?,?,?,?,?)"; // insert `profile`
+    $query = "INSERT INTO `user_cred`(`name`,`lname`, `suffix`,`student_id`, `email`,`phonenum`,`course`,`year`, `token`) VALUES (?,?,?,?,?,?,?,?,?)"; // insert `profile`
 
-    $values = [$data['name'],$data['student_id'],$data['email'],$data['phonenum'],$data['course'],$data['year'],$token]; //$img insert before phonenum
+    $values = [$data['name'],$data['lname'],$data['suffix'],$data['student_id'],$data['email'],$data['phonenum'],$data['course'],$data['year'],$token]; //$img insert before phonenum
 
-    if(insert($query,$values,'sssssss')){
+    if(insert($query,$values,'sssssssss')){
         echo 1;
     }else {
         echo 'ins_failed';

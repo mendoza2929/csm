@@ -82,6 +82,14 @@ if(isset($_GET['check_availability'])){
                <li class="nav-item"> 
               <a class="nav-link me-3 fw-bold" href="chemical.php">Chemical</a>
             </li>
+            </li>
+               <li class="nav-item"> 
+              <a class="nav-link me-3 fw-bold" href="equipment.php">Equipment</a>
+            </li>
+            </li>
+               <li class="nav-item"> 
+              <a class="nav-link me-3 fw-bold" href="about.php">About</a>
+            </li>
             <!--<li class="nav-item">
               <a class="nav-link me-3 fw-bold" href="about.php">About Us</a>
             </li>
@@ -250,9 +258,10 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
 
   
 
+
       <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-                <form id="register-form">
+                <form id="register-form" method="POST">
                     <div class="modal-content">
                     <div class="modal-header">
               <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>Student Registration</h5>
@@ -282,15 +291,19 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                     <label class="form-label">Phone Number</label>
                     <input type="number" class="form-control shadow-none" required name="phonenum">
                   </div>
-                  <div class="col-md-3 ps-0 mb-3">
-                    <label class="form-label">Course</label>
-                    <select class='form-select shadow-none' aria-label='Default select example' name='course' required>
-                    <option disabled selected value="">Select course...</option> <!-- placeholder option -->
-                      <option value="biology">Biology</option>
-                      <option value="chemistry">Chemistry</option>
-                    </select>
+                  <div class="col-md-6 ps-0 mb-3">
+                  <label class="form-label fw-bold">Course</label>
+                                <select class='form-select shadow-none' aria-label='Default select example' name='course' required>
+                                <option disabled selected value="">Select a Unit...</option> <!-- placeholder option -->
+                                <?php
+                                $res = selectAll('course');
+                                while($opt = mysqli_fetch_assoc($res)){
+                                    echo "<option value='$opt[name]'>$opt[name]</option>";
+                                }
+                                ?>
+                            </select>
                   </div>
-                  <div class="col-md-3 ps-0 mb-3">
+                  <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Year</label>
                     <select class='form-select shadow-none' aria-label='Default select example' name='year' required>
                     <option disabled selected value="">Select Year...</option> <!-- placeholder option -->
@@ -314,6 +327,7 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                 </form>
             </div>
         </div>
+
 
 
 

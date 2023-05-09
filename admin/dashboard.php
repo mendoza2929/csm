@@ -31,36 +31,7 @@ adminLogin();
  
 
   <?php require('header.php');
-
-  
-  
-  $is_shutdown = mysqli_fetch_assoc(mysqli_query($con,"SELECT `shutdown` FROM `settings`"));
-
-  $current_bookings = mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(CASE WHEN booking_status='booked' AND arrival=0 THEN 1 END) AS `new_bookings`, COUNT(CASE WHEN booking_status='cancelled' AND refund=0 then 1 END) AS `refund_bookings` FROM `booking_order`"));
-  
-  $unread_queries = mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(sr_no) AS `count` FROM `user_queries` WHERE `seen`=0"));
  
-  $unread_reviews = mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(sr_no) AS `count` FROM `rating_review` WHERE `seen`=0"));
-
-
-  $current_user = mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(id) AS `total`, COUNT(CASE WHEN `status`=1 THEN 1 END) AS `active`, COUNT(CASE WHEN `status`=0  then 1 END) AS `inactive`, COUNT(CASE WHEN `is_verified`=0  then 1 END) AS `unverified` FROM `user_cred`"));
-
- 
-  $username = "root";
-  $password = "";
-  $database = "klc";
-
-  try{
-    $pdo = new PDO("mysql:host=localhost;database=$database",$username,$password);
-
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  }catch(PDOException $e){
-    die("ERROR: Could not connect".$e->getMessage());
-  }
-  
- 
-  
-  
 
 ?>
   
@@ -78,54 +49,13 @@ adminLogin();
         <div class="col-lg-10 ms-auto p-4 overflow-hidden">
           <div class="d-flex align-items-center justify-content-between mb-4">
             <h3><i class="bi bi-people"></i> Dashboard</h3>
-            <?php 
-            if($is_shutdown['shutdown']){
-              echo<<<data
-              <h6 class="badge bg-danger py-2 px-3">Shutdown Mode is Active!</h6>
-              data;
-            }
-            ?>
+
             
           </div>
         
 
                     
   
-
-            
-
-            <?php 
-            
-            try{
-              $sql = "SELECT bo.*, bd.*  FROM csm.booking_order bo INNER JOIN csm.booking_details bd ON bo.booking_id = bd.booking_id";
-              $result = $pdo->query($sql);
-              if($result->rowCount()>0){
-              
-                $dateArray = [];
-                while($row = $result->fetch()){
-                  $dateArray[] = $row["datentime"];
-                  $amountArray[] = $row["total_pay"];
-                  
-                }
-             
-                unset($result);
-              }else{
-                echo "No Records Found";
-              }
-            }catch(PDOException $e){
-              die("ERROR: Could not able to execute query" . $e->getMessage());
-            }
-            
-            unset($pdo);
-
-
-
-            
-
-
-
-            
-            ?>
 
 
 

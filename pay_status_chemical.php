@@ -72,6 +72,12 @@ if($home_r['shutdown']==1){
             <li class="nav-item"> 
               <a class="nav-link me-3 fw-bold" href="chemical.php">Chemical</a>
             </li>
+            <li class="nav-item"> 
+              <a class="nav-link me-3 fw-bold" href="equipment.php">Equipment</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link  me-3 fw-bold" href="about.php">About</a>
+          </li>
           
     
           </ul>
@@ -148,7 +154,7 @@ if($home_r['shutdown']==1){
              <i class="bi bi-check-circle-fill"></i>
               Borrowing Succesfully
              <br><br>
-             <a href='chemical.php'>Go to Chemical</a> 
+             <a href='bookings_chemical.php'>Go to Chemical</a> 
              </div>
            data;
            // }

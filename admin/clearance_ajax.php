@@ -93,11 +93,7 @@ if(isset($_POST['edit_clearance'])){
     $clearancedata = mysqli_fetch_assoc($res1);
 
 
-    // if(mysqli_num_rows($res2)>0){
-    //      while($row = mysqli_fetch_assoc($res2)){
-    //         array_push($features,$row['facilities_id']);
-    //      }
-    // }
+
 
     $data = ["clearancedata"=>$clearancedata];
 
@@ -138,43 +134,7 @@ if(isset($_POST['submit_edit_clearance'])){
     }
 }
 
-// if(isset($_POST['submit_edit_clearance'])){
 
-//     $frm_data = filteration($_POST);
-
-//     // Check the values of the $frm_data array
-//     print_r($frm_data);
-
-//     // $flag = 0;
-
-//     // // Verify that the clearance_id key is present in the $frm_data array
-//     // if (!isset($frm_data['clearance_id'])) {
-//     //     die('clearance_id key not found in $frm_data array');
-//     // }
-
-//     // $q1 = "UPDATE `clearance` SET `date`=?,`cais`=?,`carch`=?,`ccie`=?,`coe`=?,`ccs`=?,`cfes`=?,`che`=?,`cla`=?,`claw`=?,`cpers`=?,`csm`=?,`cswcd`=?,`cte`=?,`esu`=?,`graduate`=? WHERE `sr_no`=?";
-//     // $values = [$frm_data['date'],$frm_data['cais'],$frm_data['carch'],$frm_data['ccie']
-//     // ,$frm_data['coe'],$frm_data['ccs'],$frm_data['cfes'],$frm_data['che'],$frm_data['cla']
-//     // ,$frm_data['claw'],$frm_data['cpers'],$frm_data['csm'],$frm_data['cswcd'],$frm_data['cte'],$frm_data['esu'],$frm_data['graduate'],$frm_data['clearance_id']];
-
-//     // // Debug the query
-//     // echo "Query: $q1<br>";
-//     // echo "Values: ";
-//     // print_r($values);
-
-//     // if(update($q1,$values,'siiiiiiiiiiiiiiii')){
-//     //     $flag=1;
-//     // }else{
-//     //     $flag = 0;
-//     //     die('query cannot be prepared - insert ');
-//     // }
-
-//     // if($flag){
-//     //     echo 1;
-//     // }else{
-//     //     echo 0;
-//     // }
-// }
 
 
 

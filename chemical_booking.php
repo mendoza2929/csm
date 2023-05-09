@@ -203,7 +203,7 @@ if($home_r['shutdown']==1){
                   </div>
                   <div class="col-md-4 mb-3">
                     <label class="form-label mb-1">Student ID</label>
-                    <input name="email" type="email" value="<?php echo $user_data['student_id']?>" class="form-control shadow-none" required >
+                    <input name="email" value="<?php echo $user_data['student_id']?>" class="form-control shadow-none" required >
                   </div>
                   <div class="col-md-2 mb-3">
                     <label class="form-label mb-1">Course</label>
@@ -232,10 +232,6 @@ if($home_r['shutdown']==1){
     
                   </div>
                   <div class="col-md-1 mb-3">
-                    <label class="form-label mb-1">Quantity</label>
-                    <input type="number" value="1" min="1" class="form-control shadow-none"  required name="quantity">
-                  </div>
-                  <div class="col-md-1 mb-3">
                     <label class="form-label mb-1">Group No.</label>
                     <input name="group_no" type="number"  min="1" class="form-control shadow-none">
                   </div>
@@ -244,16 +240,20 @@ if($home_r['shutdown']==1){
                     <input name="room_no" type="number"  min="1" class="form-control shadow-none">
                   </div>
                   <div class="col-md-2 mb-3">
+                    <label class="form-label mb-1">Concentration/State</label>
+                    <input name="state" type="number" min="1" class="form-control shadow-none">
+                  </div>
+                  <div class="col-md-2 mb-3">
                     <label class="form-label mb-1">Volume</label>
                     <input name="volume" type="number" min="1" class="form-control shadow-none">
                   </div>
                   <div class="col-md-3 mb-3">
-                    <label class="form-label">Start Time</label>
-                    <input type="datetime-local" onchange="check_availability()" class="form-control shadow-none" required name="checkin">
+                    <label class="form-label">Date Requested </label>
+                    <input type="date" onchange="check_availability()" class="form-control shadow-none" required name="checkin">
                   </div>
                   <div class="col-md-3 mb-4">
-                    <label class="form-label">End Time</label>
-                    <input type="datetime-local"  onchange="check_availability()" class="form-control shadow-none" required name="checkout">
+                    <label class="form-label">Date Needed</label>
+                    <input type="date"  onchange="check_availability()" class="form-control shadow-none" required name="checkout">
                   </div>
         
                   <div class="col-12">
@@ -381,18 +381,20 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
 
   
 
-        <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+
+      <div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <form id="register-form" method="POST">
                     <div class="modal-content">
                     <div class="modal-header">
-              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>User Registration</h5>
+              <h5 class="modal-title d-flex align-items-center"><i class="bi bi-person-plus-fill fs-3 me-2"></i></i>Student Registration</h5>
               <button type="reset" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="text-center">
               <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base ">
-                Note: Your Details must match with your ID that will be required  during check-in.
+                Note: Your Details must match with your ID that will be required during barrowing slip.
               </span>
               </div>
               <div class="container-fluid">
@@ -401,8 +403,12 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                     <label class="form-label">Name</label>
                     <input type="text" class="form-control shadow-none" required name="name">
                   </div>
-                  <div class="col-md-6 p-0 mb-3">
-                    <label class="form-label">Email</label>
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Student ID</label>
+                    <input type="text" class="form-control shadow-none" required name="student_id">
+                  </div>
+                  <div class="col-md-6 ps-0 mb-3">
+                    <label class="form-label">Wmsu Email</label>
                     <input type="email" class="form-control shadow-none" required name="email">
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
@@ -410,23 +416,33 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                     <input type="number" class="form-control shadow-none" required name="phonenum">
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Address</label>
-                    <input type="text" class="form-control shadow-none" required name="address">
-                   <!-- <textarea class="form-control shadow-none" name="address" rows="3" style="resize: none;" required></textarea>-->
+                  <label class="form-label fw-bold">Course</label>
+                                <select class='form-select shadow-none' aria-label='Default select example' name='course' required>
+                                <option disabled selected value="">Select a Unit...</option> <!-- placeholder option -->
+                                <?php
+                                $res = selectAll('course');
+                                while($opt = mysqli_fetch_assoc($res)){
+                                    echo "<option value='$opt[name]'>$opt[name]</option>";
+                                }
+                                ?>
+                            </select>
                   </div>
                   <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Password<span class="badge rounded-pill bg-light text-dark text-wrap lh-base ">
-                    (8 characters minimum)
-              </span></label>
-                    <input type="password" class="form-control shadow-none" required name="pass" minlength="8">
+                    <label class="form-label">Year</label>
+                    <select class='form-select shadow-none' aria-label='Default select example' name='year' required>
+                    <option disabled selected value="">Select Year...</option> <!-- placeholder option -->
+                      <option value="1st">1st</option>
+                      <option value="2nd">2nd</option>
+                      <option value="3rd">3rd</option>
+                      <option value="4th">4th</option>
+                      <option value="5th">5th</option>
+                    </select>
                   </div>
-                  <div class="col-md-6 p-0 mb-3">
-                    <label class="form-label">Confirm Password  <span class="badge rounded-pill bg-light text-dark text-wrap lh-base ">
-                    (8 characters minimum)
-              </span></label>
-                    <input type="password" class="form-control shadow-none" required name="cpass" minlength="8">
-                  </div>
-                </div>
+
+             
+                
+                
+                  
                 <div class="text-center my-1">
                   <button type="submit" class="btn btn-success shadow-none w-100">Register</button>
                 </div>
@@ -435,6 +451,8 @@ $contact_r = mysqli_fetch_assoc(select($contact_q, $values,'i'));
                 </form>
             </div>
         </div>
+
+
 
 
     

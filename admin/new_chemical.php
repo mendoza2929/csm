@@ -39,8 +39,8 @@ if(isset($_POST['get_booking_chemical'])){
         <tr>
             <td>$i</td>
             <td>
-            <span class='badge bg-warning'>
-                Order ID: $data[order_id]
+            <span class='badge bg-primary'>
+                Student ID: $data[email]
             </span>
             <br>
             <b>Name: </b> $data[username]

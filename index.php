@@ -19,7 +19,7 @@ require('admin/alert.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSM</title>
     <link rel = "stylesheet" href="main.css" type="text/css"/>
-    <link rel="icon" href="img/logo.jpg">
+    <link rel="icon" href="img/csmlogo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   
     <!-- Link Swiper's CSS -->
@@ -119,11 +119,23 @@ require("./header/header.php")
               </div>
               <div class="container-fluid">
                 <div class="row">
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Name</label>
+                  <div class="col-md-3 ps-0 mb-3">
+                    <label class="form-label">First Name</label>
                     <input type="text" class="form-control shadow-none" required name="name">
                   </div>
-                  <div class="col-md-6 ps-0 mb-3">
+                  <div class="col-md-3 ps-0 mb-3">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control shadow-none" required name="lname">
+                  </div>
+                  <div class="col-md-3 ps-0 mb-3">
+                    <label class="form-label">Suffix</label>
+                    <select class='form-select shadow-none' aria-label='Default select example' name='suffix' required>
+                    <option disabled selected value="">Select Suffix...</option> <!-- placeholder option -->
+                      <option value="Jr">Jr</option>
+                      <option value="Sr">Sr</option>
+                    </select>
+                  </div>
+                  <div class="col-md-3 ps-0 mb-3">
                     <label class="form-label">Student ID</label>
                     <input type="text" class="form-control shadow-none" required name="student_id">
                   </div>
@@ -135,15 +147,19 @@ require("./header/header.php")
                     <label class="form-label">Phone Number</label>
                     <input type="number" class="form-control shadow-none" required name="phonenum">
                   </div>
-                  <div class="col-md-3 ps-0 mb-3">
-                    <label class="form-label">Course</label>
-                    <select class='form-select shadow-none' aria-label='Default select example' name='course' required>
-                    <option disabled selected value="">Select course...</option> <!-- placeholder option -->
-                      <option value="biology">Biology</option>
-                      <option value="chemistry">Chemistry</option>
-                    </select>
+                  <div class="col-md-6 ps-0 mb-3">
+                  <label class="form-label fw-bold">Course</label>
+                                <select class='form-select shadow-none' aria-label='Default select example' name='course' required>
+                                <option disabled selected value="">Select a Course...</option> <!-- placeholder option -->
+                                <?php
+                                $res = selectAll('course');
+                                while($opt = mysqli_fetch_assoc($res)){
+                                    echo "<option value='$opt[name]'>$opt[name]</option>";
+                                }
+                                ?>
+                            </select>
                   </div>
-                  <div class="col-md-3 ps-0 mb-3">
+                  <div class="col-md-6 ps-0 mb-3">
                     <label class="form-label">Year</label>
                     <select class='form-select shadow-none' aria-label='Default select example' name='year' required>
                     <option disabled selected value="">Select Year...</option> <!-- placeholder option -->

@@ -4,47 +4,6 @@ require("alert.php");
 require("db.php");
 
 adminLogin();
-// session_regenerate_id(true);
-
-
-// if(isset($_GET['seen'])){
-//     $frm_data =filteration($_GET);
-
-//     if($frm_data['seen']=='all'){
-//         $q = "UPDATE `user_queries` SET `seen`=?";
-//         $values= [1];
-//         if(update($q,$values,'i')){
-//             alert('success','Mark all as read');
-//         } 
-//     }
-//     else{
-//         $q = "UPDATE `user_queries` SET `seen`=? WHERE `sr_no`=?";
-//         $values= [1,$frm_data['seen']];
-//         if(update($q,$values,'ii')){
-//             alert('success','Mark as read');
-//         } 
-//     }
-// }
-
-
-// if(isset($_GET['del'])){
-//     $frm_data =filteration($_GET);
-
-//     if($frm_data['del']=='all'){
-//         // $q = "DELETE FROM `user_queries`";
-//         // if(mysqli_query($con,$q)){
-//         //     alert('success','All inquiry Deleted');
-//         // }
-//     }
-//     else{
-//         $q = "DELETE FROM `user_queries` WHERE `sr_no`=?";
-//         $values= [$frm_data['del']];
-//         if(delete($q,$values,'i')){
-//             alert('success','Inquiry Deleted');
-//         }
-        
-//     }
-// }
 
 
 ?>
@@ -79,13 +38,19 @@ adminLogin();
                     <div class="card border-0 shadow-sm mb-4">
                         <div class="card-body">
 
+                        <form action="excel.php" method="post">
+                        <button type="submit" name="export_excel" class="btn btn-success btn-sm shadow-none mt-2 mb-2 text-start me-2">
+                            <i class="bi bi-file-earmark-spreadsheet"></i> Export to excel
+                            </button>
+                        </form>
+
                         <div class="text-end mb-4">
                            <input type="text"  id="search_input" oninput="get_bookings(this.value)" class="form-control shadow-none w-25 ms-auto" placeholder="Type to search..">
                         </div>
 
 
                            <div class="table-responsive">
-                           <table class="table table-hover border " style="min-width:1200px;">
+                           <table class="table table-hover border " style="min-width:300px;">
                             <thead>
                                 <tr class="bg-secondary text-white">
                                 <th scope="col">#</th>

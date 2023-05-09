@@ -79,13 +79,20 @@ adminLogin();
                     <div class="card border-0 shadow-sm mb-4">
                         <div class="card-body">
 
+                        <form action="chemical_excel.php" method="post">
+                        <button type="submit" name="export_excel" class="btn btn-success btn-sm shadow-none mt-2 mb-2 text-start me-2">
+                            <i class="bi bi-file-earmark-spreadsheet"></i> Export to excel
+                            </button>
+                        </form>
+
+
                         <div class="text-end mb-4">
                            <input type="text"  id="search_input" oninput="get_booking_chemical(this.value)" class="form-control shadow-none w-25 ms-auto" placeholder="Type to search..">
                         </div>
 
 
                            <div class="table-responsive">
-                           <table class="table table-hover border " style="min-width:1200px;">
+                           <table class="table table-hover border " style="min-width:300px;">
                             <thead>
                                 <tr class="bg-secondary text-white">
                                 <th scope="col">#</th>

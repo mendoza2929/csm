@@ -58,15 +58,11 @@ if(isset($_GET['fetch_chemical'])){
         <div class='card border-0 shadow' style='width: 18rem;'>
         <div class='card-body'>
           <h5 class='card-title text-center'>$chemical_data[name]</h5>
-          <b><p class='card-text mb-2'>$chemical_data[area] $facilities_data</p></b>
+          <h5 class='card-title text-center'>$chemical_data[area]</h5>
+          <h5 class='card-title text-center'>$chemical_data[unit]</h5>
           <div class='guests mb-2'>
-            <h6 class='mb-1'>Details</h6>
-            <span class='badge rounded-pill bg-light text-dark text-wrap'>$chemical_data[avail] Available</span>
-            <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>$chemical_data[student] per Student</span>
-            <h6 class='mt-2'>Expiration Date</h6>
-            <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>
-            $chemical_data[months] $chemical_data[day] $chemical_data[year]
-          </span
+            <span class='badge rounded-pill bg-light text-dark text-wrap'>$chemical_data[date_added] Date Added</span>
+            <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>$chemical_data[date_exp] Expiration Date  </span>
           </div>
           $chemical_btn
         </div>
@@ -127,20 +123,15 @@ if(isset($_POST['search_chemical'])){
  
          $output.="
  
- 
          <div class='col-lg-3 col-md-3 my-4 p-4'>
          <div class='card border-0 shadow' style='width: 18rem;'>
          <div class='card-body'>
            <h5 class='card-title text-center'>$chemical_data[name]</h5>
-           <b><p class='card-text mb-2'>$chemical_data[area] $facilities_data</p></b>
+           <h5 class='card-title text-center'>$chemical_data[area]</h5>
+           <h5 class='card-title text-center'>$chemical_data[unit]</h5>
            <div class='guests mb-2'>
-             <h6 class='mb-1'>Details</h6>
-             <span class='badge rounded-pill bg-light text-dark text-wrap'>$chemical_data[avail] Available</span>
-             <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>$chemical_data[student] per Student</span>
-             <h6 class='mt-2'>Expiration Date</h6>
-             <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>
-             $chemical_data[months] $chemical_data[day] $chemical_data[year]
-           </span
+             <span class='badge rounded-pill bg-light text-dark text-wrap'>$chemical_data[date_added] Date Added</span>
+             <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>$chemical_data[date_exp] Expiration Date  </span>
            </div>
            $chemical_btn
          </div>

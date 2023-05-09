@@ -72,11 +72,11 @@ require("./header/header.php")
 
           while($data = mysqli_fetch_assoc($result)){
             
-            $date = date("d-m-Y",strtotime($data['datentime']));
+            $date = date("F j Y",strtotime($data['datentime']));
             
-            $checkin= date("d-m-Y g:i a",strtotime($data['check_in']));
+            $checkin= date("F j Y",strtotime($data['check_in']));
                         
-            $checkout= date("d-m-Y g:i a",strtotime($data['check_out']));
+            $checkout= date("F j Y ",strtotime($data['check_out']));
 
             
             $status_bg = "";
@@ -109,6 +109,8 @@ require("./header/header.php")
                 <div class="bg-white p-3 rounded shadown-sm">
                     <h5 class="fw-bold text-center">$data[chemical_name]</h5>
                     <b>Date: </b> $date 
+                    <br>
+                    <b>Concentration/State: $data[state] percent</b>
                     <br>
                     <b>Volume: $data[volume] Needed</b>
                     <br>

@@ -101,11 +101,15 @@ $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
             <a class="nav-link " href="chemical.php"><i class="bi bi-clipboard2-pulse"></i> Chemical</a>
           </li>
           <li class="nav-item navbar-admin">
-            <a class="nav-link " href="facilities.php"><i class="bi bi-house-heart-fill"></i> Size and Faculty</a>
+            <a class="nav-link " href="equipment.php"><i class="bi bi-clipboard2-pulse"></i> Equipment</a>
           </li>
           <li class="nav-item navbar-admin">
             <a class="nav-link " href="breakage.php"><i class="bi bi-clipboard-x"></i> Breakage Records </a>
           </li>
+          <li class="nav-item navbar-admin">
+            <a class="nav-link " href="facilities.php"><i class="bi bi-house-heart-fill"></i> New Record Data</a>
+          </li>
+       
           <!--<li class="nav-item navbar-admin">
             <a class="nav-link " href="rating_reviews.php"><i class="bi bi-chat-left-heart"></i> Rating & Reviews</a>
           </li>-->

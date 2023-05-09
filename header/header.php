@@ -39,6 +39,12 @@ if($home_r['shutdown']==1){
             <li class="nav-item"> 
               <a class="nav-link me-3 fw-bold" href="chemical.php">Chemical</a>
             </li>
+            <li class="nav-item"> 
+              <a class="nav-link me-3 fw-bold" href="equipment.php">Equipment</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link  me-3 fw-bold" href="about.php">About</a>
+          </li>
          
     
           </ul>
@@ -57,6 +63,7 @@ if($home_r['shutdown']==1){
 
                     <li><a class="dropdown-item" href="bookings.php">Your Apparatus Item</a></li>
                     <li><a class="dropdown-item" href="bookings_chemical.php">Your Chemical Item</a></li>
+                    <li><a class="dropdown-item" href="bookings_equipment.php">Your Equipment Item</a></li>
                     <li><a class="dropdown-item" href="profile.php">Student Profile</a></li>
                     <li><a class="btn btn-success dropdown-item" href="logout.php">Logout</a></li>
                   </ul>

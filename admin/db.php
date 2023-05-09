@@ -3,7 +3,7 @@
   $hname='localhost';
   $uname='root';
   $pass= '';
-  $db="csm";
+  $db="final_csm";
 
 
   

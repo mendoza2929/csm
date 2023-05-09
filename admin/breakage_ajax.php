@@ -42,7 +42,7 @@ if(isset($_POST['get_breakage'])){
 
     while($data = mysqli_fetch_array($limit_res)){
 
-      $date = date("d-m-Y",strtotime($data['datentime']));
+      $date = date("F j Y",strtotime($data['datentime']));
         
       $checkin= date("d-m-Y g:i a",strtotime($data['check_in']));
                   
@@ -63,7 +63,9 @@ if(isset($_POST['get_breakage'])){
         $table_data .="
         
         <tr>
-            <td>$i</td>
+        <td>
+        <b> $date
+        </td>
             <td>
             <b> $data[teacher]
             </td>
@@ -73,6 +75,7 @@ if(isset($_POST['get_breakage'])){
             <td>
             <b> $data[apr_no]
             </td>
+          
 
 
            

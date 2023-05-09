@@ -4,48 +4,6 @@ require("alert.php");
 require("db.php");
 
 adminLogin();
-// session_regenerate_id(true);
-
-
-// if(isset($_GET['seen'])){
-//     $frm_data =filteration($_GET);
-
-//     if($frm_data['seen']=='all'){
-//         $q = "UPDATE `user_queries` SET `seen`=?";
-//         $values= [1];
-//         if(update($q,$values,'i')){
-//             alert('success','Mark all as read');
-//         } 
-//     }
-//     else{
-//         $q = "UPDATE `user_queries` SET `seen`=? WHERE `sr_no`=?";
-//         $values= [1,$frm_data['seen']];
-//         if(update($q,$values,'ii')){
-//             alert('success','Mark as read');
-//         } 
-//     }
-// }
-
-
-// if(isset($_GET['del'])){
-//     $frm_data =filteration($_GET);
-
-//     if($frm_data['del']=='all'){
-//         // $q = "DELETE FROM `user_queries`";
-//         // if(mysqli_query($con,$q)){
-//         //     alert('success','All inquiry Deleted');
-//         // }
-//     }
-//     else{
-//         $q = "DELETE FROM `user_queries` WHERE `sr_no`=?";
-//         $values= [$frm_data['del']];
-//         if(delete($q,$values,'i')){
-//             alert('success','Inquiry Deleted');
-//         }
-        
-//     }
-// }
-
 
 ?>
 
@@ -140,6 +98,37 @@ adminLogin();
                         </div>
                     </div>
 
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body">
+
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h5 class="card-title m-0 fw-bold"><i class="bi bi-chat-square-heart"></i> Add Course</h5>
+                            <button type="button" class="btn btn-warning btn-sm shadow-none" data-bs-toggle="modal" data-bs-target="#course">
+                            <i class="bi bi-file-plus"></i> Add
+                            </button>
+                        </div>
+
+
+                           <div class="table-responsive-md" style="height:450px; overflow-y:scroll;">
+                           <table class="table table-hover border">
+                            <thead>
+                                <tr class="bg-secondary text-white">
+                                <th scope="col">#</th>
+                                <th scope="col">Course </th>
+                                <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="course_data">
+                          
+                             
+                           
+                            </tbody>
+                            </table>
+                            </div>
+
+                        </div>
+                    </div>
+
 
             </div>
         </div>
@@ -152,7 +141,7 @@ adminLogin();
                 <form id="facilities_form">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <div class="modal-title"><i class="bi bi-bell"></i> Add Size</div>
+                            <div class="modal-title"><i class="bi bi-bell"></i> Add Unit</div>
                         </div>
                         <div class="modal-body"> 
                             <div class="mb-3">
@@ -205,6 +194,29 @@ adminLogin();
             </div>
         </div>
 
+        
+        <div class="modal fade" id="course" data-bs-backdrop="static" data-bs-keyboard= "true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <form id="course_form">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <div class="modal-title"><i class="bi bi-bell"></i> Add Course</div>
+                        </div>
+                        <div class="modal-body"> 
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Course Name</label>
+                                <input type="text" id="course_name" class="form-control shadow-none">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-secondary shadow-none" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success shadow-none">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
 
 
  <?php 
@@ -215,6 +227,7 @@ require ("script.php");
 <script>
     let facilities_form = document.getElementById('facilities_form');
     let features_form = document.getElementById('features_form');
+    let course_form = document.getElementById('course_form');
 
     facilities_form.addEventListener('submit', function(e){
         e.preventDefault();
@@ -416,9 +429,90 @@ require ("script.php");
     }
 
 
+    course_form.addEventListener('submit', function(e){
+        e.preventDefault();
+        add_course();
+    });
+
+    function add_course(){
+        let data= new FormData();
+        data.append('name',course_form.elements['course_name'].value);
+        data.append('add_course','');
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","facilities_ajax.php",true);
+
+        xhr.onload = function(){
+            var myModalEl = document.getElementById('course')
+            var modal = bootstrap.Modal.getInstance(myModalEl) // Returns a Bootstrap modal instanceof
+            modal.hide();
+
+            if(this.responseText==1){
+                Swal.fire(
+                'Good job!',
+                'New Course Added Success',
+                'success'
+                )
+
+                course_form.elements['course_name'].values='';
+                get_course();
+            }else{
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                
+                })
+            }
+
+        }
+        xhr.send(data);
+    }
+
+    function get_course(){
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","facilities_ajax.php",true);
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        
+        xhr.onload = function (){
+            document.getElementById('course_data').innerHTML = this.responseText;
+        }
+
+        xhr.send('get_course');
+    } 
+
+    function rem_course(val){
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","facilities_ajax.php",true);
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+ 
+        xhr.onload = function (){
+            if(this.responseText==1){
+                Swal.fire(
+                'Good job!',
+                'Course Removed Successfully',
+                'success'
+                )
+                get_course();
+            }
+            else{
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong.',
+                })
+            }
+        }
+
+        xhr.send('rem_course='+val);
+    }
+
+
+
     window.onload = function(){
         get_facilities();
         get_features();
+        get_course();
     }
 </script>
 

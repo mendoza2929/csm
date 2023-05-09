@@ -59,11 +59,11 @@ if(isset($_POST['pay_now_chemical'])){
     $chemical_id = mysqli_insert_id($con);
     
 
-    $query2 = "INSERT INTO `chemical_details_final` (`booking_id`, `chemical_name`, `username`, `course`, `year`, `teacher`, `email`, `quantity`, `group_no`, `volume`, `apr_no`)
+    $query2 = "INSERT INTO `chemical_details_final` (`booking_id`, `chemical_name`, `username`, `course`, `year`, `teacher`, `email`, `group_no`, `state`, `volume`, `apr_no`)
      VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
     insert($query2,[$chemical_id,$_SESSION['chemical']['name'],$frm_data['name'],$frm_data['course'],$frm_data['year'],
-    $frm_data['teacher'],$frm_data['email'],$frm_data['quantity'],$frm_data['group_no'],$frm_data['volume'],$frm_data['room_no']],'issssssssss');
+    $frm_data['teacher'],$frm_data['email'],$frm_data['group_no'],$frm_data['state'],$frm_data['volume'],$frm_data['room_no']],'issssssssss');
 
 
   

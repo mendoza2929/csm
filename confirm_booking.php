@@ -113,6 +113,12 @@ if($home_r['shutdown']==1){
             <li class="nav-item">
               <a class="nav-link me-3 fw-bold" href="chemical.php">Chemical</a>
             </li>
+            <li class="nav-item"> 
+              <a class="nav-link me-3 fw-bold" href="equipment.php">Equipment</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link  me-3 fw-bold" href="about.php">About</a>
+          </li>
         
     
           </ul>
@@ -198,7 +204,7 @@ if($home_r['shutdown']==1){
                 <div class="row">
                   <div class="col-md-3 mb-3">
                     <label class="form-label mb-1">Name</label>
-                    <input name="name" type="text" value="<?php echo $user_data['name']?>" class="form-control shadow-none" required>
+                    <input name="name" type="text" value="<?php echo $user_data['name'] ?> <?php echo $user_data['lname'] ?> <?php echo $user_data['suffix'] ?>" class="form-control shadow-none" required>
                   </div>
                   <div class="col-md-4 mb-3">
                     <label class="form-label mb-1">Student ID</label>
@@ -234,22 +240,22 @@ if($home_r['shutdown']==1){
                     <label class="form-label mb-1">Quantity</label>
                     <input type="number" value="1" min="1" class="form-control shadow-none"  required name="quantity">
                   </div>
-                  <div class="col-md-1 mb-3">
-                    <label class="form-label mb-1">Group No.</label>
+                  <div class="col-md-2 mb-3">
+                    <label class="form-label mb-1">Group No</label>
                     <input name="group_no" type="number"  min="1" class="form-control shadow-none">
                   </div>
                   <div class="col-md-1 mb-3">
                     <label class="form-label mb-1">Room No.</label>
                     <input name="room_no" type="number"  min="1" class="form-control shadow-none">
                   </div>
-                  <div class="col-md-2 mb-3">
+                  <!--<div class="col-md-2 mb-3">
                     <label class="form-label mb-1">Volume</label>
                     <input name="volume" type="number" min="1" class="form-control shadow-none">
-                  </div>
-                  <div class="col-md-3 mb-3">
-                    <label class="form-label">Start Time</label>
-                    <input type="datetime-local" onchange="check_availability()" class="form-control shadow-none" required name="checkin">
-                  </div>
+                                </div>-->
+                                <div class="col-md-3 mb-3">
+                <label class="form-label">Start Time</label>
+                <input type="datetime-local" onchange="check_availability()" class="form-control shadow-none" required name="checkin">
+              </div>
                   <div class="col-md-3 mb-4">
                     <label class="form-label">End Time</label>
                     <input type="datetime-local"  onchange="check_availability()" class="form-control shadow-none" required name="checkout">
@@ -770,6 +776,21 @@ let pay_info = document.getElementById('pay_info');
 
 
 function check_availability(){
+
+  // var input = document.getElementsByName("checkin")[0];
+  //   var value = input.value;
+    
+  //   // Convert the input value to a JavaScript Date object
+  //   var date = new Date(value);
+    
+  //   // Get the timestamp in milliseconds
+  //   var timestamp = date.getTime();
+    
+  //   // Update the timestamp input field with the timestamp value
+  //   var timestampInput = document.getElementById("timestampInput");
+  //   timestampInput.value = timestamp;
+
+
    let checkin_val = booking_form.elements['checkin'].value;
    let checkout_val = booking_form.elements['checkout'].value;
   
@@ -819,6 +840,8 @@ function check_availability(){
             }
             xhr.send(data);
    }
+
+  //  check_availability();
 
 
 }

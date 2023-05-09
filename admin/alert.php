@@ -15,10 +15,7 @@
     define('ROOM_FOLDER','room/');
     define('USERS_FOLDER','users/');
 
-    // sendgrid api key 
-    define('SENDGRID_API_KEY',"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");
-    define('SENDGRID_EMAIL',"bg201803853@wmsu.edu.ph");
-    define('SENDGRID_NAME',"Mendoza");
+
 
 
     

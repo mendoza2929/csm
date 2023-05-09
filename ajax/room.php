@@ -25,22 +25,6 @@ session_start();
 
         while($room_data = mysqli_fetch_assoc($room_res)){
           
-
-
-
-
-          //get Facilities room
-    
-          $fac_q = mysqli_query($con,"SELECT f.name FROM `features` f INNER JOIN `room_facilities` rfac ON f.id = rfac.facilities_id WHERE rfac.room_id = '$room_data[id]'");
-    
-          $facilities_data = "";
-          while($fac_row = mysqli_fetch_assoc($fac_q)){
-            $facilities_data.=" <span class='badge rounded-pill bg-light text-dark text-wrap me-1 mb-1'>
-            $fac_row[name]
-            </span>";
-          }
-         
-
     
             $book_btn = "";
                  
@@ -61,11 +45,10 @@ session_start();
             <div class='card border-0 shadow' style='width: 18rem;'>
             <div class='card-body'>
               <h5 class='card-title text-center'>$room_data[name]</h5>
-              <b><p class='card-text mb-2'>$room_data[area] $facilities_data</p></b>
+              <h5 class='card-title text-center'>$room_data[brand]</h5>
               <div class='guests mb-2'>
-                <h6 class='mb-1'>Details</h6>
-                <span class='badge rounded-pill bg-light text-dark text-wrap'>$room_data[adult] Available</span>
-                <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>$room_data[children] per Student</span>
+                
+                <span class='badge rounded-pill bg-light text-dark text-wrap'>Available: $room_data[avail]</span>
               </div>
               $book_btn
             </div>
@@ -179,16 +162,13 @@ session_start();
              
           
  
-
              <div class='col-lg-3 col-md-3 my-4 p-4'>
              <div class='card border-0 shadow' style='width: 18rem;'>
              <div class='card-body'>
                <h5 class='card-title text-center'>$room_data[name]</h5>
-               <b><p class='card-text mb-2'>$room_data[area] $facilities_data</p></b>
+               <h5 class='card-title text-center'>$room_data[brand]</h5>
                <div class='guests mb-2'>
-                 <h6 class='mb-1'>Details</h6>
-                 <span class='badge rounded-pill bg-light text-dark text-wrap'>$room_data[adult] Available</span>
-                 <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>$room_data[children] per Student</span>
+                 <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>Availblle $room_data[avail]</span>
                </div>
                $book_btn
              </div>
