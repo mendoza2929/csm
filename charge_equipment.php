@@ -36,15 +36,19 @@ if(isset($_POST['pay_now_equipment'])){
     $CUST_ID = $_SESSION['uId'];
     // $TXN_AMOUNT = $_SESSION['chemical']['payment'];
 
-    
+    $frm_data = filteration($_POST);    
   
+    $equipment_id = $_SESSION['equipment']['id'];
+    $quantity = $frm_data['quantity'];
 
-
-    // $paramList = array();
-    // $paramList["ORDER_ID"] = $ORDER_ID;
-    // $paramList["CUST_ID"] = $ORDER_ID;
-    // $paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
-   
+       // Check if the requested quantity is available in the room
+       $res = select("SELECT `quantity` FROM `equipment` WHERE `id`=? AND `quantity`>=?", [$equipment_id, $quantity], 'is');
+       if(mysqli_num_rows($res) == 0) {
+           // Display error message and prevent booking
+           echo "Error: Not enough availability in the Equipment.";
+           exit;
+       }
+      
    
 
 
@@ -53,17 +57,21 @@ if(isset($_POST['pay_now_equipment'])){
 
     $query1 = "INSERT INTO `equipment_order_final` (`user_id`, `equipment_id`, `check_in`, `check_out`, `order_id`,`booking_status`) VALUES (?,?,?,?,?,'approved')";
 
-    insert($query1,[$CUST_ID,$_SESSION['equipment']['id'],$frm_data['checkin'],$frm_data['checkout'],$ORDER_ID],'issss');
+    insert($query1,[$CUST_ID,$equipment_id,$frm_data['checkin'],$frm_data['checkout'],$ORDER_ID],'issss');
     
 
-    $chemical_id = mysqli_insert_id($con);
+    $equipment = mysqli_insert_id($con);
     
 
     $query2 = "INSERT INTO `equipment_details_final` (`booking_id`, `equipment_name`, `username`, `course`, `year`, `teacher`, `email`, `quantity`, `group_no`, `apr_no`)
      VALUES (?,?,?,?,?,?,?,?,?,?)";
 
-    insert($query2,[$chemical_id,$_SESSION['equipment']['name'],$frm_data['name'],$frm_data['course'],$frm_data['year'],
-    $frm_data['teacher'],$frm_data['email'],$frm_data['quantity'],$frm_data['group_no'],$frm_data['room_no']],'isssssssss');
+    insert($query2,[$equipment,$_SESSION['equipment']['name'],$frm_data['name'],$frm_data['course'],$frm_data['year'],
+    $frm_data['teacher'],$frm_data['email'],$quantity,$frm_data['group_no'],$frm_data['room_no']],'isssssssss');
+
+      // Update the room quantity
+      $query3 = "UPDATE `equipment` SET `quantity`=`quantity`-? WHERE `id`=?";
+      update($query3, [$quantity, $equipment_id], 'is');
 
 
   

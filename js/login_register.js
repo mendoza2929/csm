@@ -16,7 +16,7 @@ register_form.addEventListener('submit',function(e){
           data.append('suffix',register_form.elements['suffix'].value);
           data.append('student_id',register_form.elements['student_id'].value);
           data.append('email',register_form.elements['email'].value);
-          data.append('phonenum',register_form.elements['phonenum'].value);
+          // data.append('phonenum',register_form.elements['phonenum'].value);
           
           // data.append('pass',register_form.elements['pass'].value);
           data.append('course',register_form.elements['course'].value);

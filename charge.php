@@ -54,9 +54,9 @@ if(isset($_POST['pay_now'])) {
     insert($query1, [$CUST_ID, $room_id, $frm_data['checkin'], $frm_data['checkout'], $ORDER_ID], 'issss');
     $booking_id = mysqli_insert_id($con);
 
-    $query2 = "INSERT INTO `booking_details`(`booking_id`, `room_name`, `price`, `total_pay`, `user_name`, `course`,`year`,`teacher`, `email`,`quantity`,`group_no`,`apr_no`) 
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
-    insert($query2, [$booking_id, $_SESSION['room']['name'], $_SESSION['room']['price'], $TXN_AMOUNT, $frm_data['name'], $frm_data['course'], $frm_data['year'], $frm_data['teacher'], $frm_data['email'], $quantity, $frm_data['group_no'], $frm_data['room_no']], 'isssssssssss');
+    $query2 = "INSERT INTO `booking_details`(`booking_id`, `room_name`, `price`, `total_pay`, `user_name`, `course`,`year`,`teacher`, `email`,`quantity`,`group_no`,`apr_no`,`lab`, `group_mate`) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    insert($query2, [$booking_id, $_SESSION['room']['name'], $_SESSION['room']['price'], $TXN_AMOUNT, $frm_data['name'], $frm_data['course'], $frm_data['year'], $frm_data['teacher'], $frm_data['email'], $quantity, $frm_data['group_no'], $frm_data['room_no'], $frm_data['lab'], $frm_data['group_mate']], 'isssssssssssss');
 
     // Update the room quantity
     $query3 = "UPDATE `rooms` SET `avail`=`avail`-? WHERE `id`=?";

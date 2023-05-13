@@ -28,11 +28,11 @@ if(isset($_POST['register'])){
 
 
 
-    $query = "INSERT INTO `user_cred`(`name`,`lname`, `suffix`,`student_id`, `email`,`phonenum`,`course`,`year`, `token`) VALUES (?,?,?,?,?,?,?,?,?)"; // insert `profile`
+    $query = "INSERT INTO `user_cred`(`name`,`lname`, `suffix`,`student_id`,`email`,`course`,`year`, `token`) VALUES (?,?,?,?,?,?,?,?)"; // insert `profile`
 
-    $values = [$data['name'],$data['lname'],$data['suffix'],$data['student_id'],$data['email'],$data['phonenum'],$data['course'],$data['year'],$token]; //$img insert before phonenum
+    $values = [$data['name'],$data['lname'],$data['suffix'],$data['student_id'],$data['email'],$data['course'],$data['year'],$token]; //$img insert before phonenum
 
-    if(insert($query,$values,'sssssssss')){
+    if(insert($query,$values,'ssssssss')){
         echo 1;
     }else {
         echo 'ins_failed';

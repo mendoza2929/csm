@@ -267,7 +267,7 @@ if($home_r['shutdown']==1){
                       <span class="visually-hidden">Loading...</span>
                     </div>
                     
-                  <h6 class="text-center fw-bold text-danger" id="pay_info">Please Provide Date and time first before borrowing </h6>
+                  <h6 class="text-center fw-bold text-danger" id="pay_info"></h6>
            
                   
 
@@ -822,19 +822,19 @@ function check_availability(){
             xhr.onload = function(){
               let data = JSON.parse(this.responseText);
               if(data.status == 'check_in_out_equal'){
-                pay_info.innerText == "You cannot check-out on the same day!";
+                pay_info.innerText = "You cannot set date on the same time!";
               }
               else if(data.status == 'check_out_earlier'){
-                pay_info.innerText == "Check-out is earlier than check-in date!";
+                pay_info.innerText = "Date Start is earlier than End date date!"; 
               }
               else if(data.status == 'check_in_earlier'){
-                pay_info.innerText == "Check-in date is earlier thatn today's date!";
+                pay_info.innerText = "Start date is earlier than today's date!"; 
               }
-              else if(data.status == 'unavailable'){
-                pay_info.innerText == "Room not available for this check-in date!";
-              }
+              // else if(data.status == 'unavailable'){
+              //   pay_info.innerText = "Room not available for this check-in date!";
+              // }
               else{
-                pay_info.innerHTML = "Availability: "+data.status;
+                pay_info.innerHTML = ""+data.status;
                 pay_info.classList.replace('text-danger', 'text-dark');
                 booking_form.elements['pay_now_equipment'].removeAttribute('disabled');
               }

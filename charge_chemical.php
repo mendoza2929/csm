@@ -36,15 +36,18 @@ if(isset($_POST['pay_now_chemical'])){
     $CUST_ID = $_SESSION['uId'];
     // $TXN_AMOUNT = $_SESSION['chemical']['payment'];
 
-    
+    $frm_data = filteration($_POST);    
   
+    $chemical_id = $_SESSION['chemical']['id'];
+    $quantity = $frm_data['volume'];
 
-
-    // $paramList = array();
-    // $paramList["ORDER_ID"] = $ORDER_ID;
-    // $paramList["CUST_ID"] = $ORDER_ID;
-    // $paramList["TXN_AMOUNT"] = $TXN_AMOUNT;
-   
+    // Check if the requested quantity is available in the room
+    $res = select("SELECT `quantity` FROM `chemical` WHERE `id`=? AND `quantity`>=?", [$chemical_id, $quantity], 'is');
+    if(mysqli_num_rows($res) == 0) {
+        // Display error message and prevent booking
+        echo "Error: Not enough availability in the Chemical.";
+        exit;
+    }
    
 
 
@@ -53,17 +56,21 @@ if(isset($_POST['pay_now_chemical'])){
 
     $query1 = "INSERT INTO `chemical_order_final` (`user_id`, `chemical_id`, `check_in`, `check_out`, `order_id`,`booking_status`) VALUES (?,?,?,?,?,'approved')";
 
-    insert($query1,[$CUST_ID,$_SESSION['chemical']['id'],$frm_data['checkin'],$frm_data['checkout'],$ORDER_ID],'issss');
+    insert($query1,[$CUST_ID,$chemical_id,$frm_data['checkin'],$frm_data['checkout'],$ORDER_ID],'issss');
     
 
-    $chemical_id = mysqli_insert_id($con);
+    $chemical = mysqli_insert_id($con);
     
 
-    $query2 = "INSERT INTO `chemical_details_final` (`booking_id`, `chemical_name`, `username`, `course`, `year`, `teacher`, `email`, `group_no`, `state`, `volume`, `apr_no`)
-     VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    $query2 = "INSERT INTO `chemical_details_final` (`booking_id`, `chemical_name`, `username`, `course`, `year`, `teacher`, `email`, `group_no`, `state`, `volume`, `apr_no`,`lab`,`group_mate`)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-    insert($query2,[$chemical_id,$_SESSION['chemical']['name'],$frm_data['name'],$frm_data['course'],$frm_data['year'],
-    $frm_data['teacher'],$frm_data['email'],$frm_data['group_no'],$frm_data['state'],$frm_data['volume'],$frm_data['room_no']],'issssssssss');
+    insert($query2,[$chemical,$_SESSION['chemical']['name'],$frm_data['name'],$frm_data['course'],$frm_data['year'],
+    $frm_data['teacher'],$frm_data['email'],$frm_data['group_no'],$frm_data['state'],$quantity,$frm_data['room_no'],$frm_data['lab'],$frm_data['group_mate']],'issssssssssss');
+
+      // Update the room quantity
+      $query3 = "UPDATE `chemical` SET `quantity`=`quantity`-? WHERE `id`=?";
+      update($query3, [$quantity, $chemical_id], 'is');
 
 
   

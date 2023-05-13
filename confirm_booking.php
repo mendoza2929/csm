@@ -169,7 +169,7 @@ if($home_r['shutdown']==1){
         <div class="row">
             
     <div class="col-12 my-5 mb-4 px-4">
-        <div class="h2 fw-bold text-center">Confirm Borrowing</div>
+        <div class="h2 fw-bold text-center">Confirm Apparatus</div>
         <div class="h-line bg-dark"></div>
         <div style="font-size:15px;">
         <a href="index.php" class="text-secondary text-decoration-none">Home</a>
@@ -193,7 +193,7 @@ if($home_r['shutdown']==1){
           <div class="card mb-4 border-0 shadow-sm rounded-3">
             <div class="card-body">
            
-            <form action="charge.php" id="booking_form" method="POST" >
+            <form action="charge.php" id="booking_form" method="POST" novalidate autocomplete="off">
               <h6 class="mb-3 text-center fw-bold">Borrowing Details</h6>
             
               
@@ -203,25 +203,25 @@ if($home_r['shutdown']==1){
  
                 <div class="row">
                   <div class="col-md-3 mb-3">
-                    <label class="form-label mb-1">Name</label>
+                    <label class="form-label mb-1 fw-bold">Name</label>
                     <input name="name" type="text" value="<?php echo $user_data['name'] ?> <?php echo $user_data['lname'] ?> <?php echo $user_data['suffix'] ?>" class="form-control shadow-none" required>
                   </div>
-                  <div class="col-md-4 mb-3">
-                    <label class="form-label mb-1">Student ID</label>
+                  <div class="col-md-2 mb-3">
+                    <label class="form-label mb-1 fw-bold">Student ID</label>
                     <input name="email" type="text" value="<?php echo $user_data['student_id']?>" class="form-control shadow-none" required >
                   </div>
-                  <div class="col-md-2 mb-3">
-                    <label class="form-label mb-1">Course</label>
+                  <div class="col-md-1 mb-3">
+                    <label class="form-label mb-1 fw-bold">Course</label>
                     <input type="text" class="form-control shadow-none"value="<?php echo $user_data['course']?>" required name="course">
                   </div>
                   <div class="col-md-1  mb-3">
-                    <label class="form-label mb-1">Year</label>
+                    <label class="form-label mb-1 fw-bold">Year</label>
                     <input type="text" class="form-control shadow-none"value="<?php echo $user_data['year']?>" required name="year">
                   </div>
-                  <div class="col-md-2 mb-3">
+                  <div class="col-md-4 mb-3">
                       <div class="row">
                         
-                      <label class="form-label mb-3"> Select Teacher
+                      <label class="form-label mb-3 fw-bold"> Select Teacher
     <select class='form-select shadow-none' aria-label='Default select example' name='teacher' required>
         <option disabled selected value="">Select a teacher...</option> <!-- placeholder option -->
         <?php
@@ -236,16 +236,58 @@ if($home_r['shutdown']==1){
                       </div>
     
                   </div>
+
+                  <div class="col-md-6 mb-3">
+                            <div class="row">
+          <label class="form-label fw-bold">Add Group Mates </label>
+        <input type="email" class="form-control mb-2 shadow-none" list="personnel_list_code" name="group_mate"  placeholder="Type to search group mate" required multiple pattern=".@">
+        <datalist id="personnel_list_code">
+    <?php
+    $res = $con->query ('SELECT * FROM `user_cred`');
+    while($opt = mysqli_fetch_assoc($res)){
+    ?>
+      <option value="<?php echo $opt['name'].' '. $opt['lname'].' '. $opt['suffix'] ?>"></option>
+    <?php
+    }
+    ?>
+  </datalist>
+      </label>
+
+              </div>
+          
+              </div>
+
+     
+             
+                  <div class="col-md-3 mb-3">
+                      <div class="row">
+                        
+                      <label class="form-label mb-3 fw-bold"> Subject
+    <select class='form-select shadow-none' aria-label='Default select example' name='lab' required>
+        <option disabled selected value="">Select a Subject...</option> <!-- placeholder option -->
+        <?php
+        $res = selectAll('class_name');
+        while($opt = mysqli_fetch_assoc($res)){
+            echo "<option value='$opt[name]'>$opt[name]</option>";
+        }
+        ?>
+    </select>
+</label>
+
+                      </div>
+    
+                  </div>
+                  
                   <div class="col-md-1 mb-3">
-                    <label class="form-label mb-1">Quantity</label>
+                    <label class="form-label mb-1 fw-bold">Quantity</label>
                     <input type="number" value="1" min="1" class="form-control shadow-none"  required name="quantity">
                   </div>
-                  <div class="col-md-2 mb-3">
-                    <label class="form-label mb-1">Group No</label>
+                  <div class="col-md-1 mb-3">
+                    <label class="form-label mb-1 fw-bold">Group No</label>
                     <input name="group_no" type="number"  min="1" class="form-control shadow-none">
                   </div>
                   <div class="col-md-1 mb-3">
-                    <label class="form-label mb-1">Room No.</label>
+                    <label class="form-label mb-1 fw-bold">Room No.</label>
                     <input name="room_no" type="number"  min="1" class="form-control shadow-none">
                   </div>
                   <!--<div class="col-md-2 mb-3">
@@ -253,11 +295,11 @@ if($home_r['shutdown']==1){
                     <input name="volume" type="number" min="1" class="form-control shadow-none">
                                 </div>-->
                                 <div class="col-md-3 mb-3">
-                <label class="form-label">Start Time</label>
+                <label class="form-label fw-bold">Start Time</label>
                 <input type="datetime-local" onchange="check_availability()" class="form-control shadow-none" required name="checkin">
               </div>
                   <div class="col-md-3 mb-4">
-                    <label class="form-label">End Time</label>
+                    <label class="form-label fw-bold">End Time</label>
                     <input type="datetime-local"  onchange="check_availability()" class="form-control shadow-none" required name="checkout">
                   </div>
         
@@ -266,7 +308,7 @@ if($home_r['shutdown']==1){
                       <span class="visually-hidden">Loading...</span>
                     </div>
                     
-                  <h6 class="text-center fw-bold text-danger" id="pay_info">Please Provide Date and time first before borrowing </h6>
+                  <h6 class="text-center fw-bold text-danger" id="pay_info"></h6>
            
                   
 
@@ -774,78 +816,59 @@ let info_loader = document.getElementById('info_loader');
 let pay_info = document.getElementById('pay_info');
 
 
-
 function check_availability(){
 
-  // var input = document.getElementsByName("checkin")[0];
-  //   var value = input.value;
-    
-  //   // Convert the input value to a JavaScript Date object
-  //   var date = new Date(value);
-    
-  //   // Get the timestamp in milliseconds
-  //   var timestamp = date.getTime();
-    
-  //   // Update the timestamp input field with the timestamp value
-  //   var timestampInput = document.getElementById("timestampInput");
-  //   timestampInput.value = timestamp;
+let checkin_val = booking_form.elements['checkin'].value;
+let checkout_val = booking_form.elements['checkout'].value;
+
+let pay_info = document.getElementById('pay_info'); // add this line to get the pay_info element
+
+booking_form.elements['pay_now'].setAttribute('disabled',true);
+
+if(checkin_val!='' && checkout_val!=''){
+
+   pay_info.classList.add('d-none');
+   pay_info.classList.replace('text-dark', 'text-danger');
+   info_loader.classList.remove('d-none');
 
 
-   let checkin_val = booking_form.elements['checkin'].value;
-   let checkout_val = booking_form.elements['checkout'].value;
-  
+   let data  = new FormData();
 
+   data.append('check_availability','');
+   data.append('check_in',checkin_val);
+   data.append('check_out',checkout_val);
+   let xhr = new XMLHttpRequest();
+   xhr.open("POST","./ajax/confirm_booking.php",true);
 
-   booking_form.elements['pay_now'].setAttribute('disabled',true);
+      
 
-   if(checkin_val!='' && checkout_val!=''){
+         xhr.onload = function(){
+           let data = JSON.parse(this.responseText);
+           if(data.status == 'check_in_out_equal'){
+             pay_info.innerText = "You cannot set date on the same time!"; // change == to =
+           }
+           else if(data.status == 'check_out_earlier'){
+             pay_info.innerText = "Date Start is earlier than End date date!"; // change == to =
+           }
+           else if(data.status == 'check_in_earlier'){
+             pay_info.innerText = "Start date is earlier than today's date!"; // change == to =
+           }
+          //  else if(data.status == 'unavailable'){
+          //    pay_info.innerText = "Room not available for this check-in date!"; // change == to =
+          //  }
+           else{
+             pay_info.innerHTML = ""+data.status;
+             pay_info.classList.replace('text-danger', 'text-dark');
+             booking_form.elements['pay_now'].removeAttribute('disabled');
+           }
 
-      pay_info.classList.add('d-none');
-      pay_info.classList.replace('text-dark', 'text-danger');
-      info_loader.classList.remove('d-none');
-
-
-      let data  = new FormData();
-
-      data.append('check_availability','');
-      data.append('check_in',checkin_val);
-      data.append('check_out',checkout_val);
-      let xhr = new XMLHttpRequest();
-      xhr.open("POST","./ajax/confirm_booking.php",true);
-
-         
-
-            xhr.onload = function(){
-              let data = JSON.parse(this.responseText);
-              if(data.status == 'check_in_out_equal'){
-                pay_info.innerText == "You cannot check-out on the same day!";
-              }
-              else if(data.status == 'check_out_earlier'){
-                pay_info.innerText == "Check-out is earlier than check-in date!";
-              }
-              else if(data.status == 'check_in_earlier'){
-                pay_info.innerText == "Check-in date is earlier thatn today's date!";
-              }
-              else if(data.status == 'unavailable'){
-                pay_info.innerText == "Room not available for this check-in date!";
-              }
-              else{
-                pay_info.innerHTML = "Availability: "+data.status;
-                pay_info.classList.replace('text-danger', 'text-dark');
-                booking_form.elements['pay_now'].removeAttribute('disabled');
-              }
-
-              pay_info.classList.remove('d-none');
-              info_loader.classList.add('d-none');
-            }
-            xhr.send(data);
-   }
-
-  //  check_availability();
-
-
+           pay_info.classList.remove('d-none');
+           info_loader.classList.add('d-none');
+         }
+         xhr.send(data);
 }
- 
+}
+
 
 
     

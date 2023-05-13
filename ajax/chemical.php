@@ -61,8 +61,7 @@ if(isset($_GET['fetch_chemical'])){
           <h5 class='card-title text-center'>$chemical_data[area]</h5>
           <h5 class='card-title text-center'>$chemical_data[unit]</h5>
           <div class='guests mb-2'>
-            <span class='badge rounded-pill bg-light text-dark text-wrap'>$chemical_data[date_added] Date Added</span>
-            <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>$chemical_data[date_exp] Expiration Date  </span>
+            <span class='badge rounded-pill bg-light text-dark text-wrap'>Available Stock: $chemical_data[quantity] Volume/Mass</span>
           </div>
           $chemical_btn
         </div>

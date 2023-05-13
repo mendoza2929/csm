@@ -64,7 +64,7 @@ if(isset($_POST['check_availability'])){
         // $_SESSION['chemical']['payment'] = $payment;
         $_SESSION['chemical']['available'] = true;
         
-    $result = json_encode(["status"=>'available']);
+    $result = json_encode(["status"=>'']);
         echo $result;
         
     }

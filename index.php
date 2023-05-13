@@ -143,11 +143,8 @@ require("./header/header.php")
                     <label class="form-label">Wmsu Email</label>
                     <input type="email" class="form-control shadow-none" required name="email">
                   </div>
-                  <div class="col-md-6 ps-0 mb-3">
-                    <label class="form-label">Phone Number</label>
-                    <input type="number" class="form-control shadow-none" required name="phonenum">
-                  </div>
-                  <div class="col-md-6 ps-0 mb-3">
+                
+                  <div class="col-md-3 ps-0 mb-3">
                   <label class="form-label fw-bold">Course</label>
                                 <select class='form-select shadow-none' aria-label='Default select example' name='course' required>
                                 <option disabled selected value="">Select a Course...</option> <!-- placeholder option -->
@@ -159,7 +156,7 @@ require("./header/header.php")
                                 ?>
                             </select>
                   </div>
-                  <div class="col-md-6 ps-0 mb-3">
+                  <div class="col-md-3 ps-0 mb-3">
                     <label class="form-label">Year</label>
                     <select class='form-select shadow-none' aria-label='Default select example' name='year' required>
                     <option disabled selected value="">Select Year...</option> <!-- placeholder option -->

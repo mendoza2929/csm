@@ -56,22 +56,11 @@ if(isset($_POST['check_availability'])){
         $_SESSION['room'];
         
 
-            // // run query to check the room is available or not
-
-            // $tb_query = "SELECT COUNT(*) AS `total_bookings` FROM `booking_order` WHERE booking_status=? AND room_id=? AND check_out > ? AND check_in < ?";
-
-            // $values = ['approved',$_SESSION['room']['id'],$frm_data['check_in'],$frm_data['check_out']];
-
-            // $tb_fetch = mysqli_fetch_assoc(select($tb_query,$values,'siss'));
-
-            // $rq_result = select("SELECT `quantity` FROM `rooms` WHERE `id`=?" , [$_SESSION['room']['id']],'i');
-            // $rq_fetch = mysqli_fetch_assoc($rq_result);
-
-            // if(($rq_fetch['quantity']-$tb_fetch['total_bookings'])==0){
-            //     $status = 'unavailable';
-            //     $result = json_encode(['status'=>$status]);
-
-            //     echo $result;
+            // // // run query to check the room is available or not
+            // $res = select("SELECT `avail` FROM `rooms` WHERE `id`=? AND `avail`>=?", [$room_id, $quantity], 'is');
+            // if(mysqli_num_rows($res) == 0) {
+            //     // Display error message and prevent booking
+            //     echo "Error: Not enough availability in the Apparatus.";
             //     exit;
             // }
 
@@ -87,7 +76,7 @@ if(isset($_POST['check_availability'])){
         $_SESSION['room']['payment'] = $payment;
         $_SESSION['room']['available'] = true;
         
-    $result = json_encode(["status"=>'available',"days"=>$count_days,"payment"=>$payment]);
+    $result = json_encode(["status"=>'',"days"=>$count_days,"payment"=>$payment]);
         echo $result;
         
     }
