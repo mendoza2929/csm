@@ -37,9 +37,16 @@ if(isset($_POST['pay_now'])) {
     $TXN_AMOUNT = $_SESSION['room']['payment'];
 
     $frm_data = filteration($_POST);
+    
 
     $room_id = $_SESSION['room']['id'];
     $quantity = $frm_data['quantity'];
+
+    if($quantity <= 0) {
+        // Display error message and prevent booking
+        echo "Error: Invalid quantity.";
+        exit;
+    }
 
     // Check if the requested quantity is available in the room
     $res = select("SELECT `avail` FROM `rooms` WHERE `id`=? AND `avail`>=?", [$room_id, $quantity], 'is');

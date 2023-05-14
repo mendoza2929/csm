@@ -53,8 +53,9 @@ if(isset($_GET['fetch_equipment'])){
           <h5 class='card-title text-center'>$equipment_data[brand]</h5>
           <h5 class='card-title text-center'>$equipment_data[unit]</h5>
           <div class='guests mb-2'>
-          <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>Date Added: $equipment_data[date_added] </span>
-          </div>
+                
+          <span class='badge rounded-pill bg-light text-dark text-wrap'>Available: $equipment_data[avail]</span>
+        </div>
           $equipment_btn
         </div>
       </div>
@@ -112,8 +113,9 @@ if(isset($_POST['search_equipment'])){
            <h5 class='card-title text-center'>$equipment_data[brand]</h5>
            <h5 class='card-title text-center'>$equipment_data[unit]</h5>
            <div class='guests mb-2'>
-           <span class='badge rounded-pill bg-light text-dark text-wrap mb-2'>Date Added: $equipment_data[date_added] </span>
-           </div>
+                
+           <span class='badge rounded-pill bg-light text-dark text-wrap'>Available: $equipment_data[avail]</span>
+         </div>
            $equipment_btn
          </div>
        </div>

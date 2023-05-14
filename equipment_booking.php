@@ -38,9 +38,9 @@ include_once 'dbconnection.php';
 session_start();
 date_default_timezone_set("Asia/Manila");
 
-$home_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
-$values = [1];
-$home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
+// $home_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
+// $values = [1];
+// $home_r = mysqli_fetch_assoc(select($home_q, $values,'i'));
 
 
 if($home_r['shutdown']==1){
@@ -194,7 +194,7 @@ if($home_r['shutdown']==1){
           <div class="card mb-4 border-0 shadow-sm rounded-3">
             <div class="card-body">
            
-            <form action="charge_equipment.php" id="booking_form" method="POST" >
+            <form action="charge_equipment.php" id="booking_form" method="POST" novalidate>
               <h6 class="mb-3 text-center fw-bold">Borrowing Details</h6>
             
               
@@ -204,25 +204,26 @@ if($home_r['shutdown']==1){
  
                 <div class="row">
                   <div class="col-md-3 mb-3">
-                    <label class="form-label mb-1">Name</label>
+                    <label class="form-label mb-1 fw-bold">Name</label>
                     <input name="name" type="text" value="<?php echo $user_data['name']?>" class="form-control shadow-none" required>
                   </div>
-                  <div class="col-md-4 mb-3">
+                  <div class="col-md-2 mb-3 fw-bold">
                     <label class="form-label mb-1">Student ID</label>
                     <input name="email" value="<?php echo $user_data['student_id']?>" class="form-control shadow-none" required >
                   </div>
-                  <div class="col-md-2 mb-3">
+                  <div class="col-md-1 mb-3 fw-bold">
                     <label class="form-label mb-1">Course</label>
                     <input type="text" class="form-control shadow-none"value="<?php echo $user_data['course']?>" required name="course">
                   </div>
-                  <div class="col-md-1  mb-3">
+                  <div class="col-md-1  mb-3 fw-bold">
                     <label class="form-label mb-1">Year</label>
                     <input type="text" class="form-control shadow-none"value="<?php echo $user_data['year']?>" required name="year">
                   </div>
+                  
                   <div class="col-md-2 mb-3">
                       <div class="row">
                         
-                      <label class="form-label mb-3"> Select Teacher
+                      <label class="form-label mb-3 fw-bold"> Select Teacher
     <select class='form-select shadow-none' aria-label='Default select example' name='teacher' required>
         <option disabled selected value="">Select a teacher...</option> <!-- placeholder option -->
         <?php
@@ -237,28 +238,70 @@ if($home_r['shutdown']==1){
                       </div>
     
                   </div>
+
+                  
+             
+                  <div class="col-md-3 mb-3">
+                      <div class="row">
+                        
+                      <label class="form-label mb-3 fw-bold fw-bold"> Subject
+    <select class='form-select shadow-none' aria-label='Default select example' name='lab' required>
+        <option disabled selected value="">Select a Subject...</option> <!-- placeholder option -->
+        <?php
+        $res = selectAll('class_name');
+        while($opt = mysqli_fetch_assoc($res)){
+            echo "<option value='$opt[name]'>$opt[name]</option>";
+        }
+        ?>
+    </select>
+</label>
+
+                      </div>
+    
+                  </div>
+
+                  <div class="col-md-6 mb-3">
+                            <div class="row">
+          <label class="form-label fw-bold">Add Group Mates </label>
+        <input type="email" class="form-control mb-2 shadow-none" list="personnel_list_code" name="group_mate"  placeholder="Type to search group mate" required multiple pattern=".@">
+        <datalist id="personnel_list_code">
+    <?php
+    $res = $con->query ('SELECT * FROM `user_cred`');
+    while($opt = mysqli_fetch_assoc($res)){
+    ?>
+      <option value="<?php echo $opt['name'].' '. $opt['lname'].' '. $opt['suffix'] ?>"></option>
+    <?php
+    }
+    ?>
+  </datalist>
+      </label>
+
+              </div>
+          
+              </div>
+
                   <div class="col-md-1 mb-3">
-                    <label class="form-label mb-1">Quantity</label>
+                    <label class="form-label mb-1 fw-bold">Quantity</label>
                     <input type="number" value="1" min="1" class="form-control shadow-none"  required name="quantity">
                   </div>
                   <div class="col-md-2 mb-3">
-                    <label class="form-label mb-1">Group No.</label>
+                    <label class="form-label mb-1 fw-bold">Group No.</label>
                     <input name="group_no" type="number"  min="1" class="form-control shadow-none">
                   </div>
                   <div class="col-md-1 mb-3">
-                    <label class="form-label mb-1">Room No.</label>
+                    <label class="form-label mb-1 fw-bold">Room No.</label>
                     <input name="room_no" type="number"  min="1" class="form-control shadow-none">
                   </div>
                   <!--<div class="col-md-2 mb-3">
                     <label class="form-label mb-1">Volume</label>
                     <input name="volume" type="number" min="1" class="form-control shadow-none">
                   </div>-->
-                  <div class="col-md-3 mb-3">
+                  <div class="col-md-3 mb-3 fw-bold">
                     <label class="form-label">Start Time</label>
                     <input type="datetime-local" onchange="check_availability()" class="form-control shadow-none" required name="checkin">
                   </div>
-                  <div class="col-md-3 mb-4">
-                    <label class="form-label">End Time</label>
+                  <div class="col-md-3 mb-4 ">
+                    <label class="form-label fw-bold">End Time</label>
                     <input type="datetime-local"  onchange="check_availability()" class="form-control shadow-none" required name="checkout">
                   </div>
         

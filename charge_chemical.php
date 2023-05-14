@@ -40,6 +40,21 @@ if(isset($_POST['pay_now_chemical'])){
   
     $chemical_id = $_SESSION['chemical']['id'];
     $quantity = $frm_data['volume'];
+    $state = $frm_data['state'];
+
+    
+    if($quantity <= 0) {
+        // Display error message and prevent booking
+        echo "Error: Invalid quantity.";
+        exit;
+    }
+
+    
+    if($state <= 0) {
+        // Display error message and prevent booking
+        echo "Error: Invalid Concentration.";
+        exit;
+    }
 
     // Check if the requested quantity is available in the room
     $res = select("SELECT `quantity` FROM `chemical` WHERE `id`=? AND `quantity`>=?", [$chemical_id, $quantity], 'is');
@@ -48,6 +63,14 @@ if(isset($_POST['pay_now_chemical'])){
         echo "Error: Not enough availability in the Chemical.";
         exit;
     }
+
+      // Check if the requested quantity is available in the room
+      $res1 = select("SELECT `concentration` FROM `chemical` WHERE `id`=? AND `concentration`>=?", [$chemical_id, $state], 'is');
+      if(mysqli_num_rows($res1) == 0) {
+          // Display error message and prevent booking
+          echo "Error: Not enough concentration in the Chemical.";
+          exit;
+      }
    
 
 
@@ -68,10 +91,9 @@ if(isset($_POST['pay_now_chemical'])){
     insert($query2,[$chemical,$_SESSION['chemical']['name'],$frm_data['name'],$frm_data['course'],$frm_data['year'],
     $frm_data['teacher'],$frm_data['email'],$frm_data['group_no'],$frm_data['state'],$quantity,$frm_data['room_no'],$frm_data['lab'],$frm_data['group_mate']],'issssssssssss');
 
-      // Update the room quantity
-      $query3 = "UPDATE `chemical` SET `quantity`=`quantity`-? WHERE `id`=?";
-      update($query3, [$quantity, $chemical_id], 'is');
-
+       // Update the room quantity
+    $query3 = "UPDATE `chemical` SET `quantity`=`quantity`-?, `concentration`=`concentration`-? WHERE `id`=?";
+    update($query3, [$quantity, $state, $chemical_id], 'iis');
 
   
     redirect('pay_status_chemical.php');

@@ -41,8 +41,14 @@ if(isset($_POST['pay_now_equipment'])){
     $equipment_id = $_SESSION['equipment']['id'];
     $quantity = $frm_data['quantity'];
 
+    if($quantity <= 0) {
+        // Display error message and prevent booking
+        echo "Error: Invalid quantity.";
+        exit;
+    }
+
        // Check if the requested quantity is available in the room
-       $res = select("SELECT `quantity` FROM `equipment` WHERE `id`=? AND `quantity`>=?", [$equipment_id, $quantity], 'is');
+       $res = select("SELECT `avail` FROM `equipment` WHERE `id`=? AND `avail`>=?", [$equipment_id, $quantity], 'is');
        if(mysqli_num_rows($res) == 0) {
            // Display error message and prevent booking
            echo "Error: Not enough availability in the Equipment.";
@@ -63,14 +69,14 @@ if(isset($_POST['pay_now_equipment'])){
     $equipment = mysqli_insert_id($con);
     
 
-    $query2 = "INSERT INTO `equipment_details_final` (`booking_id`, `equipment_name`, `username`, `course`, `year`, `teacher`, `email`, `quantity`, `group_no`, `apr_no`)
-     VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $query2 = "INSERT INTO `equipment_details_final` (`booking_id`, `equipment_name`, `username`, `course`, `year`, `teacher`, `email`, `quantity`, `group_no`, `apr_no`,`lab`,`group_mate`)
+     VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
     insert($query2,[$equipment,$_SESSION['equipment']['name'],$frm_data['name'],$frm_data['course'],$frm_data['year'],
-    $frm_data['teacher'],$frm_data['email'],$quantity,$frm_data['group_no'],$frm_data['room_no']],'isssssssss');
+    $frm_data['teacher'],$frm_data['email'],$quantity,$frm_data['group_no'],$frm_data['room_no'],$frm_data['lab'],$frm_data['group_mate']],'isssssssssss');
 
       // Update the room quantity
-      $query3 = "UPDATE `equipment` SET `quantity`=`quantity`-? WHERE `id`=?";
+      $query3 = "UPDATE `equipment` SET `avail`=`avail`-? WHERE `id`=?";
       update($query3, [$quantity, $equipment_id], 'is');
 
 

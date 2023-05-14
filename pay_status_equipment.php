@@ -154,7 +154,7 @@ if($home_r['shutdown']==1){
              <i class="bi bi-check-circle-fill"></i>
               Borrowing Equipment Succesfully
              <br><br>
-             <a href='bookings_equipment.php'>Go to Chemical</a> 
+             <a href='bookings_equipment.php'>Go to Equipment</a> 
              </div>
            data;
            // }
